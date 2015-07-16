@@ -19,14 +19,12 @@ import static org.hamcrest.MatcherAssert.assertThat;
 @ContextConfiguration(locations = "classpath:applicationContext.xml")
 @TransactionConfiguration
 @Transactional
-public class FakeTest {
+public class DatabaseTest {
     @Autowired
     private SessionFactory sessionFactory;
 
     @Test
     public void should_pass_if_database_is_exist() {
         sessionFactory.getCurrentSession().flush();
-        System.out.println("hello, this is a fake test in core!");
-        assertThat(1, is(1));
     }
 }
