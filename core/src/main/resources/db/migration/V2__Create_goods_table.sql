@@ -5,7 +5,7 @@ create table GOODS(
   category_id int,
   price double,
   picture_url varchar(50),
-  status int,
+  status varchar(20),
   primary key(id),
   foreign key(category_id) references CATEGORY(id)
 );
