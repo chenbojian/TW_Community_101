@@ -10,4 +10,4 @@ bower_components/
 *.obj
 *.o
 components/
-classes
+classes/
