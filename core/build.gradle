@@ -26,5 +26,6 @@ dependencies {
 }
 
 flyway {
-    
+    url = 'jdbc:mysql://localhost:3306/community101'
+    user = 'root'
 }
