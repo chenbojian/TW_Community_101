@@ -10,4 +10,5 @@ Spring
 Hibernate
 
 ## Build instructions
-gradle
+"gradle tasks" to show all available tasks.
+
