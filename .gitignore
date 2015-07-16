@@ -8,3 +8,4 @@ out/
 *.iws
 bower_components/
 *.un~
+components/
