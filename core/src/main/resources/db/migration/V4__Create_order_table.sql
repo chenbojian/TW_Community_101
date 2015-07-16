@@ -1,4 +1,4 @@
-create table ORDER(
+create table ORDERS(
   id int not null auto_increment,
   user_id int,
   address varchar(100),
