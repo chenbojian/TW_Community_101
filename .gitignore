@@ -7,5 +7,5 @@ out/
 *.ipr
 *.iws
 bower_components/
-*.un~
+
 components/
