@@ -1,0 +1,29 @@
+apply plugin:'org.flywaydb.flyway'
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'mysql:mysql-connector-java:5.1.31'
+        classpath 'org.flywaydb:flyway-gradle-plugin:3.2.1'
+    }
+}
+
+dependencies {
+    compile 'mysql:mysql-connector-java:5.1.31'
+    compile 'org.springframework:spring-core:4.0.6.RELEASE'
+    compile 'org.springframework:spring-beans:4.0.6.RELEASE'
+    compile 'org.springframework:spring-context:4.0.6.RELEASE'
+    compile 'org.springframework:spring-context-support:4.0.6.RELEASE'
+    compile 'org.springframework:spring-tx:4.0.6.RELEASE'
+    compile 'org.hibernate:hibernate-core:4.3.5.Final'
+    compile 'org.hibernate:hibernate-entitymanager:4.3.5.Final'
+
+    testCompile 'org.springframework:spring-test:4.0.6.RELEASE'
+}
+
+flyway {
+    
+}
