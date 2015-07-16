@@ -7,8 +7,9 @@ import org.springframework.web.bind.annotation.RestController;
  * Created by chenbojian on 7/16/15.
  */
 @RestController
+@RequestMapping("/fake")
 public class FakeController {
-    @RequestMapping("/fake")
+    @RequestMapping("/")
     public String fake() {
         return "fakehaha";
     }
