@@ -6,6 +6,7 @@ It is in early development stage.
 
 ## Dependencies
 Spring
+
 Hibernate
 
 ## Build instructions
