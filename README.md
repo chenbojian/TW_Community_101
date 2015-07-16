@@ -10,3 +10,4 @@ Spring
 Hibernate
 
 ## Build instructions
+gradle
