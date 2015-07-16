@@ -7,11 +7,6 @@ out/
 *.ipr
 *.iws
 bower_components/
-
-
-
-
 *.obj
 *.o
-
 components/
