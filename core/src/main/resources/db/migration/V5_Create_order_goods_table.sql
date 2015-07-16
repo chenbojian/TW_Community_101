@@ -8,4 +8,4 @@ create table ORDER_GOODS(
   goods_picture_url varchar(50),
   primary key(id),
   foreign key(order_id) references ORDER(id)
-)
+);

@@ -8,4 +8,4 @@ create table GOODS(
   status int,
   primary key(id),
   foreign key(category_id) references CATEGORY(id)
-)
+);

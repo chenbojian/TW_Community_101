@@ -7,4 +7,4 @@ create table ORDER(
   total_price double,
   primary key(id),
   foreign key(user_id) references USER(id)
-)
+);
