@@ -29,3 +29,17 @@ flyway {
     url = 'jdbc:mysql://localhost:3306/community101'
     user = 'root'
 }
+
+task initSeed(type:Exec) {
+    commandLine "mysql", "-u", "root", "-D", "community101"
+    standardInput = new FileInputStream("$project.projectDir"+"/src/main/resources/db/seed/init.sql")
+}
+
+task cleanSeed(type:Exec) {
+    commandLine "mysql", "-u", "root", "-D", "community101"
+    standardInput = new FileInputStream("$project.projectDir"+"/src/main/resources/db/seed/clean.sql")
+}
+
+
+
+
