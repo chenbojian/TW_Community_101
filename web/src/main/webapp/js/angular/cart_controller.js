@@ -1,6 +1,6 @@
 var App = angular.module('App', []);
 
-App.controller('Controller', function($scope, $http) {
+App.controller('CartController', function($scope, $http) {
 
     $scope.is_fake = true;
     $scope.selected_items_id = [];
