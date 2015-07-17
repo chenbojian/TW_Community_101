@@ -13,6 +13,7 @@
     <title>input goods page</title>
 </head>
 <body>
+<p>${message}</p>
 <form:form modelAttribute="inputGoodsDTO" method="post" enctype="multipart/form-data">
     <div>
         <label for="name">商品名称 :</label>
