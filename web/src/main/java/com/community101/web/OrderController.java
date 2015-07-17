@@ -4,7 +4,10 @@ import com.community101.core.Orders;
 import com.community101.core.User;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.PrintWriter;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
@@ -34,14 +37,29 @@ public class OrderController {
             .build();
 
     @RequestMapping("/order/all")
-    public List<Orders> listAllOrders(){
+    public List<Orders> listAllOrders() {
         List<Orders> ordersList = new ArrayList<Orders>();
         ordersList.add(order1);
         ordersList.add(order2);
         return ordersList;
     }
 
-    private class OrderBuilder{
+    @RequestMapping("/order/orderManager")
+    public ModelAndView orderManagerPage() {
+        ModelAndView modelAndView = new ModelAndView("order-manager");
+        return modelAndView;
+    }
+
+    @RequestMapping("/order/newOrder")
+    public void newOrder(long timed, HttpServletResponse response) throws Exception {
+        PrintWriter writer = response.getWriter();
+        writer.print("{'hasNew':'1','orderNumber':'1234'}");
+//        String result = "{'hasNew':'1','orderNumber':'1234'}";
+//        return result;
+    }
+
+
+    class OrderBuilder {
         private long id;
         private User user;
         private String address;
@@ -49,44 +67,44 @@ public class OrderController {
         private String status;
         private int price;
 
-        public OrderBuilder(){
+        public OrderBuilder() {
         }
 
-        public OrderBuilder givenBuilder(){
+        public OrderBuilder givenBuilder() {
             return this;
         }
 
-        public OrderBuilder withId(long id){
+        public OrderBuilder withId(long id) {
             this.id = id;
             return this;
         }
 
-        public OrderBuilder withUser(User user){
+        public OrderBuilder withUser(User user) {
             this.user = user;
             return this;
         }
 
-        public OrderBuilder withAddress(String address){
+        public OrderBuilder withAddress(String address) {
             this.address = address;
             return this;
         }
 
-        public OrderBuilder withTimestamp(Timestamp createTime){
+        public OrderBuilder withTimestamp(Timestamp createTime) {
             this.createTime = createTime;
             return this;
         }
 
-        public OrderBuilder withStatus(String status){
+        public OrderBuilder withStatus(String status) {
             this.status = status;
             return this;
         }
 
-        public OrderBuilder withPrice(int price){
+        public OrderBuilder withPrice(int price) {
             this.price = price;
             return this;
         }
 
-        public Orders build(){
+        public Orders build() {
             Orders order = new Orders();
             order.setId(this.id);
             order.setUser(this.user);
