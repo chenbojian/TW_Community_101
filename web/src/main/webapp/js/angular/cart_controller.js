@@ -1,6 +1,6 @@
-var App = angular.module('App', []);
+var App = angular.module('App', ['ngCookies']);
 
-App.controller('CartController', function($scope, $http) {
+App.controller('CartController', function($scope, $http, $cookies) {
 
     $scope.is_fake = true;
     $scope.selected_items_id = [];
@@ -68,6 +68,7 @@ App.controller('CartController', function($scope, $http) {
         $http.post("/web/api/order/submit", order).success(function(data, status, headers) {
             $scope.order_id = data;
             $scope.order_submitted = true;
+            $cookies.put("orderId", $scope.order_id);
         });
     };
 });
