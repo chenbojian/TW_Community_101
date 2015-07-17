@@ -19,14 +19,9 @@ App.controller('DetailsController', function($scope, $http, $cookies) {
     get_id();
 
     var get_details = function() {
-        if ($scope.is_fake) {
-            $scope.item = {"id":$scope.item_id,"name":"fake goods","price":2143,"pic":"//baidu.com/","description":"very good"};
-        }
-        else {
-            $http.get($scope.webapi_goods_details + "?id=" + $scope.item_id).success(function(data, status, headers, config) {
-                $scope.item = data;
-            });
-        }
+        $http.get($scope.webapi_goods_details + "?id=" + $scope.item_id).success(function(data, status, headers, config) {
+            $scope.item = data;
+        });
     };
     get_details();
 
