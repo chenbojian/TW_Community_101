@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app="App">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Learn AngularJS</title>
+    <script src="js/angular/angular.min.js"></script>
+    <script src="js/angular/cart_controller.js"></script>
+</head>
+<body ng-controller="Controller">
+
+<div ng-repeat="item in selected_items">
+    <span>{{item["name"]}}</span>
+    <input ng-model="item['quantity']">
+    <span>{{item["price"]/100 | currency}}</span>
+    <span>{{item["price"]/100 * item["quantity"] | currency}}</span>
+    <button ng-click="more_selected_item($index)">more</button>
+    <button ng-click="less_selected_item($index)">less</button>
+    <button ng-click="remove_selected_item($index)">remove</button>
+</div>
+
+<div>
+    <p>Total: </p>
+    <span>{{bill.total/100 | currency}}</span>
+</div>
+
+<div>
+    <p>Phone:</p><input ng-model="phone">
+</div>
+
+<div>
+    <p>Address:</p><input ng-model="address">
+</div>
+
+</body>
+</html>
