@@ -1,0 +1,13 @@
+.jumbotron {
+    background: url('http://lorempixel.com/output/city-q-c-600-200-1.jpg') no-repeat;
+    background-size: cover;
+}
+
+#goodslist .thumbnail {
+    height: 210px;
+}
+
+#goodslist .thumbnail img {
+    height: 120px;
+    width: 120px;
+}
