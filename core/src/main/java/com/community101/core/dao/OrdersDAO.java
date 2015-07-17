@@ -44,4 +44,7 @@ public class OrdersDAO {
         return (List<Orders>)sessionFactory.getCurrentSession().createQuery("from Orders where status='cancel'").list();
     }
 
+    public Orders findOrdersById(long id){
+        return (Orders)sessionFactory.getCurrentSession().get(Orders.class,id);
+    }
 }

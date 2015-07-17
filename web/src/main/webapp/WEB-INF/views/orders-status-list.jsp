@@ -27,9 +27,9 @@
     订单内容：
     <c:forEach var="orderGoodses" items="${orders.orderGoodses}">
     <div>
-      商品名称：${orderGoodses.goodsName}
-      商品数量：${orderGoodses.count}
-      商品单价：${orderGoodses.goodsPrice}
+      &nbsp;&nbsp;商品名称：${orderGoodses.goodsName}；
+      &nbsp;&nbsp;商品数量：${orderGoodses.count}；
+      &nbsp;&nbsp;商品单价：${orderGoodses.goodsPrice}
     </div>
     </c:forEach>
   </div>
@@ -53,9 +53,9 @@
     订单内容：
     <c:forEach var="orderGoodses" items="${orders.orderGoodses}">
       <div>
-        商品名称：${orderGoodses.goodsName}
-        商品数量：${orderGoodses.count}
-        商品单价：${orderGoodses.goodsPrice}
+        &nbsp;&nbsp;商品名称：${orderGoodses.goodsName}；
+        &nbsp;&nbsp;商品数量：${orderGoodses.count}；
+        &nbsp;&nbsp;商品单价：${orderGoodses.goodsPrice}
       </div>
     </c:forEach>
   </div>
@@ -79,9 +79,9 @@
     订单内容：
     <c:forEach var="orderGoodses" items="${orders.orderGoodses}">
       <div>
-        商品名称：${orderGoodses.goodsName}
-        商品数量：${orderGoodses.count}
-        商品单价：${orderGoodses.goodsPrice}
+        &nbsp;&nbsp;商品名称：${orderGoodses.goodsName}；
+        &nbsp;&nbsp;商品数量：${orderGoodses.count}；
+        &nbsp;&nbsp;商品单价：${orderGoodses.goodsPrice}
       </div>
     </c:forEach>
   </div>
@@ -93,11 +93,28 @@
 
 <br/>取消订单：<br/>
 <c:forEach var="orders" items="${cancelOrdersList}">
-  <tr>
-    <td>${orders.id}</td>
-    <td>${orders.status}</td>
-    <td>${orders.address}</td>
-  </tr>
+  <div>
+    客户联系方式：
+      ${orders.user.telPhone}
+  </div>
+  <div>
+    客户地址：
+      ${orders.address}
+  </div>
+  <div>
+    订单内容：
+    <c:forEach var="orderGoodses" items="${orders.orderGoodses}">
+      <div>
+        &nbsp;&nbsp;商品名称：${orderGoodses.goodsName}；
+        &nbsp;&nbsp;商品数量：${orderGoodses.count}；
+        &nbsp;&nbsp;商品单价：${orderGoodses.goodsPrice}
+      </div>
+    </c:forEach>
+  </div>
+  <div>
+    消费总价：
+      ${orders.totalPrice}
+  </div>
 </c:forEach>
 </body>
 </html>

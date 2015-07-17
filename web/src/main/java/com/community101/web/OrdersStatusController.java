@@ -38,5 +38,14 @@ public class OrdersStatusController {
         return modelAndView;
     }
 
+    @RequestMapping(value = "/customerOrders")
+    public ModelAndView showCustomerOrders(){
+        ModelAndView modelAndView=new ModelAndView("customer-orders-status");
+        long id=2;
+        Orders orders=ordersService.findOrdersById(id);
+        modelAndView.addObject("orders",orders);
+        return modelAndView;
+    }
+
 
 }
