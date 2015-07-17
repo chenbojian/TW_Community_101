@@ -8,9 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-/**
- * Created by jiaoming on 7/17/15.
- */
 @Repository
 @Transactional
 public class GoodsDAO {
@@ -21,7 +18,12 @@ public class GoodsDAO {
         this.sessionFactory=sessionFactory;
     }
 
-    public List<Goods> goodsList(){
-        return (List<Goods>)sessionFactory.getCurrentSession().createQuery("from Goods").list();
+    public List<Goods> goodsList() {
+        return (List<Goods>) sessionFactory.getCurrentSession().createQuery("from Goods").list();
+    }
+
+    public void save(Goods goods) {
+        sessionFactory.getCurrentSession().save(goods);
+        
     }
 }
