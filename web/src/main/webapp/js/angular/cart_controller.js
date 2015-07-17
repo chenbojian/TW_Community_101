@@ -15,7 +15,7 @@ App.controller('CartController', function($scope, $http, $cookies) {
 
     var get_items_info = function() {
         for (var i = 0, len = $scope.selected_items_id.length; i < len; i++) {
-            $http.get("/web/api/customer/goods/details" + "?id=" + $scope.selected_items_id[i]).success(function(data, status, headers, config) {
+            $http.get("/web/api/customer/good" + "?id=" + $scope.selected_items_id[i]).success(function(data, status, headers, config) {
                 var item = data;
                 item["quantity"] = 1;
                 $scope.selected_items.push(item);

@@ -52,7 +52,7 @@ public class GoodsInformationController {
     @RequestMapping("/good")
     public GoodsDTO getGoodsInformationById(long id) {
         if (is_fake) {
-            return new GoodsDTO(id, "Fake Goods", 1212, "//baidu.com/");
+            return new GoodsDTO(id, "Fake Goods from web API", 1212, "//baidu.com/");
         }
         else {
             throw new NotImplementedException();
@@ -62,7 +62,7 @@ public class GoodsInformationController {
     @RequestMapping("goods/details")
     public GoodsDetailedDTO getGoodsGetailsById(long id) {
         if (is_fake) {
-            return new GoodsDetailedDTO(id, "fake goods", 2143, "//baidu.com/", "very good from web API");
+            return new GoodsDetailedDTO(id, "fake goods with details", 2143, "//baidu.com/", "very good from web API");
         }
         else {
             throw new NotImplementedException();
