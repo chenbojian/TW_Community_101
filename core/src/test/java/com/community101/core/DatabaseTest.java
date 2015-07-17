@@ -24,6 +24,6 @@ public class DatabaseTest {
     @Test
     public void should_pass_if_database_is_exist() {
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-        jdbcTemplate.queryForList("SELECT * FROM GOODS");
+        jdbcTemplate.queryForList("SELECT * FROM ORDERS");
     }
 }

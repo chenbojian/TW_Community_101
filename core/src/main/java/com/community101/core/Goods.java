@@ -24,7 +24,7 @@ public class Goods {
     private Category category;
 
     @Column(name="price")
-    private Double price;
+    private Integer price;
 
     @Column(name="picture_url")
     private String pictureUrl;
@@ -68,14 +68,6 @@ public class Goods {
         this.status = status;
     }
 
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -90,5 +82,14 @@ public class Goods {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+
+    public Integer getPrice() {
+        return price;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
     }
 }

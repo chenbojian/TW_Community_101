@@ -18,7 +18,10 @@ public class OrderGoods {
     private Orders orders;
 
     @Column(name="count")
-    private int count;
+    private Integer count;
+
+    @Column(name="goods_price")
+    private Integer goodsPrice;
 
     @Column(name="goods_name")
     private String goodsName;
@@ -42,14 +45,6 @@ public class OrderGoods {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public int getCount() {
-        return count;
-    }
-
-    public void setCount(int count) {
-        this.count = count;
     }
 
     public String getGoodsName() {
@@ -90,5 +85,21 @@ public class OrderGoods {
 
     public void setOrders(Orders orders) {
         this.orders = orders;
+    }
+
+    public Integer getGoodsPrice() {
+        return goodsPrice;
+    }
+
+    public void setGoodsPrice(Integer goodsPrice) {
+        this.goodsPrice = goodsPrice;
+    }
+
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
     }
 }

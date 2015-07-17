@@ -1,7 +1,7 @@
 package com.community101.core;
 
 import javax.persistence.*;
-import java.security.Timestamp;
+import java.sql.Timestamp;
 import java.util.Set;
 
 /**
@@ -29,7 +29,7 @@ public class Orders {
     private String status;
 
     @Column(name="total_price")
-    private Double totalPrice;
+    private Integer totalPrice;
 
     @OneToMany(mappedBy = "orders")
     private Set<OrderGoods> orderGoodses;
@@ -52,14 +52,6 @@ public class Orders {
 
     public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
-    }
-
-    public Double getTotalPrice() {
-        return totalPrice;
-    }
-
-    public void setTotalPrice(Double totalPrice) {
-        this.totalPrice = totalPrice;
     }
 
     public String getAddress() {
@@ -92,5 +84,13 @@ public class Orders {
 
     public void setOrderGoodses(Set<OrderGoods> orderGoodses) {
         this.orderGoodses = orderGoodses;
+    }
+
+    public Integer getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(Integer totalPrice) {
+        this.totalPrice = totalPrice;
     }
 }
