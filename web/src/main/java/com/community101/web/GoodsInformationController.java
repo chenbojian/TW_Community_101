@@ -13,11 +13,11 @@ import java.util.List;
  * Created by MiffyLiye on 16/07/2015.
  */
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/customer")
 public class GoodsInformationController {
     private boolean is_fake = true;
 
-    @RequestMapping("/category")
+    @RequestMapping("/categories")
     public List<CategoryDTO> listAllCategories() {
         if (is_fake) {
             List<CategoryDTO> categoryList = new LinkedList<CategoryDTO>();
@@ -32,7 +32,7 @@ public class GoodsInformationController {
 
     }
 
-    @RequestMapping("/good/all")
+    @RequestMapping("/goods")
     public List<GoodsDTO> listAllGoodsOfCertainCategory(long cid) {
         if (is_fake) {
             List<GoodsDTO> goodsThinList = new LinkedList<GoodsDTO>();
@@ -57,5 +57,6 @@ public class GoodsInformationController {
             throw new NotImplementedException();
         }
     }
+
 
 }
