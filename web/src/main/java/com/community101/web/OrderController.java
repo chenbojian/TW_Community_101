@@ -4,6 +4,7 @@ import com.community101.core.DTO.OrderDTO;
 import com.community101.core.Orders;
 import com.community101.core.User;
 import com.community101.core.service.OrdersService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,8 +27,7 @@ import java.util.List;
 @RequestMapping("/api/order")
 public class OrderController {
     private boolean is_fake = true;
-    private OrdersService ordersService;
-//    private final Gson gson = new Gson();
+    private OrdersService ordersService;;
 
     private OrderBuilder orderBuilder = new OrderBuilder();
     Orders order1 = orderBuilder.givenBuilder()
@@ -65,16 +65,14 @@ public class OrderController {
 
     @RequestMapping("/newOrder")
     @ResponseBody
-    public Orders newOrder(long count, HttpServletResponse response) throws Exception {
+    public void newOrder(int count, HttpServletResponse response) throws Exception {
         PrintWriter writer = response.getWriter();
+        ObjectMapper objectMapper = new ObjectMapper();
         List<Orders> ordersList = ordersService.listNewOrders();
         if(count<ordersList.size()){
-//            writer.print(ordersList.get(ordersList.size()-1));
-            return ordersList.get(ordersList.size()-1);
+            writer.print(ordersList.size());
+//            return ordersList.get(ordersList.size()-1);
         }
-        else return null;
-//        String result = "{'hasNew':'1','orderNumber':'1234'}";
-//        return result;
     }
 
     @RequestMapping(value = "/submit", method = RequestMethod.POST)

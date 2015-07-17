@@ -30,7 +30,7 @@
     $(function () {
       window.setInterval(function () {
         $.get("${pageContext.request.contextPath}/api/order/newOrder",
-                {"count": 1},
+                {"count": 0},
                 function (data) {
                   if(data) {
                     $("#logs").append("[ new order: " + data + " ] time:" + new Date().getTime() + "<br/>");
