@@ -93,7 +93,7 @@ public class OrderController {
             order.setAddress(this.address);
             order.setCreateTime(this.createTime);
             order.setStatus(this.status);
-            order.setTotalPrice(12D);
+            order.setTotalPrice(12);
             return order;
         }
 

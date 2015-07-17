@@ -34,4 +34,12 @@ public class OrdersDAOTest  {
         List<Orders> ordersList=ordersDAO.listOrders();
         assertEquals(2,ordersList.size());
     }
+
+    @Transactional
+    @Rollback
+    @Test
+    public void should_return_new_status_orders(){
+        List<Orders> newOrdersList=ordersDAO.listNewOrders();
+        assertEquals(1,newOrdersList.size());
+    }
 }
