@@ -5,7 +5,7 @@ import com.community101.core.User;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -93,7 +93,7 @@ public class OrderController {
             order.setAddress(this.address);
             order.setCreateTime(this.createTime);
             order.setStatus(this.status);
-            order.setTotalPrice(12D);
+            order.setTotalPrice(1200);
             return order;
         }
 
