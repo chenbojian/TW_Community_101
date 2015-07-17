@@ -2,7 +2,10 @@ package com.community101.web;
 
 import com.community101.core.CategoryDTO;
 import com.community101.core.GoodsDTO;
+import com.community101.core.GoodsDetailedDTO;
+import com.community101.core.OrderDTO;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
@@ -13,11 +16,11 @@ import java.util.List;
  * Created by MiffyLiye on 16/07/2015.
  */
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/customer")
 public class GoodsInformationController {
     private boolean is_fake = true;
 
-    @RequestMapping("/category")
+    @RequestMapping("/categories")
     public List<CategoryDTO> listAllCategories() {
         if (is_fake) {
             List<CategoryDTO> categoryList = new LinkedList<CategoryDTO>();
@@ -32,7 +35,7 @@ public class GoodsInformationController {
 
     }
 
-    @RequestMapping("/good/all")
+    @RequestMapping("/goods")
     public List<GoodsDTO> listAllGoodsOfCertainCategory(long cid) {
         if (is_fake) {
             List<GoodsDTO> goodsThinList = new LinkedList<GoodsDTO>();
@@ -52,6 +55,16 @@ public class GoodsInformationController {
     public GoodsDTO getGoodsInformationById(long id) {
         if (is_fake) {
             return new GoodsDTO(id, "Fake Goods", 1212, "//baidu.com/");
+        }
+        else {
+            throw new NotImplementedException();
+        }
+    }
+
+    @RequestMapping("goods/details")
+    public GoodsDetailedDTO getGoodsGetailsById(long id) {
+        if (is_fake) {
+            return new GoodsDetailedDTO(id, "fake goods", 2143, "//baidu.com/", "very good");
         }
         else {
             throw new NotImplementedException();

@@ -28,4 +28,8 @@ public class OrdersDAO {
                 .list();
     }
 
+    public List<Orders> listNewOrders(){
+        return (List<Orders>)sessionFactory.getCurrentSession().createQuery("from Orders where status='new'").list();
+    }
+
 }

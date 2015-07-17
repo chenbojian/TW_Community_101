@@ -1,6 +1,9 @@
 package com.community101.web;
 
+import com.community101.core.DTO.InputGoodsDTO;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -12,6 +15,13 @@ import org.springframework.web.servlet.ModelAndView;
 public class InputGoodsController {
     @RequestMapping(value = {"","/"})
     public ModelAndView inputGoodsPage() {
-        return new ModelAndView("input-goods");
+        ModelAndView modelAndView = new ModelAndView("input-goods");
+        modelAndView.addObject("inputGoodsDTO", new InputGoodsDTO());
+        return modelAndView;
+    }
+
+    @RequestMapping(value = {"","/"}, method = RequestMethod.POST)
+    public ModelAndView inputGoods(@ModelAttribute InputGoodsDTO inputGoodsDTO){
+        return new ModelAndView();
     }
 }
