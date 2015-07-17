@@ -1,9 +1,12 @@
 package com.community101.core.DTO;
 
+import com.community101.core.Category;
 import com.community101.core.Goods;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 /**
  * Created by chenbojian on 7/17/15.
@@ -14,7 +17,10 @@ public class InputGoodsDTO {
     private int price;
     private MultipartFile pictureFile;
     private String pictureUrl;
-    private String uri;
+    private long categoryId;
+    private Category category;
+    private String url;
+
 
     public String getName() {
         return name;
@@ -52,8 +58,9 @@ public class InputGoodsDTO {
     public Goods toGoods() {
         Goods goods = new Goods();
         goods.setName(name);
+        goods.setCategory(category);
         goods.setDescription(description);
-        goods.setPictureUrl(uri);
+        goods.setPictureUrl(url);
         goods.setPrice(price);
         goods.setStatus("selling");
         return goods;
@@ -69,7 +76,7 @@ public class InputGoodsDTO {
         FileOutputStream fileOutputStream = new FileOutputStream(file);
         fileOutputStream.write(pictureFile.getBytes());
         fileOutputStream.close();
-        uri =contextPath + "/picture" + fileName;
+        url = contextPath + "/picture" + fileName;
 
     }
 
@@ -79,5 +86,22 @@ public class InputGoodsDTO {
 
     public void setPictureUrl(String pictureUrl) {
         this.pictureUrl = pictureUrl;
+    }
+
+
+    public long getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(long categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }
