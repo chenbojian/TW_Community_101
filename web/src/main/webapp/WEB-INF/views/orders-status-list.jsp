@@ -12,37 +12,109 @@
     <title>orders-status-list</title>
 </head>
 <body>
-新订单：
-<c:forEach var="orders" items="${newOrdersList}">
-  <tr>
-    <td>${orders.id}</td>
-    <td>${orders.status}</td>
-    <td>${orders.address}</td>
-  </tr>
+
+<br/>新订单：<br/>
+ <c:forEach var="orders" items="${newOrdersList}">
+  <div>
+    客户联系方式：
+    ${orders.user.telPhone}
+  </div>
+  <div>
+    客户地址：
+    ${orders.address}
+  </div>
+  <div>
+    订单内容：
+    <c:forEach var="orderGoodses" items="${orders.orderGoodses}">
+    <div>
+      &nbsp;&nbsp;商品名称：${orderGoodses.goodsName}；
+      &nbsp;&nbsp;商品数量：${orderGoodses.count}；
+      &nbsp;&nbsp;商品单价：${orderGoodses.goodsPrice}
+    </div>
+    </c:forEach>
+  </div>
+  <div>
+    消费总价：
+    ${orders.totalPrice}
+  </div>
 </c:forEach>
-配送中订单：
+
+<br/>配送中订单：<br/>
 <c:forEach var="orders" items="${dispatchingOrdersList}">
-  <tr>
-    <td>${orders.id}</td>
-    <td>${orders.status}</td>
-    <td>${orders.address}</td>
-  </tr>
+  <div>
+    客户联系方式：
+      ${orders.user.telPhone}
+  </div>
+  <div>
+    客户地址：
+      ${orders.address}
+  </div>
+  <div>
+    订单内容：
+    <c:forEach var="orderGoodses" items="${orders.orderGoodses}">
+      <div>
+        &nbsp;&nbsp;商品名称：${orderGoodses.goodsName}；
+        &nbsp;&nbsp;商品数量：${orderGoodses.count}；
+        &nbsp;&nbsp;商品单价：${orderGoodses.goodsPrice}
+      </div>
+    </c:forEach>
+  </div>
+  <div>
+    消费总价：
+      ${orders.totalPrice}
+  </div>
 </c:forEach>
-完成订单：
+
+<br/>完成订单：<br/>
 <c:forEach var="orders" items="${completedOrdersList}">
-  <tr>
-    <td>${orders.id}</td>
-    <td>${orders.status}</td>
-    <td>${orders.address}</td>
-  </tr>
+  <div>
+    客户联系方式：
+      ${orders.user.telPhone}
+  </div>
+  <div>
+    客户地址：
+      ${orders.address}
+  </div>
+  <div>
+    订单内容：
+    <c:forEach var="orderGoodses" items="${orders.orderGoodses}">
+      <div>
+        &nbsp;&nbsp;商品名称：${orderGoodses.goodsName}；
+        &nbsp;&nbsp;商品数量：${orderGoodses.count}；
+        &nbsp;&nbsp;商品单价：${orderGoodses.goodsPrice}
+      </div>
+    </c:forEach>
+  </div>
+  <div>
+    消费总价：
+      ${orders.totalPrice}
+  </div>
 </c:forEach>
-取消订单：
+
+<br/>取消订单：<br/>
 <c:forEach var="orders" items="${cancelOrdersList}">
-  <tr>
-    <td>${orders.id}</td>
-    <td>${orders.status}</td>
-    <td>${orders.address}</td>
-  </tr>
+  <div>
+    客户联系方式：
+      ${orders.user.telPhone}
+  </div>
+  <div>
+    客户地址：
+      ${orders.address}
+  </div>
+  <div>
+    订单内容：
+    <c:forEach var="orderGoodses" items="${orders.orderGoodses}">
+      <div>
+        &nbsp;&nbsp;商品名称：${orderGoodses.goodsName}；
+        &nbsp;&nbsp;商品数量：${orderGoodses.count}；
+        &nbsp;&nbsp;商品单价：${orderGoodses.goodsPrice}
+      </div>
+    </c:forEach>
+  </div>
+  <div>
+    消费总价：
+      ${orders.totalPrice}
+  </div>
 </c:forEach>
 </body>
 </html>

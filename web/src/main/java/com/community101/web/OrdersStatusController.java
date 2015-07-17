@@ -15,7 +15,6 @@ import java.util.List;
  * Created by jiaoming on 7/17/15.
  */
 @RestController
-//@Configuration
 @RequestMapping("/ordersStatus")
 public class OrdersStatusController {
     private OrdersService ordersService;
@@ -36,6 +35,15 @@ public class OrdersStatusController {
         modelAndView.addObject("dispatchingOrdersList",dispatchingOrdersList);
         modelAndView.addObject("completedOrdersList",completedOrdersList);
         modelAndView.addObject("cancelOrdersList",cancelOrdersList);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/customerOrders")
+    public ModelAndView showCustomerOrders(){
+        ModelAndView modelAndView=new ModelAndView("customer-orders-status");
+        long id=2;
+        Orders orders=ordersService.findOrdersById(id);
+        modelAndView.addObject("orders",orders);
         return modelAndView;
     }
 

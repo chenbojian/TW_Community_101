@@ -4,19 +4,31 @@
     <meta charset="UTF-8">
     <title>Shopping Cart | Community 101</title>
     <script src="/web/js/angular/angular.min.js"></script>
+    <script src="/web/js/angular/angular-cookies.min.js"></script>
     <script src="/web/js/angular/cart_controller.js"></script>
 </head>
 <body ng-controller="CartController">
 
-<div ng-repeat="item in selected_items">
-    <span>{{item["name"]}}</span>
-    <input ng-model="item['quantity']">
-    <span>{{item["price"]/100 | currency}}</span>
-    <span>{{item["price"]/100 * item["quantity"] | currency}}</span>
-    <button ng-click="more_selected_item($index)">more</button>
-    <button ng-click="less_selected_item($index)">less</button>
-    <button ng-click="remove_selected_item($index)">remove</button>
-</div>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Unit Price</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Operation</th>
+    </tr>
+    <tr ng-repeat="item in selected_items">
+        <td>{{item["name"]}}</td>
+        <td>{{item["price"]/100 | currency}}</td>
+        <td>{{item["quantity"]}}</td>
+        <td>{{item["price"]/100 * item["quantity"] | currency}}</td>
+        <td>
+            <button ng-click="more_selected_item($index)">more</button>
+            <button ng-click="less_selected_item($index)">less</button>
+            <button ng-click="remove_selected_item($index)">remove</button>
+        </td>
+    </tr>
+</table>
 
 <div>
     <p>Total: </p>
@@ -24,14 +36,14 @@
 </div>
 
 <div>
-    <p>Phone:</p><input ng-model="phone">
+    <p>Phone:</p><input ng-model="phone" pattern="^\d{11}$">
 </div>
 
 <div>
     <p>Address:</p><input ng-model="address">
 </div>
 
-<div>
+<div ng-model="can_submit_order" ng-show="can_submit_order">
     <button ng-click="submit()">submit</button>
 </div>
 

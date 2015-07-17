@@ -1,4 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: chenbojian
@@ -12,10 +13,19 @@
     <title>input goods page</title>
 </head>
 <body>
+<p>${message}</p>
 <form:form modelAttribute="inputGoodsDTO" method="post" enctype="multipart/form-data">
     <div>
         <label for="name">商品名称 :</label>
         <form:input path="name"/>
+    </div>
+    <div>
+        <label for="categoryId">商品类型 :</label>
+        <select name="categoryId" id="categoryId">
+            <c:forEach var="category" items="${categories}">
+                <option value="${category.id}">${category.name}</option>
+            </c:forEach>
+        </select>
     </div>
     <div>
         <label for="description">商品详情 :</label>

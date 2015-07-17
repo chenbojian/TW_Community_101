@@ -1,6 +1,6 @@
-var App = angular.module('App', []);
+var App = angular.module('App', ['ngCookies']);
 
-App.controller('CartController', function($scope, $http) {
+App.controller('CartController', function($scope, $http, $cookies) {
 
     $scope.is_fake = true;
     $scope.selected_items_id = [];
@@ -9,14 +9,20 @@ App.controller('CartController', function($scope, $http) {
     var give_fake_data = function() {
       if ($scope.is_fake) {
           $scope.selected_items_id = [1, 2, 3, 4];
-          $scope.selected_items.push({"id": 1, "name": "Goods A", "price": 1234, "pic": "//baidu.com", "quantity": 1});
-          $scope.selected_items.push({"id": 2, "name": "Goods B", "price": 1234, "pic": "//baidu.com", "quantity": 1});
-          $scope.selected_items.push({"id": 3, "name": "Goods C", "price": 1234, "pic": "//baidu.com", "quantity": 1});
-          $scope.selected_items.push({"id": 4, "name": "Goods D", "price": 1234, "pic": "//baidu.com", "quantity": 1});
-
       }
     };
     give_fake_data();
+
+    var get_items_info = function() {
+        for (var i = 0, len = $scope.selected_items_id.length; i < len; i++) {
+            $http.get("/web/api/customer/good" + "?id=" + $scope.selected_items_id[i]).success(function(data, status, headers, config) {
+                var item = data;
+                item["quantity"] = 1;
+                $scope.selected_items.push(item);
+            });
+        }
+    };
+    get_items_info();
 
     $scope.remove_selected_item = function(index) {
         $scope.selected_items.splice(index, 1);
@@ -48,6 +54,7 @@ App.controller('CartController', function($scope, $http) {
     $scope.address = "Beijing";
 
     $scope.order_id = null;
+    $scope.can_submit_order = true;
     $scope.order_submitted = false;
 
     $scope.submit = function() {
@@ -61,7 +68,9 @@ App.controller('CartController', function($scope, $http) {
 
         $http.post("/web/api/order/submit", order).success(function(data, status, headers) {
             $scope.order_id = data;
+            $scope.can_submit_order = false;
             $scope.order_submitted = true;
+            $cookies.put("orderId", $scope.order_id);
         });
     };
 });

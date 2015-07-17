@@ -24,4 +24,9 @@ public class CategoryDAO {
     public List<Category> listCategory(){
         return sessionFactory.getCurrentSession().createQuery("from Category").list();
     }
+
+    public Category findCategoryById(long categoryId) {
+        return (Category) sessionFactory.getCurrentSession()
+                .get(Category.class, categoryId);
+    }
 }
