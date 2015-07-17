@@ -62,7 +62,7 @@ public class GoodsInformationController {
     @RequestMapping("goods/details")
     public GoodsDetailedDTO getGoodsGetailsById(long id) {
         if (is_fake) {
-            return new GoodsDetailedDTO(id, "fake goods", 2143, "//baidu.com/", "very good");
+            return new GoodsDetailedDTO(id, "fake goods", 2143, "//baidu.com/", "very good from web API");
         }
         else {
             throw new NotImplementedException();
