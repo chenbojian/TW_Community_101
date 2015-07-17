@@ -54,6 +54,7 @@ App.controller('CartController', function($scope, $http, $cookies) {
     $scope.address = "Beijing";
 
     $scope.order_id = null;
+    $scope.can_submit_order = true;
     $scope.order_submitted = false;
 
     $scope.submit = function() {
@@ -67,6 +68,7 @@ App.controller('CartController', function($scope, $http, $cookies) {
 
         $http.post("/web/api/order/submit", order).success(function(data, status, headers) {
             $scope.order_id = data;
+            $scope.can_submit_order = false;
             $scope.order_submitted = true;
             $cookies.put("orderId", $scope.order_id);
         });

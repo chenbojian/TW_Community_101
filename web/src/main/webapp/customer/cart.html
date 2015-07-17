@@ -9,15 +9,26 @@
 </head>
 <body ng-controller="CartController">
 
-<div ng-repeat="item in selected_items">
-    <span>{{item["name"]}}</span>
-    <span>{{item["quantity"]}}</span>
-    <span>{{item["price"]/100 | currency}}</span>
-    <span>{{item["price"]/100 * item["quantity"] | currency}}</span>
-    <button ng-click="more_selected_item($index)">more</button>
-    <button ng-click="less_selected_item($index)">less</button>
-    <button ng-click="remove_selected_item($index)">remove</button>
-</div>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Unit Price</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Operation</th>
+    </tr>
+    <tr ng-repeat="item in selected_items">
+        <td>{{item["name"]}}</td>
+        <td>{{item["price"]/100 | currency}}</td>
+        <td>{{item["quantity"]}}</td>
+        <td>{{item["price"]/100 * item["quantity"] | currency}}</td>
+        <td>
+            <button ng-click="more_selected_item($index)">more</button>
+            <button ng-click="less_selected_item($index)">less</button>
+            <button ng-click="remove_selected_item($index)">remove</button>
+        </td>
+    </tr>
+</table>
 
 <div>
     <p>Total: </p>
@@ -32,7 +43,7 @@
     <p>Address:</p><input ng-model="address">
 </div>
 
-<div>
+<div ng-model="can_submit_order" ng-show="can_submit_order">
     <button ng-click="submit()">submit</button>
 </div>
 
