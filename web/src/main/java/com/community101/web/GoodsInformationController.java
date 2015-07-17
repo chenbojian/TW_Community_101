@@ -2,6 +2,7 @@ package com.community101.web;
 
 import com.community101.core.CategoryDTO;
 import com.community101.core.GoodsDTO;
+import com.community101.core.GoodsDetailedDTO;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
@@ -52,6 +53,16 @@ public class GoodsInformationController {
     public GoodsDTO getGoodsInformationById(long id) {
         if (is_fake) {
             return new GoodsDTO(id, "Fake Goods", 1212, "//baidu.com/");
+        }
+        else {
+            throw new NotImplementedException();
+        }
+    }
+
+    @RequestMapping("goods/details")
+    public GoodsDetailedDTO getGoodsGetailsById(long id) {
+        if (is_fake) {
+            return new GoodsDetailedDTO(id, "fake goods", 2143, "//baidu.com/", "very good");
         }
         else {
             throw new NotImplementedException();

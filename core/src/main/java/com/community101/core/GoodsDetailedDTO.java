@@ -12,11 +12,12 @@ public class GoodsDetailedDTO {
 
     public GoodsDetailedDTO() {}
 
-    public GoodsDetailedDTO(long id, String name, int price, String pic) {
+    public GoodsDetailedDTO(long id, String name, int price, String pic, String description) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.pic = pic;
+        this.description = description;
     }
 
     public long getId() {
