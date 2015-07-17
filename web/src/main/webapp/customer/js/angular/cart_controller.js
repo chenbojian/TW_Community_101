@@ -46,4 +46,8 @@ App.controller('Controller', function($scope, $http) {
 
     $scope.phone = 123;
     $scope.address = "Beijing";
+
+    $scope.submit = function() {
+      alert("not submitted");
+    };
 });
