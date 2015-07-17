@@ -1,6 +1,6 @@
 var App = angular.module('App', []);
 
-App.controller('Controller', function($scope, $http) {
+App.controller('CartController', function($scope, $http) {
 
     $scope.is_fake = true;
     $scope.selected_items_id = [];
@@ -47,7 +47,21 @@ App.controller('Controller', function($scope, $http) {
     $scope.phone = 123;
     $scope.address = "Beijing";
 
+    $scope.order_id = null;
+    $scope.order_submitted = false;
+
     $scope.submit = function() {
-      alert("not submitted");
+        var order = {};
+        order["goodsList"] = [];
+        for (var i = 0, len = $scope.selected_items.length; i < len; i++) {
+            order["goodsList"].push({"id": $scope.selected_items[i]["id"], "quantity": $scope.selected_items[i]["quantity"]});
+        }
+        order["phone"] = $scope.phone;
+        order["address"] = $scope.address;
+
+        $http.post("/web/api/order/submit", order).success(function(data, status, headers) {
+            $scope.order_id = data;
+            $scope.order_submitted = true;
+        });
     };
 });

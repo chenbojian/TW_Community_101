@@ -6,24 +6,24 @@ import java.util.List;
  * Created by MiffyLiye on 17/07/2015.
  */
 public class OrderDTO {
-    private List<GoodsInOrderDTO> goodsList;
-    private String phoneNumber;
+    private List<GoodsInSubmissionDTO> goodsList;
+    private String phone;
     private String address;
 
-    public List<GoodsInOrderDTO> getGoodsList() {
+    public List<GoodsInSubmissionDTO> getGoodsList() {
         return goodsList;
     }
 
-    public void setGoodsList(List<GoodsInOrderDTO> goodsList) {
+    public void setGoodsList(List<GoodsInSubmissionDTO> goodsList) {
         this.goodsList = goodsList;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getAddress() {

@@ -3,10 +3,10 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>Shopping Cart | Community 101</title>
-    <script src="/js/angular/angular.min.js"></script>
-    <script src="/js/angular/cart_controller.js"></script>
+    <script src="/web/js/angular/angular.min.js"></script>
+    <script src="/web/js/angular/cart_controller.js"></script>
 </head>
-<body> ng-controller="Controller">
+<body ng-controller="CartController">
 
 <div ng-repeat="item in selected_items">
     <span>{{item["name"]}}</span>
@@ -35,5 +35,9 @@
     <button ng-click="submit()">submit</button>
 </div>
 
+<div>
+    <p ng-model="order_submitted" ng-show="order_submitted">Order ID: {{order_id}}</p>
+</div>
+
 </body>
-</htm
+</html>
