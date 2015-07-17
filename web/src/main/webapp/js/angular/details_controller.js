@@ -4,6 +4,7 @@ App.controller('DetailsController', function($scope, $http, $cookies) {
 
     $scope.is_fake = true;
 
+    $scope.webapi_goods_details = "/web/api/customer/goods/details";
     $scope.item_id = null;
     $scope.item = null;
 
@@ -22,7 +23,7 @@ App.controller('DetailsController', function($scope, $http, $cookies) {
             $scope.item = {"id":$scope.item_id,"name":"fake goods","price":2143,"pic":"//baidu.com/","description":"very good"};
         }
         else {
-            $http.get("/web/api/customer/goods/details" + "?id=" + $scope.item_id).success(function(data, status, headers, config) {
+            $http.get($scope.webapi_goods_details + "?id=" + $scope.item_id).success(function(data, status, headers, config) {
                 $scope.item = data;
             });
         }

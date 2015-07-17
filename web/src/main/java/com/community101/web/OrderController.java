@@ -1,9 +1,12 @@
 package com.community101.web;
 
+import com.community101.core.OrderDTO;
 import com.community101.core.Orders;
 import com.community101.core.User;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -15,6 +18,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 public class OrderController {
+    private boolean is_fake = true;
 
     private OrderBuilder orderBuilder = new OrderBuilder();
     Orders order1 = orderBuilder.givenBuilder()
@@ -38,6 +42,18 @@ public class OrderController {
         ordersList.add(order1);
         ordersList.add(order2);
         return ordersList;
+    }
+
+    @RequestMapping(value = "submit", method = RequestMethod.POST)
+    public long submitOrder(OrderDTO order) {
+        if (is_fake) {
+            long orderId = 12345;
+
+            return orderId;
+        }
+        else {
+            throw new NotImplementedException();
+        }
     }
 
     private class OrderBuilder{
