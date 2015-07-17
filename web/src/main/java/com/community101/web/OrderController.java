@@ -20,7 +20,7 @@ import java.util.List;
  * Created by chenjian on 7/17/15.
  */
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/order")
 public class OrderController {
     private boolean is_fake = true;
 
@@ -40,7 +40,7 @@ public class OrderController {
             .withPrice(1000)
             .build();
 
-    @RequestMapping("/order/all")
+    @RequestMapping("/all")
     public List<Orders> listAllOrders() {
         List<Orders> ordersList = new ArrayList<Orders>();
         ordersList.add(order1);
@@ -48,13 +48,13 @@ public class OrderController {
         return ordersList;
     }
 
-    @RequestMapping("/order/orderManager")
+    @RequestMapping("/orderManager")
     public ModelAndView orderManagerPage() {
         ModelAndView modelAndView = new ModelAndView("order-manager");
         return modelAndView;
     }
 
-    @RequestMapping("/order/newOrder")
+    @RequestMapping("/newOrder")
     public void newOrder(long timed, HttpServletResponse response) throws Exception {
         PrintWriter writer = response.getWriter();
         writer.print("{'hasNew':'1','orderNumber':'1234'}");
@@ -62,7 +62,7 @@ public class OrderController {
 //        return result;
     }
 
-    @RequestMapping(value = "submit", method = RequestMethod.POST)
+    @RequestMapping(value = "/submit", method = RequestMethod.POST)
     public long submitOrder(OrderDTO order) {
         if (is_fake) {
             long orderId = 12345;
