@@ -15,8 +15,8 @@ insert into USER(tel_phone) values("18888888882");
 insert into USER(tel_phone) values("18888888883");
 insert into USER(tel_phone) values("18888888884");
 
-insert into ORDERS(user_id, address, create_time, status, total_price) values(1,"Beijing community101 unit5 201", 1437038663, "new", 300);
-insert into ORDERS(user_id, address, create_time, status, total_price) values(2,"Beijing community101 unit5 302", 1437038863, "dispatching", 1100);
+insert into ORDERS(user_id, address, create_time, status, total_price) values(1,"Beijing community101 unit5 201", now(), "new", 300);
+insert into ORDERS(user_id, address, create_time, status, total_price) values(2,"Beijing community101 unit5 302", now(), "dispatching", 1100);
 
 insert into ORDER_GOODS(order_id, count, goods_name, goods_description, goods_category_name, goods_picture_url, goods_price)
 values(1, 1, "bread", "delecious bread", "foods", "./img/1.jpg", 300);
