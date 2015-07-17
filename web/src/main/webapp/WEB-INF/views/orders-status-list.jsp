@@ -16,7 +16,7 @@
 <c:forEach var="orders" items="${newOrdersList}">
   <tr>
     <td>${orders.id}</td>
-    <td>${orders.name}</td>
+    <td>${orders.status}</td>
     <td>${orders.address}</td>
   </tr>
 </c:forEach>
@@ -24,7 +24,7 @@
 <c:forEach var="orders" items="${dispatchingOrdersList}">
   <tr>
     <td>${orders.id}</td>
-    <td>${orders.name}</td>
+    <td>${orders.status}</td>
     <td>${orders.address}</td>
   </tr>
 </c:forEach>
@@ -32,7 +32,7 @@
 <c:forEach var="orders" items="${completedOrdersList}">
   <tr>
     <td>${orders.id}</td>
-    <td>${orders.name}</td>
+    <td>${orders.status}</td>
     <td>${orders.address}</td>
   </tr>
 </c:forEach>
@@ -40,7 +40,7 @@
 <c:forEach var="orders" items="${cancelOrdersList}">
   <tr>
     <td>${orders.id}</td>
-    <td>${orders.name}</td>
+    <td>${orders.status}</td>
     <td>${orders.address}</td>
   </tr>
 </c:forEach>

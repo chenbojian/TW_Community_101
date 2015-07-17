@@ -15,7 +15,7 @@ import java.util.List;
  * Created by jiaoming on 7/17/15.
  */
 @RestController
-@Configuration
+//@Configuration
 @RequestMapping("/ordersStatus")
 public class OrdersStatusController {
     private OrdersService ordersService;
