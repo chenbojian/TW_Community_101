@@ -2,11 +2,11 @@
 <html ng-app="App">
 <head lang="en">
     <meta charset="UTF-8">
-    <title>Learn AngularJS</title>
-    <script src="js/angular/angular.min.js"></script>
-    <script src="js/angular/cart_controller.js"></script>
+    <title>Shopping Cart | Community 101</title>
+    <script src="/js/angular/angular.min.js"></script>
+    <script src="/js/angular/cart_controller.js"></script>
 </head>
-<body ng-controller="Controller">
+<body> ng-controller="Controller">
 
 <div ng-repeat="item in selected_items">
     <span>{{item["name"]}}</span>
@@ -31,5 +31,9 @@
     <p>Address:</p><input ng-model="address">
 </div>
 
+<div>
+    <button ng-click="submit()">submit</button>
+</div>
+
 </body>
-</html>
+</htm
