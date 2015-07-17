@@ -21,7 +21,7 @@ public class GoodsInformationController {
     public List<CategoryDTO> listAllCategories() {
         if (is_fake) {
             List<CategoryDTO> categoryList = new LinkedList<CategoryDTO>();
-            categoryList.add(new CategoryDTO(1, "shi"));
+            categoryList.add(new CategoryDTO(1, "??"));
             categoryList.add(new CategoryDTO(2, "????"));
 
             return categoryList;
@@ -36,10 +36,10 @@ public class GoodsInformationController {
     public List<GoodsDTO> listAllGoodsOfCertainCategory(long cid) {
         if (is_fake) {
             List<GoodsDTO> goodsThinList = new LinkedList<GoodsDTO>();
-            goodsThinList.add(new GoodsDTO(1, "????1", "12.21", "//baidu.com/"));
-            goodsThinList.add(new GoodsDTO(2, "????2", "22.21", "//baidu.com/"));
-            goodsThinList.add(new GoodsDTO(3, "????3", "32.21", "//baidu.com/"));
-            goodsThinList.add(new GoodsDTO(4, "????4", "42.21", "//baidu.com/"));
+            goodsThinList.add(new GoodsDTO(1, "????1", 1221, "//baidu.com/"));
+            goodsThinList.add(new GoodsDTO(2, "????2", 2221, "//baidu.com/"));
+            goodsThinList.add(new GoodsDTO(3, "????3", 3221, "//baidu.com/"));
+            goodsThinList.add(new GoodsDTO(4, "????4", 4221, "//baidu.com/"));
 
             return  goodsThinList;
         }

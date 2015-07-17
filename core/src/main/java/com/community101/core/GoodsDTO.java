@@ -6,12 +6,12 @@ package com.community101.core;
 public class GoodsDTO {
     private long id;
     private String name;
-    private String price;
+    private int price;
     private String pic; //pic url
 
     public GoodsDTO() {}
 
-    public GoodsDTO(long id, String name, String price, String pic) {
+    public GoodsDTO(long id, String name, int price, String pic) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -34,11 +34,11 @@ public class GoodsDTO {
         this.name = name;
     }
 
-    public String getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
