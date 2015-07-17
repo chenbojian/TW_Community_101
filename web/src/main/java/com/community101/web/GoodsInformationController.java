@@ -48,4 +48,14 @@ public class GoodsInformationController {
         }
     }
 
+    @RequestMapping("/good")
+    public GoodsDTO getGoodsInformationById(long id) {
+        if (is_fake) {
+            return new GoodsDTO(id, "Fake Goods", 1212, "//baidu.com/");
+        }
+        else {
+            throw new NotImplementedException();
+        }
+    }
+
 }
