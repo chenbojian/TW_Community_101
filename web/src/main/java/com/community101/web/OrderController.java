@@ -3,8 +3,11 @@ package com.community101.web;
 import com.community101.core.DTO.OrderDTO;
 import com.community101.core.Orders;
 import com.community101.core.User;
+import com.community101.core.service.OrdersService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -23,6 +26,8 @@ import java.util.List;
 @RequestMapping("/api/order")
 public class OrderController {
     private boolean is_fake = true;
+    private OrdersService ordersService;
+//    private final Gson gson = new Gson();
 
     private OrderBuilder orderBuilder = new OrderBuilder();
     Orders order1 = orderBuilder.givenBuilder()
@@ -39,6 +44,10 @@ public class OrderController {
             .withStatus("dispatching")
             .withPrice(1000)
             .build();
+    @Autowired
+    public OrderController(OrdersService ordersService){
+        this.ordersService = ordersService;
+    }
 
     @RequestMapping("/all")
     public List<Orders> listAllOrders() {
@@ -55,9 +64,15 @@ public class OrderController {
     }
 
     @RequestMapping("/newOrder")
-    public void newOrder(long timed, HttpServletResponse response) throws Exception {
+    @ResponseBody
+    public Orders newOrder(long count, HttpServletResponse response) throws Exception {
         PrintWriter writer = response.getWriter();
-        writer.print("{'hasNew':'1','orderNumber':'1234'}");
+        List<Orders> ordersList = ordersService.listNewOrders();
+        if(count<ordersList.size()){
+//            writer.print(ordersList.get(ordersList.size()-1));
+            return ordersList.get(ordersList.size()-1);
+        }
+        else return null;
 //        String result = "{'hasNew':'1','orderNumber':'1234'}";
 //        return result;
     }

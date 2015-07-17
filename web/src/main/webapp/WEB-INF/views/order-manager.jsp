@@ -13,14 +13,24 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 </head>
 <body>
-  <div id="logs"></div>
+  <ul>
+    <li>new orders</li>
+    <li>dispatching orders</li>
+    <li>complited orders</li>
+    <li>canceled orders</li>
+  </ul>
+
+  <div id="content">
+    <div id="logs"></div>
+  </div>
+
 
   <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
   <script type="text/javascript">
     $(function () {
       window.setInterval(function () {
         $.get("${pageContext.request.contextPath}/api/order/newOrder",
-                {"timed": new Date().getTime()},
+                {"count": 1},
                 function (data) {
                   if(data) {
                     $("#logs").append("[ new order: " + data + " ] time:" + new Date().getTime() + "<br/>");
