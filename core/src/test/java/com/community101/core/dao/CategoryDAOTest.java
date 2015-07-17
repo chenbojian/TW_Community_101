@@ -1,7 +1,6 @@
 package com.community101.core.dao;
 
-import com.community101.core.Orders;
-import junit.framework.TestCase;
+import com.community101.core.Category;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,6 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -22,26 +20,17 @@ import static org.junit.Assert.assertEquals;
 @ContextConfiguration(locations = "/applicationContext.xml")
 @TransactionConfiguration
 @Transactional
-public class OrdersDAOTest  {
+public class CategoryDAOTest {
 
     @Autowired
-    private OrdersDAO ordersDAO;
+    private CategoryDAO categoryDAO;
 
     @Transactional
     @Rollback
     @Test
-    public void should_return_correct_number_of_orders(){
-        List<Orders> ordersList=ordersDAO.listOrders();
-        assertEquals(2,ordersList.size());
-    }
-
-    @Transactional
-    @Rollback
-    @Test
-    public void should_return_new_status_orders(){
-        List<Orders> newOrdersList=ordersDAO.listNewOrders();
-        assertEquals(1,newOrdersList.size());
-        int totalPrice=newOrdersList.get(0).getTotalPrice();
-        assertEquals(300,totalPrice);
+    public void should_return_correct_number_of_category(){
+        List<Category> categoryList=categoryDAO.listCategory();
+        assertEquals(4,categoryList.size());
+        assertEquals("drink",categoryList.get(1).getName());
     }
 }

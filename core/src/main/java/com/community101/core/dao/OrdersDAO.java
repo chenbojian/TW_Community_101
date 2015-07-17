@@ -32,4 +32,16 @@ public class OrdersDAO {
         return (List<Orders>)sessionFactory.getCurrentSession().createQuery("from Orders where status='new'").list();
     }
 
+    public List<Orders> listDispatchingOrders(){
+        return (List<Orders>)sessionFactory.getCurrentSession().createQuery("from Orders where status='dispatching'").list();
+    }
+
+    public List<Orders> listCompletedOrders(){
+        return (List<Orders>)sessionFactory.getCurrentSession().createQuery("from Orders where status='completed'").list();
+    }
+
+    public List<Orders> listCancelOrders(){
+        return (List<Orders>)sessionFactory.getCurrentSession().createQuery("from Orders where status='cancel'").list();
+    }
+
 }

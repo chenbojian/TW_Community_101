@@ -12,13 +12,37 @@
     <title>orders-status-list</title>
 </head>
 <body>
-<c:forEach var="orders" items="${orderses}">
+新订单：
+<c:forEach var="orders" items="${newOrdersList}">
   <tr>
     <td>${orders.id}</td>
     <td>${orders.name}</td>
     <td>${orders.address}</td>
   </tr>
 </c:forEach>
-
+配送中订单：
+<c:forEach var="orders" items="${dispatchingOrdersList}">
+  <tr>
+    <td>${orders.id}</td>
+    <td>${orders.name}</td>
+    <td>${orders.address}</td>
+  </tr>
+</c:forEach>
+完成订单：
+<c:forEach var="orders" items="${completedOrdersList}">
+  <tr>
+    <td>${orders.id}</td>
+    <td>${orders.name}</td>
+    <td>${orders.address}</td>
+  </tr>
+</c:forEach>
+取消订单：
+<c:forEach var="orders" items="${cancelOrdersList}">
+  <tr>
+    <td>${orders.id}</td>
+    <td>${orders.name}</td>
+    <td>${orders.address}</td>
+  </tr>
+</c:forEach>
 </body>
 </html>

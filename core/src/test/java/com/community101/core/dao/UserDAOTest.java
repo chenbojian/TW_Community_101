@@ -1,7 +1,6 @@
 package com.community101.core.dao;
 
-import com.community101.core.Orders;
-import junit.framework.TestCase;
+import com.community101.core.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,36 +11,27 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-
 import static org.junit.Assert.assertEquals;
+
 
 /**
  * Created by jiaoming on 7/17/15.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "/applicationContext.xml")
+@ContextConfiguration(locations="/applicationContext.xml")
 @TransactionConfiguration
 @Transactional
-public class OrdersDAOTest  {
-
+public class UserDAOTest {
     @Autowired
-    private OrdersDAO ordersDAO;
+    private UserDAO userDAO;
 
     @Transactional
     @Rollback
     @Test
-    public void should_return_correct_number_of_orders(){
-        List<Orders> ordersList=ordersDAO.listOrders();
-        assertEquals(2,ordersList.size());
+    public void should_return_correct_number_of_users(){
+        List<User>  userList=userDAO.listUsers();
+        assertEquals(5,userList.size());
+        assertEquals("18888888880",userList.get(0).getTelPhone());
     }
 
-    @Transactional
-    @Rollback
-    @Test
-    public void should_return_new_status_orders(){
-        List<Orders> newOrdersList=ordersDAO.listNewOrders();
-        assertEquals(1,newOrdersList.size());
-        int totalPrice=newOrdersList.get(0).getTotalPrice();
-        assertEquals(300,totalPrice);
-    }
 }

@@ -1,7 +1,6 @@
 package com.community101.core.dao;
 
-import com.community101.core.Orders;
-import junit.framework.TestCase;
+import com.community101.core.OrderGoods;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,33 +14,24 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
+
 /**
  * Created by jiaoming on 7/17/15.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "/applicationContext.xml")
+@ContextConfiguration(locations="/applicationContext.xml")
 @TransactionConfiguration
 @Transactional
-public class OrdersDAOTest  {
-
+public class OrderGoodsDAOTest {
     @Autowired
-    private OrdersDAO ordersDAO;
+    private OrderGoodsDAO orderGoodsDAO;
 
     @Transactional
     @Rollback
     @Test
-    public void should_return_correct_number_of_orders(){
-        List<Orders> ordersList=ordersDAO.listOrders();
-        assertEquals(2,ordersList.size());
-    }
-
-    @Transactional
-    @Rollback
-    @Test
-    public void should_return_new_status_orders(){
-        List<Orders> newOrdersList=ordersDAO.listNewOrders();
-        assertEquals(1,newOrdersList.size());
-        int totalPrice=newOrdersList.get(0).getTotalPrice();
-        assertEquals(300,totalPrice);
+    public void should_return_correct_number_of_orderGoods(){
+        List<OrderGoods> orderGoodsList=orderGoodsDAO.orderGoodsList();
+        assertEquals(3,orderGoodsList.size());
+        assertEquals("bread",orderGoodsList.get(0).getGoodsName());
     }
 }

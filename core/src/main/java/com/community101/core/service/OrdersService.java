@@ -25,4 +25,24 @@ public class OrdersService {
         return ordersDAO.listOrders();
     }
 
+    @Transactional
+    public List<Orders> listNewOrders(){
+        return ordersDAO.listNewOrders();
+    }
+
+    @Transactional
+    public List<Orders> listDispatchingOrders(){
+        return  ordersDAO.listDispatchingOrders();
+    }
+
+    @Transactional
+    public List<Orders> listCompletedOrders(){
+        return ordersDAO.listCompletedOrders();
+    }
+
+    @Transactional
+    public List<Orders> listCancelOrders(){
+        return ordersDAO.listCancelOrders();
+    }
+
 }
