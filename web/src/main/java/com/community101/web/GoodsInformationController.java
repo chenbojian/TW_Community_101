@@ -1,7 +1,7 @@
 package com.community101.web;
 
-import com.community101.core.Category;
-import com.community101.core.GoodsThin;
+import com.community101.core.CategoryDTO;
+import com.community101.core.GoodsDTO;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
@@ -18,11 +18,11 @@ public class GoodsInformationController {
     private boolean is_fake = true;
 
     @RequestMapping("/category")
-    public List<Category> listAllCategories() {
+    public List<CategoryDTO> listAllCategories() {
         if (is_fake) {
-            List<Category> categoryList = new LinkedList<Category>();
-            categoryList.add(new Category(1, "??"));
-            categoryList.add(new Category(2, "????"));
+            List<CategoryDTO> categoryList = new LinkedList<CategoryDTO>();
+            categoryList.add(new CategoryDTO(1, "shi"));
+            categoryList.add(new CategoryDTO(2, "????"));
 
             return categoryList;
         }
@@ -33,13 +33,13 @@ public class GoodsInformationController {
     }
 
     @RequestMapping("/good/all")
-    public List<GoodsThin> listAllGoodsOfCertainCategory(long cid) {
+    public List<GoodsDTO> listAllGoodsOfCertainCategory(long cid) {
         if (is_fake) {
-            List<GoodsThin> goodsThinList = new LinkedList<GoodsThin>();
-            goodsThinList.add(new GoodsThin(1, "????1", "12.21", "//baidu.com/"));
-            goodsThinList.add(new GoodsThin(2, "????2", "22.21", "//baidu.com/"));
-            goodsThinList.add(new GoodsThin(3, "????3", "32.21", "//baidu.com/"));
-            goodsThinList.add(new GoodsThin(4, "????4", "42.21", "//baidu.com/"));
+            List<GoodsDTO> goodsThinList = new LinkedList<GoodsDTO>();
+            goodsThinList.add(new GoodsDTO(1, "????1", "12.21", "//baidu.com/"));
+            goodsThinList.add(new GoodsDTO(2, "????2", "22.21", "//baidu.com/"));
+            goodsThinList.add(new GoodsDTO(3, "????3", "32.21", "//baidu.com/"));
+            goodsThinList.add(new GoodsDTO(4, "????4", "42.21", "//baidu.com/"));
 
             return  goodsThinList;
         }
@@ -47,4 +47,5 @@ public class GoodsInformationController {
             throw new NotImplementedException();
         }
     }
+
 }

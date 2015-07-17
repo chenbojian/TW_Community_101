@@ -3,15 +3,15 @@ package com.community101.core;
 /**
  * Created by MiffyLiye on 16/07/2015.
  */
-public class GoodsThin {
+public class GoodsDTO {
     private long id;
     private String name;
     private String price;
     private String pic; //pic url
 
-    public GoodsThin() {}
+    public GoodsDTO() {}
 
-    public GoodsThin(long id, String name, String price, String pic) {
+    public GoodsDTO(long id, String name, String price, String pic) {
         this.id = id;
         this.name = name;
         this.price = price;

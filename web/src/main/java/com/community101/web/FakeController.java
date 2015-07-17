@@ -13,4 +13,9 @@ public class FakeController {
     public String fake() {
         return "fakehaha";
     }
+
+    @RequestMapping("/echo")
+    public long echo(long id) {
+        return id;
+    }
 }
