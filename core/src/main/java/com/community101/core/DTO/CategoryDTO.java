@@ -1,4 +1,4 @@
-package com.community101.core;
+package com.community101.core.DTO;
 
 
 /**

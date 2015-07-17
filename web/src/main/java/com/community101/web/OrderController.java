@@ -1,6 +1,6 @@
 package com.community101.web;
 
-import com.community101.core.OrderDTO;
+import com.community101.core.DTO.OrderDTO;
 import com.community101.core.Orders;
 import com.community101.core.User;
 import org.springframework.web.bind.annotation.RequestMapping;

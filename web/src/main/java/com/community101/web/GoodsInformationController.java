@@ -1,11 +1,9 @@
 package com.community101.web;
 
-import com.community101.core.CategoryDTO;
-import com.community101.core.GoodsDTO;
-import com.community101.core.GoodsDetailedDTO;
-import com.community101.core.OrderDTO;
+import com.community101.core.DTO.CategoryDTO;
+import com.community101.core.DTO.GoodsDTO;
+import com.community101.core.DTO.GoodsDetailedDTO;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
