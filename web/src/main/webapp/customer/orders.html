@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app="App">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Order Detail | Community 101</title>
+    <script src="/web/js/angular/angular.min.js"></script>
+    <script src="/web/js/angular/angular-cookies.min.js"></script>
+    <script src="/web/js/angular/order_detail_controller.js"></script>
+</head>
+<body ng-controller="OrderDetailController">
+
+<table>
+    <tr>
+        <th>Order_ID</th>
+        <th>Status</th>
+        <th>TelPhone</th>
+        <th>Address</th>
+        <th>Create_Time</th>
+        <th>Goods</th>
+        <th>Total_Price</th>
+    </tr>
+    <tr >
+        <td>{{item["orderId"]}}</td>
+        <td>{{item["status"]}}</td>
+        <td>{{item["telPhone"]}}</td>
+        <td>{{item["address"]}}</td>
+        <td>{{item["createTime"]}}</td>
+        <td ng-repeat="goods in item['goodsInOrderDTOList']">
+            <td> {{goods["name"]}}<td>
+            <td> {{goods["price"]}}<td>
+            <td> {{goods["quantity"]}}<td>
+        </td>
+        <td>{{item["price"]/100 | currency}}</td>
+    </tr>
+</table>
+
+</body>
+</html>
