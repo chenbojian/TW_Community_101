@@ -72,7 +72,7 @@ App.controller('CartController', function($scope, $http, $cookies) {
             $scope.order_id = data;
             $scope.can_submit_order = false;
             $scope.order_submitted = true;
-            $cookies.put("orderId", $scope.order_id);
+            $cookies.put("orderId", $scope.order_id, {'path': '/web/'});
         });
     };
 });
