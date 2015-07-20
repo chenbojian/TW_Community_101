@@ -9,12 +9,21 @@
 </head>
 <body ng-controller="DetailsController">
 
-<div>
-    <h1>{{item["name"]}}</h1>
-    <h1>{{item["price"]/100 | currency}}</h1>
-    <h1>{{item["description"]}}</h1>
-    <button ng-click="add_to_cart()">add to cart</button>
-</div>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Unit Price</th>
+        <th>Image</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td>{{item["name"]}}</td>
+        <td>{{item["price"]/100 | currency}}</td>
+        <td><img src={{item["pic"]}} alt={{item["name"]}}></img></td>
+        <td>{{item["description"]}}</td>
+    </tr>
+</table>
+<button ng-click="add_to_cart()">add to cart</button>
 
 </body>
 </html>

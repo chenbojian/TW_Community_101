@@ -26,4 +26,9 @@ public class GoodsDAO {
         sessionFactory.getCurrentSession().save(goods);
         
     }
+
+    public Goods findGoodsById(long goodsId) {
+        return (Goods) sessionFactory.getCurrentSession()
+                .get(Goods.class, goodsId);
+    }
 }

@@ -33,7 +33,7 @@ public class InputGoodsController {
 
     @RequestMapping(value = {"", "/"})
     public ModelAndView inputGoodsPage() {
-        ModelAndView modelAndView = new ModelAndView("input-goods");
+        ModelAndView modelAndView = new ModelAndView("inputGoods");
         modelAndView.addObject("inputGoodsDTO", new InputGoodsDTO());
         List<Category> categories = categoryService.listCategory();
         modelAndView.addObject("categories", categories);

@@ -45,6 +45,12 @@ public class OrdersDAO {
     }
 
     public Orders findOrdersById(long id){
-        return (Orders)sessionFactory.getCurrentSession().get(Orders.class,id);
+        return (Orders)sessionFactory.getCurrentSession().get(Orders.class, id);
+    }
+
+    public void dispatchOrder(long orderId) {
+        Orders order = findOrdersById(orderId);
+        order.setStatus("dispatching");
+        sessionFactory.getCurrentSession().update(order);
     }
 }

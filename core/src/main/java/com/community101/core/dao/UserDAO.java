@@ -24,4 +24,17 @@ public class UserDAO {
     public List<User> listUsers(){
         return (List<User>)sessionFactory.getCurrentSession().createQuery("from User").list();
     }
+
+    public User findUserByTel(String tel) {
+        List<User> users = sessionFactory.getCurrentSession().createQuery("from User where telPhone = :tel")
+                .setString("tel", tel)
+                .list();
+        return users.size() > 0 ? users.get(0) : null;
+    }
+
+    public void addUser(User user) {
+        if (findUserByTel(user.getTelPhone()) == null) {
+            sessionFactory.getCurrentSession().save(user);
+        }
+    }
 }

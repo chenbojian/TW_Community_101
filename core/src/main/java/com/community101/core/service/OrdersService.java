@@ -50,4 +50,8 @@ public class OrdersService {
         return ordersDAO.findOrdersById(id);
     }
 
+    @Transactional
+    public void dispatchOrder(long orderId) {
+        ordersDAO.dispatchOrder(orderId);
+    }
 }

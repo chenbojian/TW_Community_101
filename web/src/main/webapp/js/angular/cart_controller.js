@@ -3,6 +3,8 @@ var App = angular.module('App', ['ngCookies']);
 App.controller('CartController', function($scope, $http, $cookies) {
 
     $scope.is_fake = true;
+    $scope.webapi_goods_simple_info = "/web/api/customer/goods/simple";
+    $scope.webapi_order_submit = "/web/api/order/submit";
     $scope.selected_items_id = [];
     $scope.selected_items = [];
 
@@ -15,7 +17,7 @@ App.controller('CartController', function($scope, $http, $cookies) {
 
     var get_items_info = function() {
         for (var i = 0, len = $scope.selected_items_id.length; i < len; i++) {
-            $http.get("/web/api/customer/good" + "?id=" + $scope.selected_items_id[i]).success(function(data, status, headers, config) {
+            $http.get($scope.webapi_goods_simple_info + "?id=" + $scope.selected_items_id[i]).success(function(data, status, headers, config) {
                 var item = data;
                 item["quantity"] = 1;
                 $scope.selected_items.push(item);
@@ -54,6 +56,7 @@ App.controller('CartController', function($scope, $http, $cookies) {
     $scope.address = "Beijing";
 
     $scope.order_id = null;
+    $scope.can_submit_order = true;
     $scope.order_submitted = false;
 
     $scope.submit = function() {
@@ -65,8 +68,9 @@ App.controller('CartController', function($scope, $http, $cookies) {
         order["phone"] = $scope.phone;
         order["address"] = $scope.address;
 
-        $http.post("/web/api/order/submit", order).success(function(data, status, headers) {
+        $http.post($scope.webapi_order_submit, order).success(function(data, status, headers) {
             $scope.order_id = data;
+            $scope.can_submit_order = false;
             $scope.order_submitted = true;
             $cookies.put("orderId", $scope.order_id);
         });

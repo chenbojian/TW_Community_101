@@ -16,7 +16,8 @@ insert into USER(tel_phone) values("18888888883");
 insert into USER(tel_phone) values("18888888884");
 
 insert into ORDERS(user_id, address, create_time, status, total_price) values(1,"Beijing community101 unit5 201", now(), "new", 300);
-insert into ORDERS(user_id, address, create_time, status, total_price) values(2,"Beijing community101 unit5 302", now(), "dispatching", 1100);
+insert into ORDERS(user_id, address, create_time, status, total_price) values(2,"Beijing community101 unit5 302", now(), "new", 1100);
+insert into ORDERS(user_id, address, create_time, status, total_price) values(3,"Beijing community101 unit5 602", now(), "dispatching", 800);
 
 insert into ORDER_GOODS(order_id, count, goods_name, goods_description, goods_category_name, goods_picture_url, goods_price)
 values(1, 1, "bread", "delecious bread", "foods", "./img/1.jpg", 300);
@@ -24,3 +25,7 @@ insert into ORDER_GOODS(order_id, count, goods_name, goods_description, goods_ca
 values(2, 1, "beer", "delecious beer", "drink", "./img/3.jpg", 500);
 insert into ORDER_GOODS(order_id, count, goods_name, goods_description, goods_category_name, goods_picture_url, goods_price)
 values(2, 1, "towel", "delecious towel", "groceries", "./img/5.jpg", 600);
+insert into ORDER_GOODS(order_id, count, goods_name, goods_description, goods_category_name, goods_picture_url, goods_price)
+values(3, 1, "bread", "delecious bread", "foods", "./img/1.jpg", 300);
+insert into ORDER_GOODS(order_id, count, goods_name, goods_description, goods_category_name, goods_picture_url, goods_price)
+values(3, 1, "beer", "delecious beer", "drink", "./img/3.jpg", 500);
