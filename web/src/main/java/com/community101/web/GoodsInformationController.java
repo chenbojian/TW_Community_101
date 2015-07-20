@@ -1,14 +1,19 @@
 package com.community101.web;
 
+import com.community101.core.Category;
 import com.community101.core.DTO.CategoryDTO;
 import com.community101.core.DTO.GoodsDTO;
 import com.community101.core.DTO.GoodsDetailedDTO;
+import com.community101.core.Goods;
+import com.community101.core.service.CategoryService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by MiffyLiye on 16/07/2015.
@@ -17,6 +22,13 @@ import java.util.List;
 @RequestMapping("/api/customer")
 public class GoodsInformationController {
     private boolean is_fake = true;
+
+    private CategoryService categoryService;
+
+    @Autowired
+    public GoodsInformationController(CategoryService categoryService) {
+        this.categoryService = categoryService;
+    }
 
     @RequestMapping("/categories")
     public List<CategoryDTO> listAllCategories() {
@@ -28,7 +40,13 @@ public class GoodsInformationController {
             return categoryList;
         }
         else {
-            throw new NotImplementedException();
+            List<Category> categoryList = categoryService.listCategory();
+            List<CategoryDTO> categoryDTOList = new LinkedList<CategoryDTO>();
+            for (Category category : categoryList) {
+                CategoryDTO categoryDTO = new CategoryDTO(category.getId(), category.getName());
+                categoryDTOList.add(categoryDTO);
+            }
+            return categoryDTOList;
         }
 
     }
@@ -45,12 +63,19 @@ public class GoodsInformationController {
             return  goodsThinList;
         }
         else {
-            throw new NotImplementedException();
+            Category category = categoryService.findCategoryById(cid);
+            Set<Goods> goodses = category.getGoodses();
+            List<GoodsDTO> goodsDTOList = new LinkedList<GoodsDTO>();
+            for (Goods goods : goodses) {
+                GoodsDTO goodsDTO = new GoodsDTO(goods.getId(), goods.getName(), goods.getPrice(), goods.getPictureUrl());
+                goodsDTOList.add(goodsDTO);
+            }
+            return goodsDTOList;
         }
     }
 
-    @RequestMapping("/good")
-    public GoodsDTO getGoodsInformationById(long id) {
+    @RequestMapping("/goods/simple")
+    public GoodsDTO getGoodsSimpleInformationById(long id) {
         if (is_fake) {
             return new GoodsDTO(id, "Fake Goods from web API", 1212, "//baidu.com/");
         }
