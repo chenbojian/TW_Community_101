@@ -1,7 +1,5 @@
 package com.community101.core;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import javax.persistence.*;
 
 /**
@@ -17,7 +15,6 @@ public class OrderGoods {
 
     @ManyToOne
     @JoinColumn(name="order_id")
-    @JsonManagedReference
     private Orders orders;
 
     @Column(name="count")

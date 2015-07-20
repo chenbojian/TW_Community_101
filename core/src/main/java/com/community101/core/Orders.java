@@ -1,8 +1,5 @@
 package com.community101.core;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Set;
@@ -20,7 +17,6 @@ public class Orders {
 
     @ManyToOne
     @JoinColumn(name="user_id")
-    @JsonManagedReference
     private User user;
 
     @Column(name="address")
@@ -36,7 +32,6 @@ public class Orders {
     private Integer totalPrice;
 
     @OneToMany(mappedBy = "orders")
-    @JsonBackReference
     private Set<OrderGoods> orderGoodses;
 
     public Orders(){

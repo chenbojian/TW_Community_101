@@ -1,7 +1,5 @@
 package com.community101.core;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import javax.persistence.*;
 import java.util.Set;
 
@@ -20,7 +18,6 @@ public class User {
     private String telPhone;
 
     @OneToMany(mappedBy = "user")
-    @JsonBackReference
     private Set<Orders> orderses;
 
     public User() {
