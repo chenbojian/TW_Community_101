@@ -33,7 +33,7 @@ public class GoodsDAOTest {
     private SessionFactory sessionFactory;
 
     @Autowired
-    private JdbcTemplate jdbcTemplate;
+    private DataSource dataSource;
 
     @Transactional
     @Rollback
@@ -56,6 +56,7 @@ public class GoodsDAOTest {
         goodsDAO.save(goods);
         sessionFactory.getCurrentSession().flush();
 
+//        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 //        List<Goods> goodses = jdbcTemplate.queryForList("SELECT * FROM GOODS WHERE GOODS.name='test_name'", Goods.class);
         List<Goods> goodses = sessionFactory.getCurrentSession()
                 .createQuery("from Goods where name='test_name'")
