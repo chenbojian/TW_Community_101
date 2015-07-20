@@ -56,6 +56,15 @@ public class OrdersService {
     }
 
     @Transactional
+    public void completeOrder(long orderId) {
+        ordersDAO.completeOrder(orderId);
+    }
+
+    @Transactional
+    public void cancelOrder(long orderId){
+        ordersDAO.cancelOrder(orderId);
+    }
+
     public void addOrder(Orders order) {
         ordersDAO.addOrder(order);
     }

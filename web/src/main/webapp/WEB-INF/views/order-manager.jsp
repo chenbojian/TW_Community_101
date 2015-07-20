@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: chenjian
@@ -23,33 +24,84 @@
   <div id="content">
     <div id="newOrder">
       new order:
-      <ul></ul>
+      <ul>
+        <%--<c:forEach var="orders" items="${newOrdersList}">--%>
+          <%--<li>id:${orders.id} total price:￥${orders.totalPrice/100}</li>--%>
+        <%--</c:forEach>--%>
+      </ul>
     </div>
     <div id="dispatchingOrder">
       dispatching order:
-      <ul></ul>
+      <ul>
+        <c:forEach var="orders" items="${dispatchingOrdersList}">
+          <li>id:${orders.id} total price:￥${orders.totalPrice/100} <button id="${orders.id}" onclick="completeOrder(this)">complete</button></li>
+        </c:forEach>
+      </ul>
     </div>
-    <div id="completed">
-      complited order:
-      <ul></ul>
+    <div id="completedOrder">
+      completed order:
+      <ul>
+        <c:forEach var="orders" items="${completedOrdersList}">
+          <li>id:${orders.id} total price:￥${orders.totalPrice/100}</li>
+        </c:forEach>
+      </ul>
     </div>
     <div id="cancelOrder">
       cancel order:
-      <ul></ul>
+      <ul>
+        <c:forEach var="orders" items="${cancelOrdersList}">
+          <li>id:${orders.id} total price:￥${orders.totalPrice/100}</li>
+        </c:forEach>
+      </ul>
     </div>
   </div>
 
 
   <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
   <script type="text/javascript">
-    function dispatchOrder(){
-      var orderId = $(this).id;
+    function dispatchOrder(obj){
+      var orderId = $(obj).attr("id");
       $.get("${pageContext.request.contextPath}/api/order/dispatchOrder"
               ,{"orderId":orderId}
               ,function(){}
       );
+      obj.closest("li").remove();
+      $.getJSON("${pageContext.request.contextPath}/api/order/getOrder",
+              {"orderId": orderId},
+              function (data) {
+                if(data) {
+                  $("#dispatchingOrder ul").append(
+                          "<li>id: " + data.id
+                          + "  total price: ￥" + data.totalPrice/100
+                          + "<button id='" + data.id + "'onclick='completeOrder(this)'>dispatch order</button>"
+                          + "</li>"
+                  );
+                }
+              });
     }
+
+    function completeOrder(obj){
+      var orderId = $(obj).attr("id");
+      $.get("${pageContext.request.contextPath}/api/order/completeOrder"
+              ,{"orderId":orderId}
+              ,function(){}
+      );
+      obj.closest("li").remove();
+      $.getJSON("${pageContext.request.contextPath}/api/order/getOrder",
+              {"orderId": orderId},
+              function (data) {
+                if(data) {
+                  $("#completedOrder ul").append(
+                          "<li>id: " + data.id
+                          + "  total price: ￥" + data.totalPrice/100
+                          + "</li>"
+                  );
+                }
+              });
+    }
+
     $(function () {
+
       $.extend({
         /**
          * 调用方法： var timerArr = $.blinkTitle.show();
@@ -86,7 +138,6 @@
 
       window.setInterval(function () {
         var newOrderCount = $("#newOrder ul").children().length;
-        var dispatchingOrderCount = $("#dispatchingOrder ul").children().length;
         $.getJSON("${pageContext.request.contextPath}/api/order/newOrder",
                 {"count": newOrderCount},
                 function (data) {
@@ -94,26 +145,14 @@
                     $("#newOrder ul").append(
                             "<li>id: " + data.id
                             + "  total price: ￥" + data.totalPrice/100
-                            + "  time:" + new Date().getTime()
-                            + "<a id='" + data.id + "'onclick='dispatchOrder()'></a>"
+                            + "<button id='" + data.id + "'onclick='dispatchOrder(this)'>dispatch order</button>"
                             + "</li>"
                     );
                     timerArr = $.blinkTitle.show();  //title blink
                   }
                   else $.blinkTitle.clear(timerArr);   //title become normal
                 });
-        $.getJSON("${pageContext.request.contextPath}/api/order/dispatchingOrder",
-                {"count": dispatchingOrderCount},
-                function (data) {
-                  if(data) {
-                    $("#dispatchingOrder ul").append(
-                            "<li>id: " + data.id
-                            + "  total price: ￥" + data.totalPrice/100
-                            + "  time:" + new Date().getTime() + "</li>"
-                    );
-                  }
-                });
-      }, 3000);
+      }, 5000);
 
     });
   </script>
