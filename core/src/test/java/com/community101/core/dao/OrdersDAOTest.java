@@ -56,7 +56,7 @@ public class OrdersDAOTest  {
         User user = new User();
         user.setTelPhone("123456");
         order.setUser(user);
-        ordersDAO.addOrders(order);
+        ordersDAO.addOrder(order);
         long id = order.getId();
         order = ordersDAO.findOrdersById(id);
         assertNotNull(order);
