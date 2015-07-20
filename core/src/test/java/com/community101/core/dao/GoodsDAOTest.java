@@ -19,6 +19,7 @@ import java.util.List;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:applicationContext.xml")
@@ -28,15 +29,11 @@ public class GoodsDAOTest {
     @Autowired
     private GoodsDAO goodsDAO;
 
-    private DataSource dataSource;
-
     @Autowired
     private SessionFactory sessionFactory;
 
-    @Before
-    public void setUp() {
-        jdbcTemplate = new JdbcTemplate(dataSource);
-    }
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
     @Transactional
     @Rollback
@@ -46,8 +43,6 @@ public class GoodsDAOTest {
         assertEquals(5,goodsList.size());
         assertEquals("cookie",goodsList.get(1).getName());
     }
-
-    private JdbcTemplate jdbcTemplate;
 
     @Test
     @Rollback
@@ -67,5 +62,13 @@ public class GoodsDAOTest {
                 .list();
         assertThat(goodses.size(), is(1));
 
+    }
+
+    @Transactional
+    @Rollback
+    @Test
+    public void should_find_goods_by_id() {
+        Goods goods = goodsDAO.findGoodsById(0);
+        assertNull(goods);
     }
 }
