@@ -62,6 +62,18 @@ public class OrderController {
     @RequestMapping("/orderManager")
     public ModelAndView orderManagerPage() {
         ModelAndView modelAndView = new ModelAndView("order-manager");
+        List<Orders> newOrdersList = ordersService.listNewOrders();
+        List<Orders> dispatchingOrdersList = ordersService.listDispatchingOrders();
+        List<Orders> completedOrdersList = ordersService.listCompletedOrders();
+        List<Orders> cancelOrdersList = ordersService.listCancelOrders();
+        List<OrderInOrderManagerDTO> newOrders = transferOrder(newOrdersList);
+        List<OrderInOrderManagerDTO> dispatchingOrders = transferOrder(dispatchingOrdersList);
+        List<OrderInOrderManagerDTO> completedOrders = transferOrder(completedOrdersList);
+        List<OrderInOrderManagerDTO> cancelOrders = transferOrder(cancelOrdersList);
+
+        modelAndView.addObject("dispatchingOrdersList", dispatchingOrders);
+        modelAndView.addObject("completedOrdersList", completedOrders);
+        modelAndView.addObject("cancelOrdersList", cancelOrders);
         return modelAndView;
     }
 
@@ -84,27 +96,33 @@ public class OrderController {
         }
     }
 
-    @RequestMapping("/dispatchingOrder")
-    public void dispatchingOrder(int count, HttpServletResponse response) throws Exception{
+    @RequestMapping("/getOrder")
+    public void dispatchingOrder(long orderId, HttpServletResponse response) throws Exception{
         PrintWriter writer = response.getWriter();
-        List<Orders> ordersList = ordersService.listDispatchingOrders();
-        List<OrderInOrderManagerDTO> orders = new ArrayList<OrderInOrderManagerDTO>();
-        for(Orders order:ordersList){
-            OrderInOrderManagerDTO orderDTO = new OrderInOrderManagerDTO();
-            orderDTO.setId(order.getId());
-            orderDTO.setTotalPrice(order.getTotalPrice());
-            orders.add(orderDTO);
-        }
-        if(count<ordersList.size()){
-            OrderInOrderManagerDTO order = orders.get(count);
-            String json = gson.toJson(order);
-            writer.print(json);
-        }
+        Orders orders = ordersService.findOrdersById(orderId);
+
+        OrderInOrderManagerDTO orderDTO = new OrderInOrderManagerDTO();
+        orderDTO.setId(orders.getId());
+        orderDTO.setTotalPrice(orders.getTotalPrice());
+
+        String json = gson.toJson(orderDTO);
+        System.out.print(json);
+        writer.print(json);
     }
 
-    @RequestMapping("dispatchOrder")
+    @RequestMapping("/dispatchOrder")
     public void dispatchOrder(long orderId){
         ordersService.dispatchOrder(orderId);
+    }
+
+    @RequestMapping("/completeOrder")
+    public void completeOrder(long orderId){
+        ordersService.completeOrder(orderId);
+    }
+
+    @RequestMapping("/cancelOrder")
+    public void cancelOrder(long orderId){
+        ordersService.cancelOrder(orderId);
     }
 
     @RequestMapping(value = "/submit", method = RequestMethod.POST)
@@ -119,7 +137,16 @@ public class OrderController {
         }
     }
 
-
+    private List<OrderInOrderManagerDTO> transferOrder(List<Orders> ordersList){
+        List<OrderInOrderManagerDTO> orders = new ArrayList<OrderInOrderManagerDTO>();
+        for(Orders order:ordersList){
+            OrderInOrderManagerDTO orderDTO = new OrderInOrderManagerDTO();
+            orderDTO.setId(order.getId());
+            orderDTO.setTotalPrice(order.getTotalPrice());
+            orders.add(orderDTO);
+        }
+        return orders;
+    }
 
     class OrderBuilder{
 
