@@ -1,11 +1,17 @@
 package com.community101.web;
 
+import com.community101.core.DTO.GoodsInSubmissionDTO;
 import com.community101.core.DTO.OrderDTO;
 import com.community101.core.DTO.OrderInOrderManagerDTO;
+import com.community101.core.Goods;
+import com.community101.core.OrderGoods;
 import com.community101.core.Orders;
 import com.community101.core.User;
+import com.community101.core.service.GoodsService;
 import com.community101.core.service.OrdersService;
 import com.google.gson.Gson;
+import com.community101.core.service.UserService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,8 +24,7 @@ import java.io.PrintWriter;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by chenjian on 7/17/15.
@@ -27,9 +32,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/order")
 public class OrderController {
-    private boolean is_fake = true;
-    private OrdersService ordersService;
     static Gson gson = new Gson();
+
+    private boolean is_fake = false;
+    private OrdersService ordersService;
+    private GoodsService goodsService;
+    private UserService userService;
 
     private OrderBuilder orderBuilder = new OrderBuilder();
     Orders order1 = orderBuilder.givenBuilder()
@@ -47,8 +55,10 @@ public class OrderController {
             .withPrice(1000)
             .build();
     @Autowired
-    public OrderController(OrdersService ordersService){
+    public OrderController(OrdersService ordersService, GoodsService goodsService, UserService userService){
         this.ordersService = ordersService;
+        this.goodsService = goodsService;
+        this.userService = userService;
     }
 
     @RequestMapping("/all")
@@ -108,14 +118,42 @@ public class OrderController {
     }
 
     @RequestMapping(value = "/submit", method = RequestMethod.POST)
-    public long submitOrder(OrderDTO order) {
+    public long submitOrder(OrderDTO orderDTO) {
         if (is_fake) {
             long orderId = 12345;
 
             return orderId;
         }
         else {
-            throw new NotImplementedException();
+            Orders order = new Orders();
+            order.setAddress(orderDTO.getAddress());
+            User user = userService.findUserByTel(orderDTO.getPhone());
+            if (user == null) {
+                user = new User();
+                user.setTelPhone(orderDTO.getPhone());
+                userService.addUser(user);
+            }
+            order.setUser(user);
+
+            Set<OrderGoods> orderGoodsSet = new LinkedHashSet<OrderGoods>();
+            order.setOrderGoodses(orderGoodsSet);
+            for (GoodsInSubmissionDTO goodsInSubmissionDTO : orderDTO.getGoodsList()) {
+                Goods goods = goodsService.findGoodsById(goodsInSubmissionDTO.getId());
+                OrderGoods orderGoods = new OrderGoods();
+                orderGoods.setId(goods.getId());
+                orderGoods.setCount(goodsInSubmissionDTO.getQuantity());
+                orderGoods.setGoodsCategoryName(goods.getCategory().getName());
+                orderGoods.setGoodsDescription(goods.getDescription());
+                orderGoods.setGoodsName(goods.getName());
+                orderGoods.setGoodsPrice(goods.getPrice());
+                orderGoods.setGoodsPictureUrl(goods.getPictureUrl());
+                orderGoods.setOrders(order);
+            }
+            order.setTotalPrice(order.getBillTotal());
+            order.setStatus("new");
+            order.setCreateTime(new Timestamp(System.currentTimeMillis()));
+            ordersService.addOrder(order);
+            return order.getId();
         }
     }
 

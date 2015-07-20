@@ -53,4 +53,8 @@ public class OrdersDAO {
         order.setStatus("dispatching");
         sessionFactory.getCurrentSession().update(order);
     }
+
+    public void addOrder(Orders order) {
+        sessionFactory.getCurrentSession().save(order);
+    }
 }

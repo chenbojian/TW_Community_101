@@ -93,4 +93,12 @@ public class Orders {
     public void setTotalPrice(Integer totalPrice) {
         this.totalPrice = totalPrice;
     }
+
+    public int getBillTotal() {
+        int total = 0;
+        for (OrderGoods orderGoods : orderGoodses) {
+            total = total + orderGoods.getGoodsPrice() * orderGoods.getCount();
+        }
+        return total;
+    }
 }
