@@ -69,7 +69,7 @@ public class InputGoodsDTO {
         FileOutputStream fileOutputStream = new FileOutputStream(file);
         fileOutputStream.write(pictureFile.getBytes());
         fileOutputStream.close();
-        url = contextPath + "/picture" + fileName;
+        url = contextPath + "/picture/" + fileName;
 
     }
 

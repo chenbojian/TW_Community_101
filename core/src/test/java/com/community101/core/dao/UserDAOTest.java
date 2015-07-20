@@ -1,5 +1,6 @@
 package com.community101.core.dao;
 
+import com.community101.core.Orders;
 import com.community101.core.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,8 +11,11 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.LinkedHashSet;
 import java.util.List;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
 
 
 /**
@@ -32,6 +36,29 @@ public class UserDAOTest {
         List<User>  userList=userDAO.listUsers();
         assertEquals(5,userList.size());
         assertEquals("18888888880",userList.get(0).getTelPhone());
+    }
+
+    @Transactional
+    @Rollback
+    @Test
+    public void should_find_user_by_tel() {
+        String tel = "18888888880";
+        User user = userDAO.findUserByTel(tel);
+        assertNotNull(user);
+    }
+
+    @Transactional
+    @Rollback
+    @Test
+    public void should_add_user() {
+        User user = new User();
+        String tel = "12345678";
+        user.setTelPhone(tel);
+        user.setOrderses(new LinkedHashSet<Orders>());
+        userDAO.addUser(user);
+        long id = user.getId();
+        user = userDAO.findUserByTel(tel);
+        assertEquals(id, user.getId());
     }
 
 }

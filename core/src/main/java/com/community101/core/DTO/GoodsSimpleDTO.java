@@ -3,15 +3,15 @@ package com.community101.core.DTO;
 /**
  * Created by MiffyLiye on 16/07/2015.
  */
-public class GoodsDTO {
+public class GoodsSimpleDTO {
     private long id;
     private String name;
     private int price;
     private String pic; //pic url
 
-    public GoodsDTO() {}
+    public GoodsSimpleDTO() {}
 
-    public GoodsDTO(long id, String name, int price, String pic) {
+    public GoodsSimpleDTO(long id, String name, int price, String pic) {
         this.id = id;
         this.name = name;
         this.price = price;
