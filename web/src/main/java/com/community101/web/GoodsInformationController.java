@@ -21,8 +21,6 @@ import java.util.Set;
 @RestController
 @RequestMapping("/api/customer")
 public class GoodsInformationController {
-    private boolean is_fake = false;
-
     private CategoryService categoryService;
 
     private GoodsService goodsService;
@@ -35,70 +33,50 @@ public class GoodsInformationController {
 
     @RequestMapping("/categories")
     public List<CategoryDTO> listAllCategories() {
-        if (is_fake) {
-            List<CategoryDTO> categoryList = new LinkedList<CategoryDTO>();
-            categoryList.add(new CategoryDTO(1, "??"));
-            categoryList.add(new CategoryDTO(2, "????"));
-
-            return categoryList;
+        List<Category> categoryList = categoryService.listCategory();
+        List<CategoryDTO> categoryDTOList = new LinkedList<CategoryDTO>();
+        for (Category category : categoryList) {
+            CategoryDTO categoryDTO = new CategoryDTO(category.getId(), category.getName());
+            categoryDTOList.add(categoryDTO);
         }
-        else {
-            List<Category> categoryList = categoryService.listCategory();
-            List<CategoryDTO> categoryDTOList = new LinkedList<CategoryDTO>();
-            for (Category category : categoryList) {
-                CategoryDTO categoryDTO = new CategoryDTO(category.getId(), category.getName());
-                categoryDTOList.add(categoryDTO);
-            }
-            return categoryDTOList;
-        }
-
+        return categoryDTOList;
     }
 
     @RequestMapping("/goods")
     public List<GoodsSimpleDTO> listAllGoodsOfCertainCategory(long cid) {
-        if (is_fake) {
-            List<GoodsSimpleDTO> goodsThinList = new LinkedList<GoodsSimpleDTO>();
-            goodsThinList.add(new GoodsSimpleDTO(1, "????1", 1221, "//baidu.com/"));
-            goodsThinList.add(new GoodsSimpleDTO(2, "????2", 2221, "//baidu.com/"));
-            goodsThinList.add(new GoodsSimpleDTO(3, "????3", 3221, "//baidu.com/"));
-            goodsThinList.add(new GoodsSimpleDTO(4, "????4", 4221, "//baidu.com/"));
-
-            return  goodsThinList;
+        Category category = categoryService.findCategoryById(cid);
+        Set<Goods> goodses = category.getGoodses();
+        List<GoodsSimpleDTO> goodsSimpleDTOList = new LinkedList<GoodsSimpleDTO>();
+        for (Goods goods : goodses) {
+            GoodsSimpleDTO goodsSimpleDTO = new GoodsSimpleDTO(goods.getId(), goods.getName(), goods.getPrice(), goods.getPictureUrl());
+            goodsSimpleDTOList.add(goodsSimpleDTO);
         }
-        else {
-            Category category = categoryService.findCategoryById(cid);
-            Set<Goods> goodses = category.getGoodses();
-            List<GoodsSimpleDTO> goodsSimpleDTOList = new LinkedList<GoodsSimpleDTO>();
-            for (Goods goods : goodses) {
-                GoodsSimpleDTO goodsSimpleDTO = new GoodsSimpleDTO(goods.getId(), goods.getName(), goods.getPrice(), goods.getPictureUrl());
+        return goodsSimpleDTOList;
+    }
+
+    @RequestMapping("/goods/all")
+    public List<GoodsSimpleDTO> listAllGoods() {
+        List<GoodsSimpleDTO> goodsSimpleDTOList = new LinkedList<GoodsSimpleDTO>();
+        for (Category category : categoryService.listCategory()) {
+            for (GoodsSimpleDTO goodsSimpleDTO : listAllGoodsOfCertainCategory(category.getId())) {
                 goodsSimpleDTOList.add(goodsSimpleDTO);
             }
-            return goodsSimpleDTOList;
         }
+        return goodsSimpleDTOList;
     }
+
 
     @RequestMapping("/goods/simple")
     public GoodsSimpleDTO getGoodsSimpleInformationById(long id) {
-        if (is_fake) {
-            return new GoodsSimpleDTO(id, "Fake Goods from web API", 1212, "//baidu.com/");
-        }
-        else {
-            Goods goods = goodsService.findGoodsById(id);
-            GoodsSimpleDTO goodsSimpleDTO = new GoodsSimpleDTO(goods.getId(), goods.getName(), goods.getPrice(), goods.getPictureUrl());
-            return goodsSimpleDTO;
-        }
+        Goods goods = goodsService.findGoodsById(id);
+        GoodsSimpleDTO goodsSimpleDTO = new GoodsSimpleDTO(goods.getId(), goods.getName(), goods.getPrice(), goods.getPictureUrl());
+        return goodsSimpleDTO;
     }
 
     @RequestMapping("goods/details")
     public GoodsDetailedDTO getGoodsGetailsById(long id) {
-        if (is_fake) {
-            return new GoodsDetailedDTO(id, "fake goods with details", 2143, "//baidu.com/", "very good from web API");
-        }
-        else {
-            Goods goods = goodsService.findGoodsById(id);
-            GoodsDetailedDTO goodsDetailedDTO = new GoodsDetailedDTO(goods.getId(), goods.getName(), goods.getPrice(), goods.getPictureUrl(), goods.getDescription());
-            return goodsDetailedDTO;
-        }
+        Goods goods = goodsService.findGoodsById(id);
+        GoodsDetailedDTO goodsDetailedDTO = new GoodsDetailedDTO(goods.getId(), goods.getName(), goods.getPrice(), goods.getPictureUrl(), goods.getDescription());
+        return goodsDetailedDTO;
     }
-
 }
