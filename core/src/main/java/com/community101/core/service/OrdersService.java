@@ -64,4 +64,9 @@ public class OrdersService {
     public void cancelOrder(long orderId){
         ordersDAO.cancelOrder(orderId);
     }
+
+    public void addOrder(Orders order) {
+        ordersDAO.addOrder(order);
+    }
+
 }

@@ -39,6 +39,25 @@ public class OrderGoods {
 
     }
 
+    public void setGoods(Goods goods){
+        this.goodsName=goods.getName();
+        this.goodsCategoryName=goods.getCategory().getName();
+        this.goodsDescription=goods.getDescription();
+        this.goodsPictureUrl=goods.getPictureUrl();
+        this.goodsPrice=goods.getPrice();
+    }
+
+    public Goods getGoods() {
+        Goods goods = new Goods();
+        goods.setName(goodsName);
+        goods.setCategory(new Category());
+        goods.getCategory().setName(goodsCategoryName);
+        goods.setDescription(goodsDescription);
+        goods.setPictureUrl(goodsPictureUrl);
+        goods.setPrice(goodsPrice);
+        return goods;
+    }
+
     public long getId() {
         return id;
     }

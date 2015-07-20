@@ -60,9 +60,13 @@ public class OrdersDAO {
         sessionFactory.getCurrentSession().update(order);
     }
 
-    public void cancelOrder(long orderId){
+    public void cancelOrder(long orderId) {
         Orders order = findOrdersById(orderId);
         order.setStatus("cancel");
         sessionFactory.getCurrentSession().update(order);
+    }
+
+    public void addOrder(Orders order) {
+        sessionFactory.getCurrentSession().save(order);
     }
 }

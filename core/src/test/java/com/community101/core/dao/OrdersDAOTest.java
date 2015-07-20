@@ -1,6 +1,7 @@
 package com.community101.core.dao;
 
 import com.community101.core.Orders;
+import com.community101.core.User;
 import junit.framework.TestCase;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,9 +12,11 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * Created by jiaoming on 7/17/15.
@@ -43,5 +46,19 @@ public class OrdersDAOTest  {
         assertEquals(1,newOrdersList.size());
         int totalPrice=newOrdersList.get(0).getTotalPrice();
         assertEquals(300,totalPrice);
+    }
+
+    @Transactional
+    @Rollback
+    @Test
+    public void should_add_new_order() {
+        Orders order = new Orders();
+        User user = new User();
+        user.setTelPhone("123456");
+        order.setUser(user);
+        ordersDAO.addOrder(order);
+        long id = order.getId();
+        order = ordersDAO.findOrdersById(id);
+        assertNotNull(order);
     }
 }
