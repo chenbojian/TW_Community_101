@@ -1,10 +1,11 @@
 package com.community101.web;
 
 import com.community101.core.DTO.OrderDTO;
+import com.community101.core.DTO.OrderInOrderManagerDTO;
 import com.community101.core.Orders;
 import com.community101.core.User;
 import com.community101.core.service.OrdersService;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,7 +28,8 @@ import java.util.List;
 @RequestMapping("/api/order")
 public class OrderController {
     private boolean is_fake = true;
-    private OrdersService ordersService;;
+    private OrdersService ordersService;
+    static Gson gson = new Gson();
 
     private OrderBuilder orderBuilder = new OrderBuilder();
     Orders order1 = orderBuilder.givenBuilder()
@@ -67,12 +69,42 @@ public class OrderController {
     @ResponseBody
     public void newOrder(int count, HttpServletResponse response) throws Exception {
         PrintWriter writer = response.getWriter();
-        ObjectMapper objectMapper = new ObjectMapper();
         List<Orders> ordersList = ordersService.listNewOrders();
-        if(count<ordersList.size()){
-            writer.print(ordersList.size());
-//            return ordersList.get(ordersList.size()-1);
+        List<OrderInOrderManagerDTO> orders = new ArrayList<OrderInOrderManagerDTO>();
+        for(Orders order:ordersList){
+            OrderInOrderManagerDTO orderDTO = new OrderInOrderManagerDTO();
+            orderDTO.setId(order.getId());
+            orderDTO.setTotalPrice(order.getTotalPrice());
+            orders.add(orderDTO);
         }
+        if(count<ordersList.size()){
+            OrderInOrderManagerDTO order = orders.get(count);
+            String json = gson.toJson(order);
+            writer.print(json);
+        }
+    }
+
+    @RequestMapping("/dispatchingOrder")
+    public void dispatchingOrder(int count, HttpServletResponse response) throws Exception{
+        PrintWriter writer = response.getWriter();
+        List<Orders> ordersList = ordersService.listDispatchingOrders();
+        List<OrderInOrderManagerDTO> orders = new ArrayList<OrderInOrderManagerDTO>();
+        for(Orders order:ordersList){
+            OrderInOrderManagerDTO orderDTO = new OrderInOrderManagerDTO();
+            orderDTO.setId(order.getId());
+            orderDTO.setTotalPrice(order.getTotalPrice());
+            orders.add(orderDTO);
+        }
+        if(count<ordersList.size()){
+            OrderInOrderManagerDTO order = orders.get(count);
+            String json = gson.toJson(order);
+            writer.print(json);
+        }
+    }
+
+    @RequestMapping("dispatchOrder")
+    public void dispatchOrder(long orderId){
+        ordersService.dispatchOrder(orderId);
     }
 
     @RequestMapping(value = "/submit", method = RequestMethod.POST)
