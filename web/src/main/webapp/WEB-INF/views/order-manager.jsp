@@ -46,7 +46,6 @@
       </ul>
     </div>
 
-
   <script src="${pageContext.request.contextPath}/lib/js/jquery-2.1.4.min.js"></script>
   <script type="text/javascript">
     function dispatchOrder(obj){

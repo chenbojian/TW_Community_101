@@ -36,21 +36,9 @@ public class OrdersStatusController {
         List<Orders> newOrdersList=ordersService.listNewOrders();
         List<Orders> dispatchingOrdersList=ordersService.listDispatchingOrders();
         List<Orders> completedOrdersList=ordersService.listCompletedOrders();
-        List<Orders> cancelOrdersList=ordersService.listCancelOrders();
         modelAndView.addObject("newOrdersList",newOrdersList);
         modelAndView.addObject("dispatchingOrdersList",dispatchingOrdersList);
         modelAndView.addObject("completedOrdersList",completedOrdersList);
-        modelAndView.addObject("cancelOrdersList",cancelOrdersList);
-        return modelAndView;
-    }
-
-    @RequestMapping(value = "/customerOrders")
-    public ModelAndView showCustomerOrders(){
-        ModelAndView modelAndView=new ModelAndView("customer-orders-status");
-        long id=2;
-
-        Orders orders=ordersService.findOrdersById(id);
-        modelAndView.addObject("orders",orders);
         return modelAndView;
     }
 

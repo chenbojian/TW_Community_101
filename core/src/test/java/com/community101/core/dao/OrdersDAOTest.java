@@ -73,6 +73,8 @@ public class OrdersDAOTest  {
         User user = new User();
         String telPhone = "123456";
         user.setTelPhone(telPhone);
+        userDAO.addUser(user);
+
         order.setUser(user);
         String address = "Beijing";
         order.setAddress(address);
