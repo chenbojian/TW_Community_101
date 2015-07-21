@@ -3,11 +3,11 @@ insert into CATEGORY(name) values("drink");
 insert into CATEGORY(name) values("commodity");
 insert into CATEGORY(name) values("groceries");
 
-insert into GOODS(name, description, category_id, price, picture_url, status) values("bread", "delicious bread", 1, 300, "./img/1.jpg", "selling");
-insert into GOODS(name, description, category_id, price, picture_url, status) values("cookie", "delicious cookie", 1, 450, "./img/2.jpg", "selling");
-insert into GOODS(name, description, category_id, price, picture_url, status) values("beer", "delicious beer", 2, 500, "./img/3.jpg", "selling");
-insert into GOODS(name, description, category_id, price, picture_url, status) values("soap", "delicious soap", 3, 350, "/img/4.jpg", "selling");
-insert into GOODS(name, description, category_id, price, picture_url, status) values("towel", "delicious towel", 4, 600, "/img/5.jpg", "selling");
+insert into GOODS(name, description, category_id, price, picture_url, status) values("bread", "delicious bread", 1, 300, "http://images.quanjing.com/fod007/thu/fod-185130.jpg", "selling");
+insert into GOODS(name, description, category_id, price, picture_url, status) values("cookie", "delicious cookie", 1, 450, "http://images.quanjing.com/fod007/thu/fod-185130.jpg", "selling");
+insert into GOODS(name, description, category_id, price, picture_url, status) values("beer", "delicious beer", 2, 500, "http://img7.paipaiimg.com/item-0FCA4DE7-57684C1400000000040100000FBE8D52.0.200x200.jpg", "selling");
+insert into GOODS(name, description, category_id, price, picture_url, status) values("soap", "delicious soap", 3, 350, "http://en-img-dis.gcimg.net/product/day_20110412/s_f0d6e894e37a2302807e7d83cc0a802b.jpg", "selling");
+insert into GOODS(name, description, category_id, price, picture_url, status) values("towel", "delicious towel", 4, 600, "http://pic.baike.soso.com/p/20120228/bki-20120228110421-1449495487.jpg", "selling");
 
 insert into USER(tel_phone) values("18888888880");
 insert into USER(tel_phone) values("18888888881");
