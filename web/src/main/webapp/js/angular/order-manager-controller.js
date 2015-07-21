@@ -54,5 +54,25 @@ App.controller("orderManagerController", function($scope, $http){
         });
     };
 
+    var show = function() { //有新消息时在title处闪烁提示
+        var step=0, _title = document.title;
+
+        var timer = setInterval(function() {
+            step++;
+            if (step==3) {step=1};
+            if (step==1) {document.title='【　　　　　】'+_title};
+            if (step==2) {document.title='【您有新订单】'+_title};
+        }, 500);
+
+        setTimeout(function(){
+            clearInterval(timer);
+            document.title = _title;
+        }, 10000);
+    };
+
+    $scope.$watch($scope.newOrders, function(newValue, oleValue, scope){
+        show();
+    })
+
     setInterval(getNewOrders, 5000);
 });
