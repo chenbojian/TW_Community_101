@@ -73,7 +73,7 @@
                   $("#dispatchingOrder ul").append(
                           "<li>id: " + data.id
                           + "  total price: ￥" + data.totalPrice/100
-                          + "<button id='" + data.id + "'onclick='completeOrder(this)'>dispatch order</button>"
+                          + "<button id='" + data.id + "'onclick='completeOrder(this)'>complete</button>"
                           + "</li>"
                   );
                 }
@@ -148,6 +148,7 @@
                             + "<button id='" + data.id + "'onclick='dispatchOrder(this)'>dispatch order</button>"
                             + "</li>"
                     );
+                    $('embed').play();
                     timerArr = $.blinkTitle.show();  //title blink
                   }
                   else $.blinkTitle.clear(timerArr);   //title become normal
@@ -156,5 +157,7 @@
 
     });
   </script>
+
+  <embed src="${pageContext.request.contextPath}/sounds/msg.wav" autostart="false" hidden="true" loop="true">
 </body>
 </html>
