@@ -18,10 +18,10 @@
         <th>Operation</th>
     </tr>
     <tr ng-repeat="item in selected_items">
-        <td>{{item["name"]}}</td>
-        <td>{{item["price"]/100 | currency}}</td>
-        <td>{{item["quantity"]}}</td>
-        <td>{{item["price"]/100 * item["quantity"] | currency}}</td>
+        <td>{{item.name}}</td>
+        <td>{{item.price/100 | currency}}</td>
+        <td>{{item.quantity}}</td>
+        <td>{{item.price/100 * item["quantity"] | currency}}</td>
         <td>
             <button ng-click="more_selected_item($index)">more</button>
             <button ng-click="less_selected_item($index)">less</button>
