@@ -46,16 +46,6 @@
         </c:forEach>
       </ul>
     </div>
-    <div id="cancelOrder">
-      cancel order:
-      <ul>
-        <c:forEach var="orders" items="${cancelOrdersList}">
-          <li>id:${orders.id} total price:￥${orders.totalPrice/100}</li>
-        </c:forEach>
-      </ul>
-    </div>
-  </div>
-
 
   <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
   <script type="text/javascript">
@@ -148,16 +138,17 @@
                             + "<button id='" + data.id + "'onclick='dispatchOrder(this)'>dispatch order</button>"
                             + "</li>"
                     );
-                    $('embed').play();
                     timerArr = $.blinkTitle.show();  //title blink
+                    setTimeout(function() {     // title become normal 5s later
+                      $.blinkTitle.clear(timerArr);
+                    }, 4999);
                   }
-                  else $.blinkTitle.clear(timerArr);   //title become normal
                 });
       }, 5000);
 
     });
   </script>
 
-  <embed src="${pageContext.request.contextPath}/sounds/msg.wav" autostart="false" hidden="true" loop="true">
+  <embed src="${pageContext.request.contextPath}/sounds/msg.wav" autostart=false height="0" width="0" loop=false id="sound">
 </body>
 </html>
