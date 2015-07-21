@@ -46,16 +46,6 @@
         </c:forEach>
       </ul>
     </div>
-    <div id="cancelOrder">
-      cancel order:
-      <ul>
-        <c:forEach var="orders" items="${cancelOrdersList}">
-          <li>id:${orders.id} total price:￥${orders.totalPrice/100}</li>
-        </c:forEach>
-      </ul>
-    </div>
-  </div>
-
 
   <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
   <script type="text/javascript">

@@ -72,15 +72,12 @@ public class OrderController {
         List<Orders> newOrdersList = ordersService.listNewOrders();
         List<Orders> dispatchingOrdersList = ordersService.listDispatchingOrders();
         List<Orders> completedOrdersList = ordersService.listCompletedOrders();
-        List<Orders> cancelOrdersList = ordersService.listCancelOrders();
         List<OrderInOrderManagerDTO> newOrders = transferOrder(newOrdersList);
         List<OrderInOrderManagerDTO> dispatchingOrders = transferOrder(dispatchingOrdersList);
         List<OrderInOrderManagerDTO> completedOrders = transferOrder(completedOrdersList);
-        List<OrderInOrderManagerDTO> cancelOrders = transferOrder(cancelOrdersList);
 
         modelAndView.addObject("dispatchingOrdersList", dispatchingOrders);
         modelAndView.addObject("completedOrdersList", completedOrders);
-        modelAndView.addObject("cancelOrdersList", cancelOrders);
         return modelAndView;
     }
 
