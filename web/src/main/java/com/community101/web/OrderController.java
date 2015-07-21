@@ -149,10 +149,18 @@ public class OrderController {
                 userService.addUser(user);
             }
             order.setUser(user);
+            if (user.getOrderses() == null) {
+                user.setOrderses(new LinkedHashSet<Orders>());
+            }
+            user.getOrderses().add(order);
 
             Set<OrderGoods> orderGoodsSet = new LinkedHashSet<OrderGoods>();
             order.setOrderGoodses(orderGoodsSet);
-            for (GoodsInSubmissionDTO goodsInSubmissionDTO : orderDTO.getGoodsList()) {
+            List<GoodsInSubmissionDTO> goodsInSubmissionDTOList = orderDTO.getGoodsList();
+            if (goodsInSubmissionDTOList == null) {
+                goodsInSubmissionDTOList = new LinkedList<GoodsInSubmissionDTO>();
+            }
+            for (GoodsInSubmissionDTO goodsInSubmissionDTO : goodsInSubmissionDTOList) {
                 Goods goods = goodsService.findGoodsById(goodsInSubmissionDTO.getId());
                 OrderGoods orderGoods = new OrderGoods();
                 orderGoods.setId(goods.getId());
