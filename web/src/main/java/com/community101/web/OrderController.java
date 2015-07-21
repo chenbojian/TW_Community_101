@@ -174,12 +174,6 @@ public class OrderController {
         ordersService.cancelOrder(orderId);
     }
 
-    @RequestMapping(value = "/echo", method = RequestMethod.POST)
-    @ResponseStatus(HttpStatus.CREATED)
-    public String echo(long[] id, int[] quantity, String phone, String address) {
-        return address + id[0] + id[1];
-    }
-
     @RequestMapping(value = "/submit", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public long submitOrder(long[] id, int[] quantity, String phone, String address) {
