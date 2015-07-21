@@ -44,6 +44,9 @@ public class GoodsInformationController {
 
     @RequestMapping("/goods")
     public List<GoodsSimpleDTO> listAllGoodsOfCertainCategory(long cid) {
+        if (cid == 0) {
+            return listAllGoods();
+        }
         Category category = categoryService.findCategoryById(cid);
         Set<Goods> goodses = category.getGoodses();
         List<GoodsSimpleDTO> goodsSimpleDTOList = new LinkedList<GoodsSimpleDTO>();
