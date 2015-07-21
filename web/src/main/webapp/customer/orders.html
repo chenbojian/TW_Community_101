@@ -25,12 +25,12 @@
         <td>{{item["telPhone"]}}</td>
         <td>{{item["address"]}}</td>
         <td>{{item["createTime"]}}</td>
-        <td>{{item["goodsInOrderDTOList"]}}</td>
-
-        <td ng-repeat="goods in item.goodsInOrderDTOList">
-            <td> {{goods.name}}<td>
-            <td> {{goods.price}}<td>
-            <td> {{goods.quantity}}<td>
+        <td>
+            <div ng-repeat="goods in item.goodsInOrderDTOList">
+                <p> {{goods.name}}</p>
+                <p> {{goods.price}}</p>
+                <p> {{goods.quantity}}</p>
+            </div>
         </td>
         <td>{{item["totalPrice"]/100 | currency}}</td>
     </tr>
