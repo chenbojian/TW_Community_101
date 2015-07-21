@@ -72,15 +72,12 @@ public class OrderController {
         List<Orders> newOrdersList = ordersService.listNewOrders();
         List<Orders> dispatchingOrdersList = ordersService.listDispatchingOrders();
         List<Orders> completedOrdersList = ordersService.listCompletedOrders();
-        List<Orders> cancelOrdersList = ordersService.listCancelOrders();
         List<OrderInOrderManagerDTO> newOrders = transferOrder(newOrdersList);
         List<OrderInOrderManagerDTO> dispatchingOrders = transferOrder(dispatchingOrdersList);
         List<OrderInOrderManagerDTO> completedOrders = transferOrder(completedOrdersList);
-        List<OrderInOrderManagerDTO> cancelOrders = transferOrder(cancelOrdersList);
 
         modelAndView.addObject("dispatchingOrdersList", dispatchingOrders);
         modelAndView.addObject("completedOrdersList", completedOrders);
-        modelAndView.addObject("cancelOrdersList", cancelOrders);
         return modelAndView;
     }
 
@@ -102,6 +99,53 @@ public class OrderController {
             writer.print(json);
         }
     }
+    //angular
+    @RequestMapping("/newOrders")
+    @ResponseBody
+    public String newOrders() throws Exception {
+        List<Orders> ordersList = ordersService.listNewOrders();
+        List<OrderInOrderManagerDTO> orders = new ArrayList<OrderInOrderManagerDTO>();
+        for(Orders order:ordersList){
+            OrderInOrderManagerDTO orderDTO = new OrderInOrderManagerDTO();
+            orderDTO.setId(order.getId());
+            orderDTO.setTotalPrice(order.getTotalPrice());
+            orders.add(orderDTO);
+        }
+            String json = gson.toJson(orders);
+        return json;
+    }
+
+    @RequestMapping("/dispatchingOrders")
+    @ResponseBody
+    public String dispatchingOrders() throws Exception {
+        List<Orders> ordersList = ordersService.listDispatchingOrders();
+        List<OrderInOrderManagerDTO> orders = new ArrayList<OrderInOrderManagerDTO>();
+        for(Orders order:ordersList){
+            OrderInOrderManagerDTO orderDTO = new OrderInOrderManagerDTO();
+            orderDTO.setId(order.getId());
+            orderDTO.setTotalPrice(order.getTotalPrice());
+            orders.add(orderDTO);
+        }
+        String json = gson.toJson(orders);
+        return json;
+    }
+
+    @RequestMapping("/completedOrders")
+    @ResponseBody
+    public String completedOrders() throws Exception {
+        List<Orders> ordersList = ordersService.listCompletedOrders();
+        List<OrderInOrderManagerDTO> orders = new ArrayList<OrderInOrderManagerDTO>();
+        for(Orders order:ordersList){
+            OrderInOrderManagerDTO orderDTO = new OrderInOrderManagerDTO();
+            orderDTO.setId(order.getId());
+            orderDTO.setTotalPrice(order.getTotalPrice());
+            orders.add(orderDTO);
+        }
+        String json = gson.toJson(orders);
+        return json;
+    }
+
+    //
 
     @RequestMapping("/getOrder")
     public void dispatchingOrder(long orderId, HttpServletResponse response) throws Exception{

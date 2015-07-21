@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html ng-app="App" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Manager</title>
+    <script src="/web/js/angular/angular.min.js"></script>
+    <script src="/web/js/angular/order-manager-controller.js"></script>
+</head>
+<body ng-controller="orderManagerController">
+    <h2>new order</h2>
+    <table>
+        <tr>
+            <th>order id</th>
+            <th>total price</th>
+            <th>operation</th>
+        </tr>
+        <tr ng-repeat="order in newOrders">
+            <td>{{order.id}}</td>
+            <td>￥{{order.totalPrice/100}}</td>
+            <td><button ng-click="dispatchOrder($index)">dispatch</button></td>
+        </tr>
+    </table>
+    <h2>dispatching order</h2>
+    <table>
+        <tr>
+            <th>order id</th>
+            <th>total price</th>
+            <th>operation</th>
+        </tr>
+        <tr ng-repeat="order in dispatchingOrders">
+            <td>{{order.id}}</td>
+            <td>￥{{order.totalPrice/100}}</td>
+            <td><button ng-click="completeOrder($index)">complete</button></td>
+        </tr>
+    </table>
+    <h2>completed order</h2>
+    <table>
+        <tr>
+            <th>order id</th>
+            <th>total price</th>
+        </tr>
+        <tr ng-repeat="order in completedOrders">
+            <td>{{order.id}}</td>
+            <td>￥{{order.totalPrice/100}}</td>
+        </tr>
+    </table>
+</body>
+</html>
