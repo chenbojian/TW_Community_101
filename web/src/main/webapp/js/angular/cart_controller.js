@@ -52,8 +52,8 @@ App.controller('CartController', function($scope, $http, $cookies) {
 
     $scope.$watch('selected_items', calculateTotals, true);
 
-    $scope.phone = 123;
-    $scope.address = "Beijing";
+    $scope.phone = null;
+    $scope.address = "";
 
     $scope.order_id = null;
     $scope.can_submit_order = true;
