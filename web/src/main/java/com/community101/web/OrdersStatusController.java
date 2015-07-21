@@ -70,6 +70,8 @@ public class OrdersStatusController {
                     orderGoods.getGoodsPrice(),orderGoods.getGoodsPictureUrl(),orderGoods.getCount());
             goodsInOrderDTOs.add(goodsInOrderDTO);
         }
+        orderDetailDTO.setGoodsInOrderDTOList(goodsInOrderDTOs);
+        orderDetailDTO.setTotalPrice(orders.getTotalPrice());
         return orderDetailDTO;
     }
 }
