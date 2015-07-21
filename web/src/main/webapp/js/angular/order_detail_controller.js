@@ -13,8 +13,6 @@ App.controller('OrderDetailController',function($scope,$http,$cookies){
     var get_order_detail=function(){
         $http.get($scope.webapi_order_detail+"?orderId="+$scope.order_id).success(function(data){
             $scope.item=data;
-            //$scope.list=data["goodsInOrderDTOList"];
-
         });
     };
 
