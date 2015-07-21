@@ -7,6 +7,7 @@ App.controller('CartController', function($scope, $http, $cookies) {
     $scope.webapi_order_submit = "/web/api/order/submit";
     $scope.selected_items_id = [];
     $scope.selected_items = [];
+    $scope.submit_string = "";
 
     var give_fake_data = function() {
       if ($scope.is_fake) {
@@ -55,24 +56,35 @@ App.controller('CartController', function($scope, $http, $cookies) {
     $scope.phone = "";
     $scope.address = "";
 
-    $scope.order_id = null;
+    $scope.order_id = "";
+    $scope.expires_date = new Date(2099, 9, 9);
     $scope.can_submit_order = true;
     $scope.order_submitted = false;
 
     $scope.submit = function() {
         var order = {};
+        var id_string = "id=";
+        var quantity_string = "quantity=";
         order.goodsList = [];
         for (var i = 0, len = $scope.selected_items.length; i < len; i++) {
+            id_string = id_string + $scope.selected_items[i].id;
+            quantity_string = quantity_string + $scope.selected_items[i].quantity;
+            if (i !== len - 1) {
+                id_string = id_string + ',';
+                quantity_string = quantity_string + ',';
+            }
             order.goodsList.push({"id": $scope.selected_items[i].id, "quantity": $scope.selected_items[i].quantity});
         }
         order.phone = $scope.phone;
         order.address = $scope.address;
 
-        $http.post($scope.webapi_order_submit, order).success(function(data, status, headers) {
+        $scope.submit_string = "?" + id_string + '&' + quantity_string + '&phone=' + $scope.phone + '&address=' + $scope.address;
+
+        $http.post($scope.webapi_order_submit + $scope.submit_string).success(function(data, status, headers) {
             $scope.order_id = data;
             $scope.can_submit_order = false;
             $scope.order_submitted = true;
-            $cookies.put("orderId", $scope.order_id, {'path': '/web/'});
+            $cookies.put("orderId", $scope.order_id, {'path': '/web/', 'expires':$scope.expires_date});
         });
     };
 });

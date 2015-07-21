@@ -18,7 +18,6 @@
     <li>new orders</li>
     <li>dispatching orders</li>
     <li>complited orders</li>
-    <li>canceled orders</li>
   </ul>
 
   <div id="content">
@@ -47,7 +46,7 @@
       </ul>
     </div>
 
-  <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+  <script src="${pageContext.request.contextPath}/lib/js/jquery-2.1.4.min.js"></script>
   <script type="text/javascript">
     function dispatchOrder(obj){
       var orderId = $(obj).attr("id");
