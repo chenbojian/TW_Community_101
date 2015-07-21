@@ -33,6 +33,10 @@
   </c:choose>
 </div>
 <div>
+  下单时间：
+  ${orders.createTime}
+</div>
+<div>
   联系方式：
   ${orders.user.telPhone}
 </div>
@@ -54,5 +58,9 @@
   消费总价：
   ${orders.totalPrice}
 </div>
+<%--<div>--%>
+  <%--<label>商品图片 :</label>--%>
+  <%--<input id="pic" type="file" name="pic"/>--%>
+<%--</div>--%>
 </body>
 </html>

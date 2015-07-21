@@ -17,10 +17,10 @@
         <th>Description</th>
     </tr>
     <tr>
-        <td>{{item["name"]}}</td>
-        <td>{{item["price"]/100 | currency}}</td>
-        <td><img src={{item["pic"]}} alt={{item["name"]}}></img></td>
-        <td>{{item["description"]}}</td>
+        <td>{{item.name}}</td>
+        <td>{{item.price/100 | currency}}</td>
+        <td><img src={{item.pic}} alt={{item.name}}></img></td>
+        <td>{{item.description}}</td>
     </tr>
 </table>
 <button ng-click="add_to_cart()">add to cart</button>

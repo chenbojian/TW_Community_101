@@ -31,12 +31,12 @@ App.controller('CartController', function($scope, $http, $cookies) {
     };
 
     $scope.more_selected_item = function(index) {
-        $scope.selected_items[index]["quantity"] = $scope.selected_items[index]["quantity"] + 1;
+        $scope.selected_items[index].quantity = $scope.selected_items[index].quantity + 1;
     };
 
     $scope.less_selected_item = function(index) {
-        if ($scope.selected_items[index]["quantity"] > 0) {
-            $scope.selected_items[index]["quantity"] = $scope.selected_items[index]["quantity"] - 1;
+        if ($scope.selected_items[index].quantity > 0) {
+            $scope.selected_items[index].quantity = $scope.selected_items[index].quantity - 1;
         }
     };
 
@@ -45,7 +45,7 @@ App.controller('CartController', function($scope, $http, $cookies) {
     var calculateTotals = function() {
         var total = 0;
         for (var i = 0, len = $scope.selected_items.length; i < len; i++) {
-            total = total + $scope.selected_items[i]["price"] * $scope.selected_items[i]["quantity"];
+            total = total + $scope.selected_items[i].price * $scope.selected_items[i].quantity;
         }
         $scope.bill.total = total;
     };
@@ -61,18 +61,18 @@ App.controller('CartController', function($scope, $http, $cookies) {
 
     $scope.submit = function() {
         var order = {};
-        order["goodsList"] = [];
+        order.goodsList = [];
         for (var i = 0, len = $scope.selected_items.length; i < len; i++) {
-            order["goodsList"].push({"id": $scope.selected_items[i]["id"], "quantity": $scope.selected_items[i]["quantity"]});
+            order.goodsList.push({"id": $scope.selected_items[i].id, "quantity": $scope.selected_items[i].quantity});
         }
-        order["phone"] = $scope.phone;
-        order["address"] = $scope.address;
+        order.phone = $scope.phone;
+        order.address = $scope.address;
 
         $http.post($scope.webapi_order_submit, order).success(function(data, status, headers) {
             $scope.order_id = data;
             $scope.can_submit_order = false;
             $scope.order_submitted = true;
-            $cookies.put("orderId", $scope.order_id);
+            $cookies.put("orderId", $scope.order_id, {'path': '/web/'});
         });
     };
 });

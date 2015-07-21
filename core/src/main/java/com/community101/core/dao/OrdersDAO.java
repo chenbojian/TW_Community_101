@@ -53,4 +53,20 @@ public class OrdersDAO {
         order.setStatus("dispatching");
         sessionFactory.getCurrentSession().update(order);
     }
+
+    public void completeOrder(long orderId) {
+        Orders order = findOrdersById(orderId);
+        order.setStatus("completed");
+        sessionFactory.getCurrentSession().update(order);
+    }
+
+    public void cancelOrder(long orderId) {
+        Orders order = findOrdersById(orderId);
+        order.setStatus("cancel");
+        sessionFactory.getCurrentSession().update(order);
+    }
+
+    public void addOrder(Orders order) {
+        sessionFactory.getCurrentSession().save(order);
+    }
 }

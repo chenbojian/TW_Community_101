@@ -13,7 +13,7 @@ App.controller('DetailsController', function($scope, $http, $cookies) {
             $scope.item_id = 1;
         }
         else {
-            $scope.item_id = Int.Parser($cookies.get("goods_id"));
+            $scope.item_id = parseInt($cookies.get("goods_id"), 10);
         }
     };
     get_id();

@@ -12,3 +12,5 @@ bower_components/
 components/
 classes/
 web/src/main/webapp/picture/
+gradlew
+gradle/
