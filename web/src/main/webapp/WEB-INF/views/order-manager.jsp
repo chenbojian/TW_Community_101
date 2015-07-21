@@ -148,16 +148,17 @@
                             + "<button id='" + data.id + "'onclick='dispatchOrder(this)'>dispatch order</button>"
                             + "</li>"
                     );
-                    $('embed').play();
                     timerArr = $.blinkTitle.show();  //title blink
+                    setTimeout(function() {     // title become normal 5s later
+                      $.blinkTitle.clear(timerArr);
+                    }, 4999);
                   }
-                  else $.blinkTitle.clear(timerArr);   //title become normal
                 });
       }, 5000);
 
     });
   </script>
 
-  <embed src="${pageContext.request.contextPath}/sounds/msg.wav" autostart="false" hidden="true" loop="true">
+  <embed src="${pageContext.request.contextPath}/sounds/msg.wav" autostart=false height="0" width="0" loop=false id="sound">
 </body>
 </html>
