@@ -52,7 +52,7 @@ App.controller('CartController', function($scope, $http, $cookies) {
 
     $scope.$watch('selected_items', calculateTotals, true);
 
-    $scope.phone = "";
+    $scope.phone = null;
     $scope.address = "";
 
     $scope.order_id = null;
