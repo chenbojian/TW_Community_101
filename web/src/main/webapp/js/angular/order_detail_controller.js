@@ -5,7 +5,7 @@ App.controller('OrderDetailController',function($scope,$http,$cookies){
     $scope.item=null;
 
     var get_order_id=function(){
-        $cookies.put("orderId", "2");
+        //$cookies.put("orderId", "2");
         $scope.order_id=parseInt($cookies.get("orderId"),10);
     };
     get_order_id();

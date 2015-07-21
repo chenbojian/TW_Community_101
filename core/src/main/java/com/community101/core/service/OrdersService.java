@@ -65,6 +65,7 @@ public class OrdersService {
         ordersDAO.cancelOrder(orderId);
     }
 
+    @Transactional
     public void addOrder(Orders order) {
         ordersDAO.addOrder(order);
     }

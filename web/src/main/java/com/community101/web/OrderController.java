@@ -149,17 +149,12 @@ public class OrderController {
                 userService.addUser(user);
             }
             order.setUser(user);
-            if (user.getOrderses() == null) {
-                user.setOrderses(new LinkedHashSet<Orders>());
-            }
-            user.getOrderses().add(order);
 
-            Set<OrderGoods> orderGoodsSet = new LinkedHashSet<OrderGoods>();
-            order.setOrderGoodses(orderGoodsSet);
             List<GoodsInSubmissionDTO> goodsInSubmissionDTOList = orderDTO.getGoodsList();
             if (goodsInSubmissionDTOList == null) {
                 goodsInSubmissionDTOList = new LinkedList<GoodsInSubmissionDTO>();
             }
+            Set<OrderGoods> orderGoodsSet = new LinkedHashSet<OrderGoods>();
             for (GoodsInSubmissionDTO goodsInSubmissionDTO : goodsInSubmissionDTOList) {
                 Goods goods = goodsService.findGoodsById(goodsInSubmissionDTO.getId());
                 OrderGoods orderGoods = new OrderGoods();
@@ -172,6 +167,7 @@ public class OrderController {
                 orderGoods.setGoodsPictureUrl(goods.getPictureUrl());
                 orderGoods.setOrders(order);
             }
+            order.setOrderGoodses(orderGoodsSet);
             order.setTotalPrice(order.getBillTotal());
             order.setStatus("new");
             order.setCreateTime(new Timestamp(System.currentTimeMillis()));

@@ -30,6 +30,9 @@ public class OrdersDAOTest  {
     @Autowired
     private OrdersDAO ordersDAO;
 
+    @Autowired
+    private UserDAO userDAO;
+
     @Transactional
     @Rollback
     @Test
@@ -60,5 +63,25 @@ public class OrdersDAOTest  {
         long id = order.getId();
         order = ordersDAO.findOrdersById(id);
         assertNotNull(order);
+    }
+
+    @Transactional
+    @Rollback
+    @Test
+    public void should_add_user_and_address_in_new_order() {
+        Orders order = new Orders();
+        User user = new User();
+        String telPhone = "123456";
+        user.setTelPhone(telPhone);
+        order.setUser(user);
+        String address = "Beijing";
+        order.setAddress(address);
+
+        ordersDAO.addOrder(order);
+        long id = order.getId();
+        order = ordersDAO.findOrdersById(id);
+
+        assertEquals(telPhone, order.getUser().getTelPhone());
+        assertEquals(address, order.getAddress());
     }
 }
