@@ -41,11 +41,6 @@ public class OrdersService {
     }
 
     @Transactional
-    public List<Orders> listCancelOrders(){
-        return ordersDAO.listCancelOrders();
-    }
-
-    @Transactional
     public Orders findOrdersById(long id){
         return ordersDAO.findOrdersById(id);
     }
