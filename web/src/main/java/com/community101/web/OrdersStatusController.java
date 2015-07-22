@@ -30,112 +30,27 @@ public class OrdersStatusController {
         this.ordersService=ordersService;
     }
 
-    @RequestMapping("/")
-    public ModelAndView listOrdersStatus(){
-        ModelAndView modelAndView=new ModelAndView("orders-status-list");
-        List<Orders> newOrdersList=ordersService.listNewOrders();
-        List<Orders> dispatchingOrdersList=ordersService.listDispatchingOrders();
-        List<Orders> completedOrdersList=ordersService.listCompletedOrders();
-        modelAndView.addObject("newOrdersList",newOrdersList);
-        modelAndView.addObject("dispatchingOrdersList",dispatchingOrdersList);
-        modelAndView.addObject("completedOrdersList",completedOrdersList);
-        return modelAndView;
-    }
-
     @RequestMapping(value = "/newOrdersList")
     public List<OrderDetailDTO> getNewOrdersList(){
-        List<OrderDetailDTO> orderDetailDTOs=new ArrayList<OrderDetailDTO>();
-
         List<Orders> newOrdersList=ordersService.listNewOrders();
-        for(Orders orders:newOrdersList ){
-            OrderDetailDTO orderDetailDTO=new OrderDetailDTO();
-            orderDetailDTO.setOrderId(orders.getId());
-            orderDetailDTO.setStatus(orders.getStatus());
-            orderDetailDTO.setTelPhone(orders.getUser().getTelPhone());
-            orderDetailDTO.setAddress(orders.getAddress());
-            orderDetailDTO.setCreateTime(orders.getCreateTime());
-            Set<OrderGoods> orderGoodses=orders.getOrderGoodses();
-            List<GoodsInOrderDTO> goodsInOrderDTOs=new ArrayList<GoodsInOrderDTO>();
-            for(OrderGoods orderGoods:orderGoodses){
-                GoodsInOrderDTO goodsInOrderDTO=new GoodsInOrderDTO(orderGoods.getId(),orderGoods.getGoodsName(),
-                        orderGoods.getGoodsPrice(),orderGoods.getGoodsPictureUrl(),orderGoods.getCount());
-                goodsInOrderDTOs.add(goodsInOrderDTO);
-            }
-            orderDetailDTO.setGoodsInOrderDTOList(goodsInOrderDTOs);
-            orderDetailDTO.setTotalPrice(orders.getTotalPrice());
-            orderDetailDTOs.add(orderDetailDTO);
-        }
-        return orderDetailDTOs;
+        return Mapper.makeOrderDetailDTOList(newOrdersList);
     }
+
     @RequestMapping(value = "/dispatchingOrdersList")
     public List<OrderDetailDTO> getDispatchingOrdersList(){
-        List<OrderDetailDTO> orderDetailDTOs=new ArrayList<OrderDetailDTO>();
-
         List<Orders> dispatchingOrdersList=ordersService.listDispatchingOrders();
-        for(Orders orders:dispatchingOrdersList ){
-            OrderDetailDTO orderDetailDTO=new OrderDetailDTO();
-            orderDetailDTO.setOrderId(orders.getId());
-            orderDetailDTO.setStatus(orders.getStatus());
-            orderDetailDTO.setTelPhone(orders.getUser().getTelPhone());
-            orderDetailDTO.setAddress(orders.getAddress());
-            orderDetailDTO.setCreateTime(orders.getCreateTime());
-            Set<OrderGoods> orderGoodses=orders.getOrderGoodses();
-            List<GoodsInOrderDTO> goodsInOrderDTOs=new ArrayList<GoodsInOrderDTO>();
-            for(OrderGoods orderGoods:orderGoodses){
-                GoodsInOrderDTO goodsInOrderDTO=new GoodsInOrderDTO(orderGoods.getId(),orderGoods.getGoodsName(),
-                        orderGoods.getGoodsPrice(),orderGoods.getGoodsPictureUrl(),orderGoods.getCount());
-                goodsInOrderDTOs.add(goodsInOrderDTO);
-            }
-            orderDetailDTO.setGoodsInOrderDTOList(goodsInOrderDTOs);
-            orderDetailDTO.setTotalPrice(orders.getTotalPrice());
-            orderDetailDTOs.add(orderDetailDTO);
-        }
-        return orderDetailDTOs;
+        return Mapper.makeOrderDetailDTOList(dispatchingOrdersList);
     }
+
     @RequestMapping(value = "/completedOrdersList")
     public List<OrderDetailDTO> getCompletedOrdersList(){
-        List<OrderDetailDTO> orderDetailDTOs=new ArrayList<OrderDetailDTO>();
-
         List<Orders> completedOrdersList=ordersService.listCompletedOrders();
-        for(Orders orders:completedOrdersList ){
-            OrderDetailDTO orderDetailDTO=new OrderDetailDTO();
-            orderDetailDTO.setOrderId(orders.getId());
-            orderDetailDTO.setStatus(orders.getStatus());
-            orderDetailDTO.setTelPhone(orders.getUser().getTelPhone());
-            orderDetailDTO.setAddress(orders.getAddress());
-            orderDetailDTO.setCreateTime(orders.getCreateTime());
-            Set<OrderGoods> orderGoodses=orders.getOrderGoodses();
-            List<GoodsInOrderDTO> goodsInOrderDTOs=new ArrayList<GoodsInOrderDTO>();
-            for(OrderGoods orderGoods:orderGoodses){
-                GoodsInOrderDTO goodsInOrderDTO=new GoodsInOrderDTO(orderGoods.getId(),orderGoods.getGoodsName(),
-                        orderGoods.getGoodsPrice(),orderGoods.getGoodsPictureUrl(),orderGoods.getCount());
-                goodsInOrderDTOs.add(goodsInOrderDTO);
-            }
-            orderDetailDTO.setGoodsInOrderDTOList(goodsInOrderDTOs);
-            orderDetailDTO.setTotalPrice(orders.getTotalPrice());
-            orderDetailDTOs.add(orderDetailDTO);
-        }
-        return orderDetailDTOs;
+        return Mapper.makeOrderDetailDTOList(completedOrdersList);
     }
 
     @RequestMapping(value = "/detail")
     public OrderDetailDTO getOrderDetail(long orderId){
         Orders orders=ordersService.findOrdersById(orderId);
-        OrderDetailDTO orderDetailDTO=new OrderDetailDTO();
-        orderDetailDTO.setOrderId(orders.getId());
-        orderDetailDTO.setStatus(orders.getStatus());
-        orderDetailDTO.setTelPhone(orders.getUser().getTelPhone());
-        orderDetailDTO.setAddress(orders.getAddress());
-        orderDetailDTO.setCreateTime(orders.getCreateTime());
-        Set<OrderGoods> orderGoodses=orders.getOrderGoodses();
-        List<GoodsInOrderDTO> goodsInOrderDTOs=new ArrayList<GoodsInOrderDTO>();
-        for(OrderGoods orderGoods:orderGoodses){
-            GoodsInOrderDTO goodsInOrderDTO=new GoodsInOrderDTO(orderGoods.getId(),orderGoods.getGoodsName(),
-                    orderGoods.getGoodsPrice(),orderGoods.getGoodsPictureUrl(),orderGoods.getCount());
-            goodsInOrderDTOs.add(goodsInOrderDTO);
-        }
-        orderDetailDTO.setGoodsInOrderDTOList(goodsInOrderDTOs);
-        orderDetailDTO.setTotalPrice(orders.getTotalPrice());
-        return orderDetailDTO;
+        return Mapper.makeOrderDetailDTO(orders);
     }
 }

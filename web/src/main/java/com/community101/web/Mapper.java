@@ -3,14 +3,12 @@ package com.community101.web;
 import com.community101.core.*;
 import com.community101.core.DTO.*;
 import com.community101.core.service.GoodsService;
+import com.community101.core.service.OrdersService;
 import com.community101.core.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.sql.Timestamp;
-import java.util.LinkedHashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by MiffyLiye on 22/07/2015.
@@ -20,7 +18,7 @@ public class Mapper {
     private GoodsService goodsService;
 
     public Mapper(UserService userService,
-                  GoodsService goodsService) {
+                  GoodsService goodsService){
         this.userService = userService;
         this.goodsService = goodsService;
     }
@@ -125,5 +123,33 @@ public class Mapper {
         OrderDTO orderDTO = makeOrderDTO(ids, quantities, phone, address);
         Orders order = makeOrder(orderDTO);
         return order;
+    }
+
+    public static OrderDetailDTO makeOrderDetailDTO(Orders orders){
+        OrderDetailDTO orderDetailDTO=new OrderDetailDTO();
+        orderDetailDTO.setOrderId(orders.getId());
+        orderDetailDTO.setStatus(orders.getStatus());
+        orderDetailDTO.setTelPhone(orders.getUser().getTelPhone());
+        orderDetailDTO.setAddress(orders.getAddress());
+        orderDetailDTO.setCreateTime(orders.getCreateTime());
+        Set<OrderGoods> orderGoodses=orders.getOrderGoodses();
+        List<GoodsInOrderDTO> goodsInOrderDTOs=new ArrayList<GoodsInOrderDTO>();
+        for(OrderGoods orderGoods:orderGoodses){
+            GoodsInOrderDTO goodsInOrderDTO=new GoodsInOrderDTO(orderGoods.getId(),orderGoods.getGoodsName(),
+                    orderGoods.getGoodsPrice(),orderGoods.getGoodsPictureUrl(),orderGoods.getCount());
+            goodsInOrderDTOs.add(goodsInOrderDTO);
+        }
+        orderDetailDTO.setGoodsInOrderDTOList(goodsInOrderDTOs);
+        orderDetailDTO.setTotalPrice(orders.getTotalPrice());
+        return orderDetailDTO;
+    }
+
+    public static List<OrderDetailDTO> makeOrderDetailDTOList(List<Orders> ordersList){
+        List<OrderDetailDTO> orderDetailDTOs=new ArrayList<OrderDetailDTO>();
+        for(Orders orders:ordersList){
+            OrderDetailDTO orderDetailDTO=Mapper.makeOrderDetailDTO(orders);
+            orderDetailDTOs.add(orderDetailDTO);
+        }
+        return orderDetailDTOs;
     }
 }
