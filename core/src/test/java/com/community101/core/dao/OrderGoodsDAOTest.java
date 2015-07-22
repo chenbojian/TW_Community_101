@@ -38,9 +38,6 @@ public class OrderGoodsDAOTest {
     private UserDAO userDAO;
 
     @Autowired
-    private SessionFactory sessionFactory;
-
-    @Autowired
     private javax.sql.DataSource dataSource;
 
     @Transactional

@@ -8,6 +8,7 @@ import junit.framework.TestCase;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -35,6 +36,9 @@ public class OrdersDAOTest  {
 
     @Autowired
     private UserDAO userDAO;
+
+    @Autowired
+    private javax.sql.DataSource dataSource;
 
     @Transactional
     @Rollback
@@ -88,5 +92,27 @@ public class OrdersDAOTest  {
 
         assertEquals(telPhone, order.getUser().getTelPhone());
         assertEquals(address, order.getAddress());
+    }
+
+    @Transactional
+    @Rollback
+    @Test
+    public void should_save_total_price_in_new_order() {
+        Orders order = new Orders();
+        User user = new User();
+        String telPhone = "123456";
+        user.setTelPhone(telPhone);
+        userDAO.addUser(user);
+
+        order.setUser(user);
+        String address = "Beijing";
+        order.setAddress(address);
+
+        order.setTotalPrice(123456);
+        ordersDAO.addOrder(order);
+        long id = order.getId();
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+        int price = jdbcTemplate.queryForObject("select TOTAL_PRICE from ORDERS where ID = ?", new Object[] { id }, Integer.class);
+        assertEquals(123456, price);
     }
 }
