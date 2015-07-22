@@ -30,18 +30,6 @@ public class OrdersStatusController {
         this.ordersService=ordersService;
     }
 
-    @RequestMapping("/")
-    public ModelAndView listOrdersStatus(){
-        ModelAndView modelAndView=new ModelAndView("orders-status-list");
-        List<Orders> newOrdersList=ordersService.listNewOrders();
-        List<Orders> dispatchingOrdersList=ordersService.listDispatchingOrders();
-        List<Orders> completedOrdersList=ordersService.listCompletedOrders();
-        modelAndView.addObject("newOrdersList",newOrdersList);
-        modelAndView.addObject("dispatchingOrdersList",dispatchingOrdersList);
-        modelAndView.addObject("completedOrdersList",completedOrdersList);
-        return modelAndView;
-    }
-
     @RequestMapping(value = "/newOrdersList")
     public List<OrderDetailDTO> getNewOrdersList(){
         List<Orders> newOrdersList=ordersService.listNewOrders();
