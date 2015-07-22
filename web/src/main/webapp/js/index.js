@@ -60,7 +60,7 @@ function getGoods(cid) {
             for (var i = 0; i < data.length; i++) {
                 var html = htmlTemplate.replace("[goodspic]", data[i].pic)
                     .replace("[goodsname]", data[i].name)
-                    .replace("[goodsprice]", data[i].price)
+                    .replace("[goodsprice]", data[i].price/100)
                     .replace("[goodsid]", data[i].id);
 
                 var $last = $goodslist.children(":last");
@@ -122,7 +122,7 @@ function getGoodsDetail(gid) {
             var html = $("#goodsDetail").html();
             html.replace("[goodspic]", data.pic);
             html.replace("[goodsname]", data.name);
-            html.replace("[goodsprice]", data.price);
+            html.replace("[goodsprice]", data.price/100);
             html.replace("[goodsdescription]", data.description);
             $("#goodsDetail").html(html);
             $("#goodsDetail").modal();
