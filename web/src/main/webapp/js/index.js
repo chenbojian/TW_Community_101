@@ -113,7 +113,7 @@ function getCategory() {
 }
 function getGoodsDetail(gid) {
 
-    var url = "";
+    var url = "/web/api/customer/goods/details?id=" + gid;
 
     $.ajax({
         url: url,
