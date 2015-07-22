@@ -16,7 +16,7 @@
         </tr>
         <tr ng-repeat="order in newOrders">
             <td>{{order.id}}</td>
-            <td>￥{{order.totalPrice/100}}</td>
+            <td>￥{{toFixed(order.totalPrice/100)}}</td>
             <td><button ng-click="dispatchOrder($index)">dispatch</button></td>
         </tr>
     </table>
@@ -29,7 +29,7 @@
         </tr>
         <tr ng-repeat="order in dispatchingOrders">
             <td>{{order.id}}</td>
-            <td>￥{{order.totalPrice/100}}</td>
+            <td>￥{{toFixed(order.totalPrice/100)}}</td>
             <td><button ng-click="completeOrder($index)">complete</button></td>
         </tr>
     </table>
@@ -41,7 +41,7 @@
         </tr>
         <tr ng-repeat="order in completedOrders">
             <td>{{order.id}}</td>
-            <td>￥{{order.totalPrice/100}}</td>
+            <td>￥{{toFixed(order.totalPrice/100)}}</td>
         </tr>
     </table>
 

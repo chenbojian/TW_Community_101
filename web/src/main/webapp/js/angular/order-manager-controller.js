@@ -37,6 +37,11 @@ App.controller("orderManagerController", function($scope, $http){
         });
     };
 
+    $scope.toFixed = function(price){  //保留2位小数
+        return price.toFixed(2);
+    }
+
+    //  打开页面初始化订单列表
     getCompletedOrders();
     getDispatchingOrders();
     getNewOrders();
@@ -45,7 +50,7 @@ App.controller("orderManagerController", function($scope, $http){
         var orderId = $scope.newOrders[index].id;
         $http.get($scope.dispatchOrderUrl+"?orderId="+orderId).success(function(data, status, headers, config){
             $scope.newOrders.splice(index, 1);
-            getDispatchingOrders();
+            getDispatchingOrders();  //刷新派送中的订单
         });
     };
 
@@ -53,7 +58,7 @@ App.controller("orderManagerController", function($scope, $http){
         var orderId = $scope.dispatchingOrders[index].id;
         $http.get($scope.completeOrderUrl+"?orderId="+orderId).success(function(data, status, headers, config){
             $scope.dispatchingOrders.splice(index, 1);
-            getCompletedOrders();
+            getCompletedOrders();    //刷新已完成的订单
         });
     };
 
@@ -73,7 +78,7 @@ App.controller("orderManagerController", function($scope, $http){
         }, 10000);
     };
 
-    $scope.$watch("newOrders", function(newValue, oldValue, scope){
+    $scope.$watch("newOrders", function(newValue, oldValue, scope){  //监测新订单列表，有新订单的话闪烁标题并发出提示音
         if(newValue.length>oldValue.length){
             show();
             $scope.sound.play();
