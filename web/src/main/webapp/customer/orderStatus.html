@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html ng-app="App">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Order Detail | Community 101</title>
+    <script src="/web/js/angular/angular.min.js"></script>
+    <script src="/web/js/angular/angular-cookies.min.js"></script>
+    <script src="/web/js/angular/order_status_controller.js"></script>
+</head>
+<body ng-controller="OrderStatusController">
+
+<p>新订单</p>
+<div ng-repeat="item in new_list">
+    <div>Order_ID：{{item["orderId"]}} &nbsp;&nbsp;&nbsp;&nbsp;
+        Create_Time：{{item["createTime"] | date:'yyyy-MM-dd HH:mm:ss'}}&nbsp;&nbsp;&nbsp;&nbsp;
+        TelPhone：{{item["telPhone"]}}&nbsp;&nbsp;&nbsp;&nbsp;
+        Address：{{item["address"]}}
+    </div>
+    <div>Goods：
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+            </tr>
+            <tr ng-repeat="goods in item.goodsInOrderDTOList">
+                <td> {{goods.name}}<td>
+                <td> {{goods.price/100 | currency}}<td>
+                <td> {{goods.quantity}}<td>
+            </tr>
+        </table>
+    </div>
+    <div>Total_Price：{{item["totalPrice"]/100 | currency}}</div>
+    <br/>
+</div>
+<br/><br/>
+<p>配送中订单</p>
+<div ng-repeat="item in dispatching_list">
+    <div>Order_ID：{{item["orderId"]}}&nbsp;&nbsp;&nbsp;&nbsp;
+        Create_Time：{{item["createTime"] | date:'yyyy-MM-dd HH:mm:ss'}}&nbsp;&nbsp;&nbsp;&nbsp;
+        TelPhone：{{item["telPhone"]}}&nbsp;&nbsp;&nbsp;&nbsp;
+        Address：{{item["address"]}}&nbsp;&nbsp;&nbsp;&nbsp;
+    </div>
+    <div>Goods：
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+            </tr>
+            <tr ng-repeat="goods in item.goodsInOrderDTOList">
+                <td> {{goods.name}}<td>
+                <td> {{goods.price/100 | currency}}<td>
+                <td> {{goods.quantity}}<td>
+            </tr>
+        </table>
+    </div>
+    <div>Total_Price：{{item["totalPrice"]/100 | currency}}</div>
+    <br/>
+</div>
+<br/><br/>
+<p>已完成订单</p>
+<div ng-repeat="item in completed_list">
+    <div>Order_ID：{{item["orderId"]}}&nbsp;&nbsp;&nbsp;&nbsp;
+        Create_Time：{{item["createTime"] | date:'yyyy-MM-dd HH:mm:ss'}}&nbsp;&nbsp;&nbsp;&nbsp;
+        TelPhone：{{item["telPhone"]}}&nbsp;&nbsp;&nbsp;&nbsp;
+        Address：{{item["address"]}}&nbsp;&nbsp;&nbsp;&nbsp;
+    </div>
+    <div>Goods：
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+            </tr>
+            <tr ng-repeat="goods in item.goodsInOrderDTOList">
+                <td> {{goods.name}}<td>
+                <td> {{goods.price/100 | currency}}<td>
+                <td> {{goods.quantity}}<td>
+            </tr>
+        </table>
+    </div>
+    <div>Total_Price：{{item["totalPrice"]/100 | currency}}</div>
+    <br/>
+</div>
+</body>
+</html>
