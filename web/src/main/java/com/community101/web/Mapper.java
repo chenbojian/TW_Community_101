@@ -143,4 +143,13 @@ public class Mapper {
         orderDetailDTO.setTotalPrice(orders.getTotalPrice());
         return orderDetailDTO;
     }
+
+    public static List<OrderDetailDTO> makeOrderDetailDTOList(List<Orders> ordersList){
+        List<OrderDetailDTO> orderDetailDTOs=new ArrayList<OrderDetailDTO>();
+        for(Orders orders:ordersList){
+            OrderDetailDTO orderDetailDTO=Mapper.makeOrderDetailDTO(orders);
+            orderDetailDTOs.add(orderDetailDTO);
+        }
+        return orderDetailDTOs;
+    }
 }
