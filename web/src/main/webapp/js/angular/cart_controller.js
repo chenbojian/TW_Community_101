@@ -100,7 +100,7 @@ App.controller('CartController', function($scope, $http, $cookies) {
             $scope.can_submit_order = false;
             $scope.order_submitted = true;
             $cookies.put("orderId", $scope.order_id, {'path': '/web/', 'expires':$scope.expires_date});
-            $cookies.put($scope.selected_items_cookie_key,'', {'path': '/web/'});
+            $cookies.put($scope.selected_items_cookie_key,'', {'path': '/web'});
         });
     };
 });
