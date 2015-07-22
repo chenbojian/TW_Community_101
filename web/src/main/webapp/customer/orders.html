@@ -9,13 +9,12 @@
 </head>
 <body ng-controller="OrderDetailController">
 
-
-<p>Order_ID:{{item["orderId"]}}</p>
-<p>Status:{{item["status"]}}</p>
-<p>Create_Time:{{item["createTime"] | date:'yyyy-MM-dd HH:mm:ss'}}</p>
-<p>TelPhone:{{item["telPhone"]}}</p>
-<p>Address:{{item["address"]}}</p>
-<p>Goods:</p>
+<p>Order_ID：{{item["orderId"]}}</p>
+<p>Status：{{item["status"]}}</p>
+<p>Create_Time：{{item["createTime"] | date:'yyyy-MM-dd HH:mm:ss'}}</p>
+<p>TelPhone：{{item["telPhone"]}}</p>
+<p>Address：{{item["address"]}}</p>
+<p>Goods：</p>
 <table>
     <tr>
         <th>Name</th>
@@ -28,7 +27,7 @@
             <td> {{goods.quantity}}<td>
     </tr>
 </table>
-<p>Total_Price:{{item["totalPrice"]/100 | currency}}</p>
+<p>Total_Price：{{item["totalPrice"]/100 | currency}}</p>
 
 </body>
 </html>

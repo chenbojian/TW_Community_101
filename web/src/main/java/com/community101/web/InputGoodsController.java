@@ -52,8 +52,10 @@ public class InputGoodsController {
             String message = "Add goods successfully!";
             model.addAttribute("message", message);
         } catch (IOException e) {
+
             e.printStackTrace();
         }
-        return inputGoodsPage();
+        //return inputGoodsPage();
+        return new ModelAndView("redirect:/index.html");
     }
 }
