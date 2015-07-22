@@ -121,21 +121,22 @@ public class OrdersStatusController {
     @RequestMapping(value = "/detail")
     public OrderDetailDTO getOrderDetail(long orderId){
         Orders orders=ordersService.findOrdersById(orderId);
-        OrderDetailDTO orderDetailDTO=new OrderDetailDTO();
-        orderDetailDTO.setOrderId(orders.getId());
-        orderDetailDTO.setStatus(orders.getStatus());
-        orderDetailDTO.setTelPhone(orders.getUser().getTelPhone());
-        orderDetailDTO.setAddress(orders.getAddress());
-        orderDetailDTO.setCreateTime(orders.getCreateTime());
-        Set<OrderGoods> orderGoodses=orders.getOrderGoodses();
-        List<GoodsInOrderDTO> goodsInOrderDTOs=new ArrayList<GoodsInOrderDTO>();
-        for(OrderGoods orderGoods:orderGoodses){
-            GoodsInOrderDTO goodsInOrderDTO=new GoodsInOrderDTO(orderGoods.getId(),orderGoods.getGoodsName(),
-                    orderGoods.getGoodsPrice(),orderGoods.getGoodsPictureUrl(),orderGoods.getCount());
-            goodsInOrderDTOs.add(goodsInOrderDTO);
-        }
-        orderDetailDTO.setGoodsInOrderDTOList(goodsInOrderDTOs);
-        orderDetailDTO.setTotalPrice(orders.getTotalPrice());
-        return orderDetailDTO;
+//        OrderDetailDTO orderDetailDTO=new OrderDetailDTO();
+//        orderDetailDTO.setOrderId(orders.getId());
+//        orderDetailDTO.setStatus(orders.getStatus());
+//        orderDetailDTO.setTelPhone(orders.getUser().getTelPhone());
+//        orderDetailDTO.setAddress(orders.getAddress());
+//        orderDetailDTO.setCreateTime(orders.getCreateTime());
+//        Set<OrderGoods> orderGoodses=orders.getOrderGoodses();
+//        List<GoodsInOrderDTO> goodsInOrderDTOs=new ArrayList<GoodsInOrderDTO>();
+//        for(OrderGoods orderGoods:orderGoodses){
+//            GoodsInOrderDTO goodsInOrderDTO=new GoodsInOrderDTO(orderGoods.getId(),orderGoods.getGoodsName(),
+//                    orderGoods.getGoodsPrice(),orderGoods.getGoodsPictureUrl(),orderGoods.getCount());
+//            goodsInOrderDTOs.add(goodsInOrderDTO);
+//        }
+//        orderDetailDTO.setGoodsInOrderDTOList(goodsInOrderDTOs);
+//        orderDetailDTO.setTotalPrice(orders.getTotalPrice());
+//        return orderDetailDTO;
+        return Mapper.makeOrderDetailDTO(orders);
     }
 }
