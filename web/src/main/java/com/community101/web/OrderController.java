@@ -174,54 +174,6 @@ public class OrderController {
         ordersService.cancelOrder(orderId);
     }
 
-    @RequestMapping(value = "/submit", method = RequestMethod.POST)
-    @ResponseStatus(HttpStatus.CREATED)
-    public long submitOrder(long[] id, int[] quantity, String phone, String address) {
-        OrderDTO orderDTO = new OrderDTO();
-        orderDTO.setAddress(address);
-        orderDTO.setPhone(phone);
-        orderDTO.setGoodsList(new LinkedList<GoodsInSubmissionDTO>());
-        for (int i = 0; i < id.length; i++) {
-            GoodsInSubmissionDTO goodsInSubmissionDTO = new GoodsInSubmissionDTO(id[i], quantity[i]);
-            orderDTO.getGoodsList().add(goodsInSubmissionDTO);
-        }
-
-        Orders order = new Orders();
-
-        order.setAddress(orderDTO.getAddress());
-        User user = userService.findUserByTel(orderDTO.getPhone());
-        if (user == null) {
-            user = new User();
-            user.setTelPhone(orderDTO.getPhone());
-            userService.addUser(user);
-        }
-        order.setUser(user);
-
-        List<GoodsInSubmissionDTO> goodsInSubmissionDTOList = orderDTO.getGoodsList();
-        if (goodsInSubmissionDTOList == null) {
-            goodsInSubmissionDTOList = new LinkedList<GoodsInSubmissionDTO>();
-        }
-        Set<OrderGoods> orderGoodsSet = new LinkedHashSet<OrderGoods>();
-        for (GoodsInSubmissionDTO goodsInSubmissionDTO : goodsInSubmissionDTOList) {
-            Goods goods = goodsService.findGoodsById(goodsInSubmissionDTO.getId());
-            OrderGoods orderGoods = new OrderGoods();
-            orderGoods.setId(goods.getId());
-            orderGoods.setCount(goodsInSubmissionDTO.getQuantity());
-            orderGoods.setGoodsCategoryName(goods.getCategory().getName());
-            orderGoods.setGoodsDescription(goods.getDescription());
-            orderGoods.setGoodsName(goods.getName());
-            orderGoods.setGoodsPrice(goods.getPrice());
-            orderGoods.setGoodsPictureUrl(goods.getPictureUrl());
-            orderGoods.setOrders(order);
-        }
-        order.setOrderGoodses(orderGoodsSet);
-        order.setTotalPrice(order.getBillTotal());
-        order.setStatus("new");
-        order.setCreateTime(new Timestamp(System.currentTimeMillis()));
-        ordersService.addOrder(order);
-        return order.getId();
-    }
-
     private List<OrderInOrderManagerDTO> transferOrder(List<Orders> ordersList){
         List<OrderInOrderManagerDTO> orders = new ArrayList<OrderInOrderManagerDTO>();
         for(Orders order:ordersList){
