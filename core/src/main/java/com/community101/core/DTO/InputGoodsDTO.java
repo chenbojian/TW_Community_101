@@ -14,7 +14,7 @@ import java.io.IOException;
 public class InputGoodsDTO {
     private String name;
     private String description;
-    private Integer price;
+    private float price;
     private MultipartFile pictureFile;
     private String pictureUrl;
     private long categoryId;
@@ -53,7 +53,8 @@ public class InputGoodsDTO {
         goods.setCategory(category);
         goods.setDescription(description);
         goods.setPictureUrl(url);
-        goods.setPrice(price);
+        int intPrice = (int) (price * 100);
+        goods.setPrice(intPrice);
         goods.setStatus("selling");
         return goods;
 
@@ -68,7 +69,7 @@ public class InputGoodsDTO {
         FileOutputStream fileOutputStream = new FileOutputStream(file);
         fileOutputStream.write(pictureFile.getBytes());
         fileOutputStream.close();
-        url = contextPath + "/picture/" + fileName;
+        url = contextPath +"/picture/"+ fileName;
 
     }
 
@@ -97,11 +98,11 @@ public class InputGoodsDTO {
         this.category = category;
     }
 
-    public Integer getPrice() {
+    public float getPrice() {
         return price;
     }
 
-    public void setPrice(Integer price) {
+    public void setPrice(float price) {
         this.price = price;
     }
 }
