@@ -18,15 +18,8 @@ import java.util.LinkedList;
 public class EchoController {
     @RequestMapping(value = "/order/submit", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public OrderDTO echoSubmittedOrder(long[] id, int[] quantity, String phone, String address) {
-        OrderDTO orderDTO = new OrderDTO();
-        orderDTO.setAddress(address);
-        orderDTO.setPhone(phone);
-        orderDTO.setGoodsList(new LinkedList<GoodsInSubmissionDTO>());
-        for (int i = 0; i < id.length; i++) {
-            GoodsInSubmissionDTO goodsInSubmissionDTO = new GoodsInSubmissionDTO(id[i], quantity[i]);
-            orderDTO.getGoodsList().add(goodsInSubmissionDTO);
-        }
+    public OrderDTO echoSubmittedOrder(long[] ids, int[] quantities, String phone, String address) {
+        OrderDTO orderDTO = Mapper.makeOrderDTO(ids, quantities, phone, address);
         return orderDTO;
     }
 }

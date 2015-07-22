@@ -5,7 +5,7 @@ App.controller('CartController', function($scope, $http, $cookies) {
     $scope.message = '';
     $scope.is_fake = true;
     $scope.webapi_goods_simple_info = "/web/api/customer/goods/simple";
-    $scope.webapi_order_submit = "/web/api/order/submit";
+    $scope.webapi_order_submit = "/web/api/customer/submit";
     $scope.selected_items_cookie_key = "allgoods";
     $scope.selected_items_id = [];
     $scope.selected_items_quantity = [];
@@ -78,8 +78,8 @@ App.controller('CartController', function($scope, $http, $cookies) {
 
     $scope.submit = function() {
         var order = {};
-        var id_string = "id=";
-        var quantity_string = "quantity=";
+        var id_string = "ids=";
+        var quantity_string = "quantities=";
         order.goodsList = [];
         for (var i = 0, len = $scope.selected_items.length; i < len; i++) {
             id_string = id_string + $scope.selected_items[i].id;

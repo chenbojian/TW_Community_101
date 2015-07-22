@@ -26,11 +26,8 @@ import java.util.Set;
 @RequestMapping("/api/customer")
 public class GoodsInformationController {
     private CategoryService categoryService;
-
     private GoodsService goodsService;
-
     private UserService userService;
-
     private OrdersService ordersService;
 
     @Autowired
