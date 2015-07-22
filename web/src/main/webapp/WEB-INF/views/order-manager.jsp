@@ -148,6 +148,6 @@
     });
   </script>
 
-  <embed src="${pageContext.request.contextPath}/sounds/msg.wav" autostart=false height="0" width="0" loop=false id="sound">
+  <embed src="${pageContext.request.contextPath}/sounds/msg.wav" autostart=false height="0" width="0" loop=false id="sound"></embed>
 </body>
 </html>
