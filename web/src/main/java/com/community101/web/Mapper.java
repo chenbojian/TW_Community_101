@@ -112,6 +112,7 @@ public class Mapper {
             orderGoods.setGoodsPrice(goods.getPrice());
             orderGoods.setGoodsPictureUrl(goods.getPictureUrl());
             orderGoods.setOrders(order);
+            orderGoodsSet.add(orderGoods);
         }
         order.setOrderGoodses(orderGoodsSet);
         order.setTotalPrice(order.getBillTotal());
