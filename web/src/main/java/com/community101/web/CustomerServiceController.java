@@ -24,14 +24,14 @@ import java.util.Set;
  */
 @RestController
 @RequestMapping("/api/customer")
-public class GoodsInformationController {
+public class CustomerServiceController {
     private CategoryService categoryService;
     private GoodsService goodsService;
     private UserService userService;
     private OrdersService ordersService;
 
     @Autowired
-    public GoodsInformationController(
+    public CustomerServiceController(
             CategoryService categoryService,
             GoodsService goodsService,
             UserService userService,
