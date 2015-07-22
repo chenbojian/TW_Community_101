@@ -24,4 +24,8 @@ public class OrderGoodsDAO {
     public List<OrderGoods> orderGoodsList(){
         return (List<OrderGoods>)sessionFactory.getCurrentSession().createQuery("from OrderGoods").list();
     }
+
+    public void addOrderGoods(OrderGoods orderGoods) {
+        sessionFactory.getCurrentSession().save(orderGoods);
+    }
 }

@@ -89,33 +89,4 @@ public class OrdersDAOTest  {
         assertEquals(telPhone, order.getUser().getTelPhone());
         assertEquals(address, order.getAddress());
     }
-
-    @Transactional
-    @Rollback
-    @Test
-    public void should_add_order_goods_to_new_order() {
-        Orders order = new Orders();
-        User user = new User();
-        String telPhone = "123456";
-        user.setTelPhone(telPhone);
-        userDAO.addUser(user);
-
-        order.setUser(user);
-        String address = "Beijing";
-        order.setAddress(address);
-
-        OrderGoods orderGoods = new OrderGoods();
-        orderGoods.setId(1);
-        orderGoods.setGoodsName("name");
-        orderGoods.setGoodsPrice(1234);
-        orderGoods.setCount(2);
-
-        order.setOrderGoodses(new LinkedHashSet<OrderGoods>());
-        order.getOrderGoodses().add(orderGoods);
-        ordersDAO.addOrder(order);
-
-        order = ordersDAO.findOrdersById(order.getId());
-        assertEquals(1, order.getOrderGoodses().size());
-    }
-
 }
