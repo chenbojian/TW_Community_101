@@ -1,8 +1,8 @@
 ;$(function () {
     var $goodslist = $("#goodslist");
-    $goodslist.delegate("div", "click", function() {
+    $goodslist.delegate("div.btn-sm", "click", function() {
         var $this = $(this);
-        var gid = $this.data("gid");
+        var gid = $this.data("gid");//attr("data-gid");
         getGoodsDetail(gid);
     });
     $goodslist.undelegate(".goodsminus");
@@ -120,10 +120,11 @@ function getGoodsDetail(gid) {
         type: "get",
         success:function(data) {
             var html = $("#goodsDetail").html();
-            html.replace("[goodspic]", data.pic);
-            html.replace("[goodsname]", data.name);
-            html.replace("[goodsprice]", data.price/100);
-            html.replace("[goodsdescription]", data.description);
+            html = html.replace("[goodsname]", data.name);
+            html = html.replace("[goodsdescription]", data.description);
+            html = html.replace("[goodsprice]", data.price/100);
+            //alert(html);
+
             $("#goodsDetail").html(html);
             $("#goodsDetail").modal();
         }
