@@ -23,7 +23,7 @@
     </tr>
     <tr ng-repeat="goods in item.goodsInOrderDTOList">
             <td> {{goods.name}}<td>
-            <td> {{goods.price}}<td>
+            <td> {{goods.price/100 | currency}}<td>
             <td> {{goods.quantity}}<td>
     </tr>
 </table>
