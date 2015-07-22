@@ -3,7 +3,7 @@ package com.community101.core.DTO;
 /**
  * Created by MiffyLiye on 16/07/2015.
  */
-public class GoodsDetailedDTO extends GoodsSimpleDTO {
+public class GoodsDetailedDTO extends GoodsSummaryDTO {
     private String description;
 
     public GoodsDetailedDTO() {}

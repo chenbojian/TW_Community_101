@@ -2,25 +2,40 @@ var App = angular.module('App', ['ngCookies']);
 
 App.controller('CartController', function($scope, $http, $cookies) {
 
+    $scope.message = '';
     $scope.is_fake = true;
     $scope.webapi_goods_simple_info = "/web/api/customer/goods/simple";
     $scope.webapi_order_submit = "/web/api/order/submit";
+    $scope.selected_items_cookie_key = "allgoods";
     $scope.selected_items_id = [];
+    $scope.selected_items_quantity = [];
     $scope.selected_items = [];
     $scope.submit_string = "";
 
-    var give_fake_data = function() {
-      if ($scope.is_fake) {
-          $scope.selected_items_id = [1, 2, 3, 4];
-      }
+    var get_items_list = function() {
+        var encoded_string = $cookies.get($scope.selected_items_cookie_key).toString();
+        var item_list = [];
+        for (var i = 0, j = -1; i < encoded_string.length; i++) {
+            if (encoded_string[i] === '|') {
+                item_list.push('');
+                j++;
+                continue;
+            }
+            item_list[j] = item_list[j] + encoded_string[i];
+        }
+        for (var i = 0; i < item_list.length; i++) {
+            var details = item_list[i].split(',');
+            $scope.selected_items_id.push(parseFloat(details[0]));
+            $scope.selected_items_quantity.push(parseFloat(details[1]));
+        }
     };
-    give_fake_data();
+    get_items_list();
 
     var get_items_info = function() {
         for (var i = 0, len = $scope.selected_items_id.length; i < len; i++) {
             $http.get($scope.webapi_goods_simple_info + "?id=" + $scope.selected_items_id[i]).success(function(data, status, headers, config) {
                 var item = data;
-                item["quantity"] = 1;
+                item["quantity"] = $scope.selected_items_quantity[$scope.selected_items.length];
                 $scope.selected_items.push(item);
             });
         }
@@ -85,6 +100,7 @@ App.controller('CartController', function($scope, $http, $cookies) {
             $scope.can_submit_order = false;
             $scope.order_submitted = true;
             $cookies.put("orderId", $scope.order_id, {'path': '/web/', 'expires':$scope.expires_date});
+            $cookies.put($scope.selected_items_cookie_key,'', {'path': '/web/'});
         });
     };
 });

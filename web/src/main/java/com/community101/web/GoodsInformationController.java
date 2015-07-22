@@ -1,16 +1,20 @@
 package com.community101.web;
 
-import com.community101.core.Category;
-import com.community101.core.DTO.CategoryDTO;
-import com.community101.core.DTO.GoodsSimpleDTO;
-import com.community101.core.DTO.GoodsDetailedDTO;
-import com.community101.core.Goods;
+import com.community101.core.*;
+import com.community101.core.DTO.*;
 import com.community101.core.service.CategoryService;
 import com.community101.core.service.GoodsService;
+import com.community101.core.service.OrdersService;
+import com.community101.core.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.sql.Timestamp;
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -25,61 +29,94 @@ public class GoodsInformationController {
 
     private GoodsService goodsService;
 
+    private UserService userService;
+
+    private OrdersService ordersService;
+
     @Autowired
-    public GoodsInformationController(CategoryService categoryService, GoodsService goodsService) {
+    public GoodsInformationController(
+            CategoryService categoryService,
+            GoodsService goodsService,
+            UserService userService,
+            OrdersService ordersService) {
         this.categoryService = categoryService;
         this.goodsService = goodsService;
+        this.userService = userService;
+        this.ordersService = ordersService;
     }
 
     @RequestMapping("/categories")
     public List<CategoryDTO> listAllCategories() {
-        List<Category> categoryList = categoryService.listCategory();
-        List<CategoryDTO> categoryDTOList = new LinkedList<CategoryDTO>();
-        for (Category category : categoryList) {
-            CategoryDTO categoryDTO = new CategoryDTO(category.getId(), category.getName());
-            categoryDTOList.add(categoryDTO);
-        }
+        List<CategoryDTO> categoryDTOList = Mapper.makeCategoryDTOList(categoryService.listCategory());
+
         return categoryDTOList;
     }
 
     @RequestMapping("/goods")
-    public List<GoodsSimpleDTO> listAllGoodsOfCertainCategory(long cid) {
+    public List<GoodsSummaryDTO> listAllGoodsOfCertainCategory(long cid) {
         if (cid == 0) {
             return listAllGoods();
         }
+
+        List<GoodsSummaryDTO> goodsSummaryDTOList = null;
         Category category = categoryService.findCategoryById(cid);
-        Set<Goods> goodses = category.getGoodses();
-        List<GoodsSimpleDTO> goodsSimpleDTOList = new LinkedList<GoodsSimpleDTO>();
-        for (Goods goods : goodses) {
-            GoodsSimpleDTO goodsSimpleDTO = new GoodsSimpleDTO(goods.getId(), goods.getName(), goods.getPrice(), goods.getPictureUrl());
-            goodsSimpleDTOList.add(goodsSimpleDTO);
+        if (category != null) {
+            goodsSummaryDTOList = Mapper.makeGoodsSummaryDTOList(category.getGoodses());
         }
-        return goodsSimpleDTOList;
+        else {
+            goodsSummaryDTOList = new LinkedList<GoodsSummaryDTO>();
+        }
+
+        return goodsSummaryDTOList;
     }
 
     @RequestMapping("/goods/all")
-    public List<GoodsSimpleDTO> listAllGoods() {
-        List<GoodsSimpleDTO> goodsSimpleDTOList = new LinkedList<GoodsSimpleDTO>();
-        for (Category category : categoryService.listCategory()) {
-            for (GoodsSimpleDTO goodsSimpleDTO : listAllGoodsOfCertainCategory(category.getId())) {
-                goodsSimpleDTOList.add(goodsSimpleDTO);
-            }
-        }
-        return goodsSimpleDTOList;
+    public List<GoodsSummaryDTO> listAllGoods() {
+        return Mapper.makeGoodsSummaryDTOList(goodsService.listGoods());
     }
 
 
     @RequestMapping("/goods/simple")
-    public GoodsSimpleDTO getGoodsSimpleInformationById(long id) {
+    public GoodsSummaryDTO getGoodsSimpleInformationById(long id) {
+        GoodsSummaryDTO goodsSummaryDTO = null;
         Goods goods = goodsService.findGoodsById(id);
-        GoodsSimpleDTO goodsSimpleDTO = new GoodsSimpleDTO(goods.getId(), goods.getName(), goods.getPrice(), goods.getPictureUrl());
-        return goodsSimpleDTO;
+        if (goods != null) {
+            goodsSummaryDTO = Mapper.makeGoodsSummayDTO(goods);
+        }
+        else {
+            goodsSummaryDTO =new GoodsSummaryDTO(0,
+                    "Not Found",
+                    0,
+                    "");
+        }
+        return goodsSummaryDTO;
     }
 
     @RequestMapping("goods/details")
     public GoodsDetailedDTO getGoodsGetailsById(long id) {
+        GoodsDetailedDTO goodsDetailedDTO = null;
         Goods goods = goodsService.findGoodsById(id);
-        GoodsDetailedDTO goodsDetailedDTO = new GoodsDetailedDTO(goods.getId(), goods.getName(), goods.getPrice(), goods.getPictureUrl(), goods.getDescription());
+        if (goods != null) {
+            goodsDetailedDTO = Mapper.makeGoodsDetailedDTO(goods);
+        }
+        else {
+            goodsDetailedDTO = new GoodsDetailedDTO(0,
+                    "Not Found",
+                    0,
+                    "",
+                    "");
+        }
         return goodsDetailedDTO;
     }
+
+    @RequestMapping(value = "/submit", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.CREATED)
+    public long submitOrder(long[] ids, int[] quantities, String phone, String address) {
+        Mapper mapper = new Mapper(userService, goodsService);
+        Orders order = mapper.makeOrder(ids, quantities, phone, address);;
+
+        ordersService.addOrder(order);
+        return order.getId();
+    }
+
 }
