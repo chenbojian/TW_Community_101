@@ -115,16 +115,17 @@ App.controller('CartController', function($scope, $http, $cookies) {
             }
             else {
                 var error_codes = data.errorCodes;
+                $scope.message = "";
                 for (var i = 0, len = error_codes.length; i < len; i++) {
                     var j = i;
                     if (error_codes[j] === 204) {
-                        $scope.message = $scope.message + data.errorMessages[j] + '\n';
+                        $scope.message = $scope.message + '商品列表为空时无法下单。\n';
                     }
                     if (error_codes[j] === 501) {
-                        $scope.message = $scope.message + data.errorMessages[j] + '\n';
+                        $scope.message = $scope.message + '联系电话无法识别。\n';
                     }
                     if (error_codes[j] === 502) {
-                        $scope.message = $scope.message + data.errorMessages[j] + '\n';
+                        $scope.message = $scope.message + '送货地址无法识别。\n';
                     }
                 }
 
