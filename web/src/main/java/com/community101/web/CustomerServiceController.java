@@ -107,11 +107,33 @@ public class CustomerServiceController {
     }
 
     @RequestMapping(value = "/submit", method = RequestMethod.POST)
-    public long submitOrder(long[] ids, int[] quantities, String phone, String address) {
+    public SubmissionResultsDTO submitOrder(long[] ids, int[] quantities, String phone, String address) {
         Mapper mapper = new Mapper(userService, goodsService);
         Orders order = mapper.makeOrder(ids, quantities, phone, address);
+        SubmissionResultsDTO submissionResultsDTO = new SubmissionResultsDTO();
 
-        return order.getId();
+        if (order.isEmpty()) {
+            submissionResultsDTO.getErrorCodes().add(204);
+            submissionResultsDTO.getErrorMessages().add("Goods list should not be empty");
+        }
+        if (!order.isValidPhone()) {
+            submissionResultsDTO.getErrorCodes().add(501);
+            submissionResultsDTO.getErrorMessages().add("Please input valid phone number");
+        }
+        if (!order.isValidAddress()) {
+            submissionResultsDTO.getErrorCodes().add(502);
+            submissionResultsDTO.getErrorMessages().add("Please input valid address");
+        }
+
+        if (submissionResultsDTO.getErrorCodes().size() == 0) {
+            ordersService.addOrder(order);
+            submissionResultsDTO.setOrderId(order.getId());
+        }
+        else {
+            submissionResultsDTO.setOrderId(0);
+        }
+
+        return submissionResultsDTO;
     }
 
 }

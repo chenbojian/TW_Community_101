@@ -105,7 +105,7 @@ App.controller('CartController', function($scope, $http, $cookies) {
         $scope.submit_string = "?" + id_string + '&' + quantity_string + '&phone=' + $scope.phone + '&address=' + $scope.address;
 
         $http.post($scope.webapi_order_submit + $scope.submit_string).success(function(data, status, headers) {
-            $scope.order_id = data;
+            $scope.order_id = data.orderId;
             $scope.can_submit_order = false;
             $scope.order_submitted = true;
             $cookies.put("orderId", $scope.order_id, {'path': '/web/', 'expires':$scope.expires_date});
