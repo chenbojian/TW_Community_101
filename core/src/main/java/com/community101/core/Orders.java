@@ -15,7 +15,7 @@ public class Orders {
     @GeneratedValue
     private long id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="user_id")
     private User user;
 
@@ -100,5 +100,24 @@ public class Orders {
             total = total + orderGoods.getGoodsPrice() * orderGoods.getCount();
         }
         return total;
+    }
+
+    public boolean isValidPhone() {
+        String phone = user.getTelPhone();
+        return phone.matches("^\\d{11}$");
+    }
+
+    public boolean isValidAddress() {
+        return address != null && address != "";
+    }
+
+    public boolean isEmpty() {
+        boolean isEmpty = true;
+        for (OrderGoods orderGoods : getOrderGoodses()) {
+            if (orderGoods.getCount() > 0) {
+                isEmpty = false;
+            }
+        }
+        return isEmpty;
     }
 }

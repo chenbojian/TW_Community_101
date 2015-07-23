@@ -74,7 +74,7 @@ public class CustomerServiceController {
 
 
     @RequestMapping("/goods/simple")
-    public GoodsSummaryDTO getGoodsSimpleInformationById(long id) {
+    public GoodsSummaryDTO getGoodsSummaryInformationById(long id) {
         GoodsSummaryDTO goodsSummaryDTO = null;
         Goods goods = goodsService.findGoodsById(id);
         if (goods != null) {
@@ -107,12 +107,10 @@ public class CustomerServiceController {
     }
 
     @RequestMapping(value = "/submit", method = RequestMethod.POST)
-    @ResponseStatus(HttpStatus.CREATED)
     public long submitOrder(long[] ids, int[] quantities, String phone, String address) {
         Mapper mapper = new Mapper(userService, goodsService);
-        Orders order = mapper.makeOrder(ids, quantities, phone, address);;
+        Orders order = mapper.makeOrder(ids, quantities, phone, address);
 
-        ordersService.addOrder(order);
         return order.getId();
     }
 

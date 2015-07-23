@@ -81,7 +81,7 @@ public class OrdersDAOTest  {
         User user = new User();
         String telPhone = "123456";
         user.setTelPhone(telPhone);
-        userDAO.addUser(user);
+        //userDAO.addUser(user);
 
         order.setUser(user);
         String address = "Beijing";
@@ -91,7 +91,7 @@ public class OrdersDAOTest  {
         long id = order.getId();
         order = ordersDAO.findOrdersById(id);
 
-        assertEquals(telPhone, order.getUser().getTelPhone());
+        assertNotNull(userDAO.findUserByTel(telPhone));
         assertEquals(address, order.getAddress());
     }
 
