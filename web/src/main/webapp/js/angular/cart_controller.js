@@ -12,6 +12,7 @@ App.controller('CartController', function($scope, $http, $cookies) {
     $scope.selected_items = [];
     $scope.submit_string = "";
 
+
     var get_items_list = function() {
         var encoded_string = $cookies.get($scope.selected_items_cookie_key).toString();
         var item_list = [];
@@ -106,10 +107,28 @@ App.controller('CartController', function($scope, $http, $cookies) {
 
         $http.post($scope.webapi_order_submit + $scope.submit_string).success(function(data, status, headers) {
             $scope.order_id = data.orderId;
-            $scope.can_submit_order = false;
-            $scope.order_submitted = true;
-            $cookies.put("orderId", $scope.order_id, {'path': '/web/', 'expires':$scope.expires_date});
-            $cookies.put($scope.selected_items_cookie_key,'', {'path': '/web/'});
+            if ($scope.order_id !== 0) {
+                $scope.can_submit_order = false;
+                $scope.order_submitted = true;
+                $cookies.put("orderId", $scope.order_id, {'path': '/web/', 'expires':$scope.expires_date});
+                $cookies.put($scope.selected_items_cookie_key,'', {'path': '/web/'});
+            }
+            else {
+                var error_codes = data.errorCodes;
+                for (var i = 0, len = error_codes.length; i < len; i++) {
+                    var j = i;
+                    if (error_codes[j] === 204) {
+                        $scope.message = $scope.message + data.errorMessages[j] + '\n';
+                    }
+                    if (error_codes[j] === 501) {
+                        $scope.message = $scope.message + data.errorMessages[j] + '\n';
+                    }
+                    if (error_codes[j] === 502) {
+                        $scope.message = $scope.message + data.errorMessages[j] + '\n';
+                    }
+                }
+
+            }
         });
     };
 });
