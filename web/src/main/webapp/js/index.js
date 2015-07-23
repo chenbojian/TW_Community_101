@@ -86,11 +86,6 @@ function getCategory() {
         url: url,
         type: 'get',
         success: function (data) {
-            //data = [
-            //    { "id": "1", "name": "食品" },
-            //    { "id": "2", "name": "日用品" },
-            //    { "id": "3", "name": "电器" }
-            //];
             var htmlTemplate = '<div data-cid="[categoryid]" class="list-group-item">[categoryName]</div>';
             for (var i = 0; i < data.length; i++) {
                 var link = "" + data[i].id + "";
@@ -127,6 +122,12 @@ function getGoodsDetail(gid) {
 
             $("#goodsDetail").html(html);
             $("#goodsDetail").modal();
+            $("#goodsDetailName").html(data.name);
+            $("#goodsDetailDescription").html(data.description);
+            var price = data.price/100;
+            $("#goodsDetailPrice").html(price.toFixed(2));
+            document.getElementById("goodsDetailPicture").src=data.pic;
+
         }
     });
 }
