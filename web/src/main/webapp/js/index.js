@@ -126,7 +126,7 @@ function getGoodsDetail(gid) {
             $("#goodsDetailDescription").html(data.description);
             var price = data.price/100;
             $("#goodsDetailPrice").html(price.toFixed(2));
-            document.getElementById("goodsDetailPicture").src=data.pic;
+            $("#goodsDetailPicture").attr("src",data.pic);
 
         }
     });
