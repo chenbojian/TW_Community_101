@@ -11,10 +11,10 @@
 
 <p>新订单</p>
 <div ng-repeat="item in new_list">
-    <div>Order_ID：{{item["orderId"]}} &nbsp;&nbsp;&nbsp;&nbsp;
-        Create_Time：{{item["createTime"] | date:'yyyy-MM-dd HH:mm:ss'}}&nbsp;&nbsp;&nbsp;&nbsp;
-        TelPhone：{{item["telPhone"]}}&nbsp;&nbsp;&nbsp;&nbsp;
-        Address：{{item["address"]}}
+    <div>订单号：{{item["orderId"]}} &nbsp;&nbsp;&nbsp;&nbsp;
+         下单时间：{{item["createTime"] | date:'yyyy-MM-dd HH:mm:ss'}}&nbsp;&nbsp;&nbsp;&nbsp;
+          联系方式：{{item["telPhone"]}}&nbsp;&nbsp;&nbsp;&nbsp;
+         ：{{item["address"]}}
     </div>
     <div>Goods：
         <table>

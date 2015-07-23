@@ -90,7 +90,7 @@ public class Mapper {
         if (user == null) {
             user = new User();
             user.setTelPhone(orderDTO.getPhone());
-            userService.addUser(user);
+            //userService.addUser(user);
         }
         order.setUser(user);
 
