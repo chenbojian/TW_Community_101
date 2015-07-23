@@ -158,7 +158,7 @@ function updateCookie(gid, num) {
             all += "|" + result;
         }
     }
-    $.cookie(allgoodscookiename, all);
+    $.cookie(allgoodscookiename, all, {path: '/web/'});
 }
 function initGoodsCount() {
     var allgoodscookiename = "allgoods";
