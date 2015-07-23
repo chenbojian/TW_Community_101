@@ -50,7 +50,9 @@ App.controller("orderManagerController", function($scope, $http){
         var orderId = $scope.newOrders[index].id;
         $http.get($scope.dispatchOrderUrl+"?orderId="+orderId).success(function(data, status, headers, config){
             $scope.newOrders.splice(index, 1);
+
             getDispatchingOrders();  //刷新派送中的订单
+
         });
     };
 
@@ -58,6 +60,7 @@ App.controller("orderManagerController", function($scope, $http){
         var orderId = $scope.dispatchingOrders[index].id;
         $http.get($scope.completeOrderUrl+"?orderId="+orderId).success(function(data, status, headers, config){
             $scope.dispatchingOrders.splice(index, 1);
+
             getCompletedOrders();    //刷新已完成的订单
         });
     };

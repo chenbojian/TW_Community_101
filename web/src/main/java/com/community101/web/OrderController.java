@@ -57,6 +57,53 @@ public class OrderController {
         String json = gson.toJson(orders);
         return json;
     }
+    //angular
+    @RequestMapping("/newOrders")
+    @ResponseBody
+    public String newOrders() throws Exception {
+        List<Orders> ordersList = ordersService.listNewOrders();
+        List<OrderInOrderManagerDTO> orders = new ArrayList<OrderInOrderManagerDTO>();
+        for(Orders order:ordersList){
+            OrderInOrderManagerDTO orderDTO = new OrderInOrderManagerDTO();
+            orderDTO.setId(order.getId());
+            orderDTO.setTotalPrice(order.getTotalPrice());
+            orders.add(orderDTO);
+        }
+            String json = gson.toJson(orders);
+        return json;
+    }
+
+    @RequestMapping("/dispatchingOrders")
+    @ResponseBody
+    public String dispatchingOrders() throws Exception {
+        List<Orders> ordersList = ordersService.listDispatchingOrders();
+        List<OrderInOrderManagerDTO> orders = new ArrayList<OrderInOrderManagerDTO>();
+        for(Orders order:ordersList){
+            OrderInOrderManagerDTO orderDTO = new OrderInOrderManagerDTO();
+            orderDTO.setId(order.getId());
+            orderDTO.setTotalPrice(order.getTotalPrice());
+            orders.add(orderDTO);
+        }
+        String json = gson.toJson(orders);
+        return json;
+    }
+
+    @RequestMapping("/completedOrders")
+    @ResponseBody
+    public String completedOrders() throws Exception {
+        List<Orders> ordersList = ordersService.listCompletedOrders();
+        List<OrderInOrderManagerDTO> orders = new ArrayList<OrderInOrderManagerDTO>();
+        for(Orders order:ordersList){
+            OrderInOrderManagerDTO orderDTO = new OrderInOrderManagerDTO();
+            orderDTO.setId(order.getId());
+            orderDTO.setTotalPrice(order.getTotalPrice());
+            orders.add(orderDTO);
+        }
+        String json = gson.toJson(orders);
+        return json;
+    }
+
+    //
 
     //
 
