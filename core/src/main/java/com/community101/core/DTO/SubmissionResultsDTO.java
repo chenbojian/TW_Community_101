@@ -9,12 +9,9 @@ import java.util.List;
 public class SubmissionResultsDTO {
     private long orderId;
 
-    private List<Integer> errorCodes;
-
     private List<String> errorMessages;
 
     public SubmissionResultsDTO() {
-        errorCodes = new LinkedList<Integer>();
         errorMessages = new LinkedList<String>();
     }
 
@@ -24,14 +21,6 @@ public class SubmissionResultsDTO {
 
     public void setOrderId(long orderId) {
         this.orderId = orderId;
-    }
-
-    public List<Integer> getErrorCodes() {
-        return errorCodes;
-    }
-
-    public void setErrorCodes(List<Integer> errorCodes) {
-        this.errorCodes = errorCodes;
     }
 
     public List<String> getErrorMessages() {

@@ -115,19 +115,11 @@ App.controller('CartController', function($scope, $http, $cookies) {
                 $cookies.put($scope.selected_items_cookie_key,'', {'path': '/web/'});
             }
             else {
-                var error_codes = data.errorCodes;
-                $scope.message = "";
-                for (var i = 0, len = error_codes.length; i < len; i++) {
+                var error_messages = data.errorMessages;
+                $scope.message = "无法下单。";
+                for (var i = 0, len = error_messages.length; i < len; i++) {
                     var j = i;
-                    if (error_codes[j] === 204) {
-                        $scope.message = $scope.message + '商品列表为空时无法下单。\n';
-                    }
-                    if (error_codes[j] === 501) {
-                        $scope.message = $scope.message + '联系电话无法识别。\n';
-                    }
-                    if (error_codes[j] === 502) {
-                        $scope.message = $scope.message + '送货地址无法识别。\n';
-                    }
+                    $scope.message = $scope.message + error_messages[j];
                 }
             }
         });

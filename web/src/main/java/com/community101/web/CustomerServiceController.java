@@ -112,20 +112,9 @@ public class CustomerServiceController {
         Orders order = mapper.makeOrder(ids, quantities, phone, address);
         SubmissionResultsDTO submissionResultsDTO = new SubmissionResultsDTO();
 
-        if (order.isEmpty()) {
-            submissionResultsDTO.getErrorCodes().add(204);
-            submissionResultsDTO.getErrorMessages().add("Goods list should not be empty");
-        }
-        if (!order.isValidPhone()) {
-            submissionResultsDTO.getErrorCodes().add(501);
-            submissionResultsDTO.getErrorMessages().add("Please input valid phone number");
-        }
-        if (!order.isValidAddress()) {
-            submissionResultsDTO.getErrorCodes().add(502);
-            submissionResultsDTO.getErrorMessages().add("Please input valid address");
-        }
+        submissionResultsDTO.setErrorMessages(UserInputChecker.findOrderErrorMessages(order));
 
-        if (submissionResultsDTO.getErrorCodes().size() == 0) {
+        if (submissionResultsDTO.getErrorMessages().size() == 0) {
             ordersService.addOrder(order);
             submissionResultsDTO.setOrderId(order.getId());
         }
@@ -135,5 +124,7 @@ public class CustomerServiceController {
 
         return submissionResultsDTO;
     }
+
+
 
 }
