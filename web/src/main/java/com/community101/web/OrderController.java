@@ -58,8 +58,6 @@ public class OrderController {
         return json;
     }
 
-    //
-
     @RequestMapping("/getOrder")
     public void dispatchingOrder(long orderId, HttpServletResponse response) throws Exception{
         PrintWriter writer = response.getWriter();

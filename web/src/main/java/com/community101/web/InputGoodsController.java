@@ -56,6 +56,6 @@ public class InputGoodsController {
             e.printStackTrace();
         }
         //return inputGoodsPage();
-        return new ModelAndView("redirect:/index.html");
+        return new ModelAndView("redirect:/back-navi.html");
     }
 }

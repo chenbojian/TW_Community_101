@@ -16,7 +16,7 @@
 <p>${message}</p>
 <form:form modelAttribute="inputGoodsDTO" method="post" enctype="multipart/form-data">
     <div>
-        <label for="name">商品名称 :</label>
+        <label for="name">商品名称:</label>
         <form:input path="name"/>
     </div>
     <div>
