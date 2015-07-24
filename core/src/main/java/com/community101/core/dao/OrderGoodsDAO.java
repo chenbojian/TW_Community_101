@@ -25,6 +25,10 @@ public class OrderGoodsDAO {
         return (List<OrderGoods>)sessionFactory.getCurrentSession().createQuery("from OrderGoods").list();
     }
 
+    public OrderGoods findOrderGoodsById(long id) {
+        return (OrderGoods)sessionFactory.getCurrentSession().get(OrderGoods.class, id);
+    }
+
     public void addOrderGoods(OrderGoods orderGoods) {
         sessionFactory.getCurrentSession().save(orderGoods);
     }

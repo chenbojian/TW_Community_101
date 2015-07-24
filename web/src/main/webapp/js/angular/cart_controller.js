@@ -142,7 +142,7 @@ App.controller('CartController', function($scope, $http, $cookies) {
             }
             else {
                 var error_messages = data.errorMessages;
-                $scope.message = "无法下单�?";
+                $scope.message = "无法下单。";
                 for (var i = 0, len = error_messages.length; i < len; i++) {
                     var j = i;
                     $scope.message = $scope.message + error_messages[j];

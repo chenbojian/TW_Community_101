@@ -74,4 +74,8 @@ public class OrdersService {
         }
     }
 
+    @Transactional
+    public OrderGoods findOrderGoodsById(long id) {
+        return orderGoodsDAO.findOrderGoodsById(id);
+    }
 }

@@ -3,6 +3,12 @@
 <head lang="en">
     <meta http-equiv="CONTENT-TYPE" CONTENT="text/html" charset="UTF-8">
     <title>Order Detail | Community 101</title>
+    <link href="/web/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/web/css/index.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/web/css/order.css" type="text/css">
+
+    <script src="/web/js/jquery.min.js"></script>
+    <script src="/web/js/bootstrap.min.js"></script>
     <script src="/web/js/angular/angular.min.js"></script>
     <script src="/web/js/angular/angular-cookies.min.js"></script>
     <script src="/web/js/angular/order_detail_controller.js"></script>
@@ -15,19 +21,45 @@
 <p>联系方式：{{item["telPhone"]}}</p>
 <p>配送地址：{{item["address"]}}</p>
 <p>选购商品：</p>
-<table border="1" cellspacing="0">
+<table class="table">
     <tr>
-        <th>商品名称</th>
-        <th>商品单价</th>
-        <th>选购数量</th>
+        <th colspan="2">商品信息</th>
+        <th>单价</th>
+        <th>数量</th>
+        <th>价格</th>
     </tr>
     <tr ng-repeat="goods in item.goodsInOrderDTOList">
-            <td> {{goods.name}}</td>
-            <td> {{goods.price/100 | currency}}</td>
-            <td> {{goods.quantity}}</td>
+            <td><img src="{{goods.pic}}"/></td>
+            <td><a href="javascript:void(0);" ng-click="getGoodsDetail()">{{goods.name}}</a></td>
+            <td>{{goods.price/100 | currency : "¥" : 2}}</td>
+            <td>{{goods.quantity}}</td>
+            <td>{{goods.price/100 * goods.quantity | currency : "¥" : 2}}</td>
     </tr>
 </table>
-<p>订单总价：{{item["totalPrice"]/100 | currency}}</p>
+<div class="text-right">
+    总价:<strong>{{item.totalPrice/100 | currency : "¥" : 2}}</strong>
+</div>
 
+<div class="modal fade" id="goodsDetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">[goodsname]</h4>
+            </div>
+            <div class="modal-body text-center">
+                <div><img id="goodsDetailPicture" src="compman.gif" /></div>
+                <div class="text-left">
+                    <h4>详细描述：</h4>
+                    <div><hr /></div>
+                    <p id="goodsDetailDescription">[goodsdescription]</p>
+                </div>
+                <div>价格：￥<span id="goodsDetailPrice">[goodsprice] </span></div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

@@ -161,4 +161,16 @@ public class Mapper {
         }
         return orderDetailDTOs;
     }
+
+    public static OrderGoodsDTO makeOrderGoodsDTO(OrderGoods orderGoods) {
+        OrderGoodsDTO orderGoodsDTO = new OrderGoodsDTO();
+        orderGoodsDTO.setId(orderGoods.getId());
+        orderGoodsDTO.setName(orderGoods.getGoodsName());
+        orderGoodsDTO.setPrice(orderGoods.getGoodsPrice());
+        orderGoodsDTO.setQuantity(orderGoods.getCount());
+        orderGoodsDTO.setDescription(orderGoods.getGoodsDescription());
+        orderGoodsDTO.setPic(orderGoods.getGoodsPictureUrl());
+
+        return orderGoodsDTO;
+    }
 }

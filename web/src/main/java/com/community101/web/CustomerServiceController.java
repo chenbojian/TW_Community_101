@@ -7,17 +7,12 @@ import com.community101.core.service.GoodsService;
 import com.community101.core.service.OrdersService;
 import com.community101.core.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.sql.Timestamp;
-import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by MiffyLiye on 16/07/2015.
@@ -135,5 +130,13 @@ public class CustomerServiceController {
         else {
             return Mapper.makeOrderDetailDTOList(user.getOrderses());
         }
+    }
+
+    @RequestMapping("/order/goods")
+    public OrderGoodsDTO getOrderGoodsDetails(long goodsId)
+    {
+        OrderGoods orderGoods = ordersService.findOrderGoodsById(goodsId);
+        OrderGoodsDTO orderGoodsDTO = Mapper.makeOrderGoodsDTO(orderGoods);
+        return orderGoodsDTO;
     }
 }
