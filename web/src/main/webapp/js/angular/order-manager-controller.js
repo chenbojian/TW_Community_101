@@ -83,6 +83,39 @@ App.controller("orderManagerController", function($scope, $http){
         });
     };
 
+    var init_desktop_nofitication = function() {
+        // Let's check if the browser supports notifications
+        if (!("Notification" in window)) {
+            alert("此浏览器不支持桌面通知。");
+        }
+
+        // Let's check whether notification permissions have alredy been granted
+        else if (Notification.permission === "granted") {
+            // If it's okay let's create a notification
+            var notification = new Notification("已获得桌面通知权限。");
+        }
+
+        // Otherwise, we need to ask the user for permission
+        else if (Notification.permission !== 'denied') {
+            Notification.requestPermission(function (permission) {
+                // If the user accepts, let's create a notification
+                if (permission === "granted") {
+                    var notification = new Notification("获得桌面通知权限");
+                }
+            });
+        }
+
+        // At last, if the user has denied notifications, and you
+        // want to be respectful there is no need to bother them any more.
+    };
+    init_desktop_nofitication();
+
+    $scope.show_desktop_notification = function(message) {
+        if (Notification.permission === 'granted') {
+            var notification = new Notification(message);
+        }
+    };
+
     var show = function() { //有新消息时在title处闪烁提示
         var step=0;
 
@@ -102,6 +135,7 @@ App.controller("orderManagerController", function($scope, $http){
     $scope.$watch("newOrders", function(newValue, oldValue, scope){  //监测新订单列表，有新订单的话闪烁标题并发出提示音
         if(newValue.length>oldValue.length){
             show();
+            $scope.show_desktop_notification('有新订单！');
             $scope.sound.play();
         }
     },true);
