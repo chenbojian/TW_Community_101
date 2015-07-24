@@ -1,5 +1,6 @@
 package com.community101.web;
 
+import com.community101.core.DTO.OrderDetailDTO;
 import com.community101.core.DTO.OrderInOrderManagerDTO;
 import com.community101.core.Orders;
 import com.community101.core.service.GoodsService;
@@ -24,38 +25,27 @@ public class OrderController {
 
     private OrdersService ordersService;
 
-
     @Autowired
     public OrderController(OrdersService ordersService, GoodsService goodsService, UserService userService){
         this.ordersService = ordersService;
     }
 
-    //angular
     @RequestMapping("/newOrders")
-    @ResponseBody
-    public String newOrders() throws Exception {
-        List<Orders> ordersList = ordersService.listNewOrders();
-        List<OrderInOrderManagerDTO> orders = transferOrder(ordersList);
-        String json = gson.toJson(orders);
-        return json;
+    public List<OrderDetailDTO> getNewOrdersList(){
+        List<Orders> newOrdersList=ordersService.listNewOrders();
+        return Mapper.makeOrderDetailDTOList(newOrdersList);
     }
 
     @RequestMapping("/dispatchingOrders")
-    @ResponseBody
-    public String dispatchingOrders() throws Exception {
-        List<Orders> ordersList = ordersService.listDispatchingOrders();
-        List<OrderInOrderManagerDTO> orders = transferOrder(ordersList);
-        String json = gson.toJson(orders);
-        return json;
+    public List<OrderDetailDTO> getDispatchingOrdersList(){
+        List<Orders> dispatchingOrdersList=ordersService.listDispatchingOrders();
+        return Mapper.makeOrderDetailDTOList(dispatchingOrdersList);
     }
 
     @RequestMapping("/completedOrders")
-    @ResponseBody
-    public String completedOrders() throws Exception {
-        List<Orders> ordersList = ordersService.listCompletedOrders();
-        List<OrderInOrderManagerDTO> orders = transferOrder(ordersList);
-        String json = gson.toJson(orders);
-        return json;
+    public List<OrderDetailDTO> getCompletedOrdersList(){
+        List<Orders> completedOrdersList=ordersService.listCompletedOrders();
+        return Mapper.makeOrderDetailDTOList(completedOrdersList);
     }
 
     @RequestMapping("/getOrder")
@@ -88,15 +78,10 @@ public class OrderController {
     }
 
 
-    private List<OrderInOrderManagerDTO> transferOrder(List<Orders> ordersList){
-        List<OrderInOrderManagerDTO> orders = new ArrayList<OrderInOrderManagerDTO>();
-        for(Orders order:ordersList){
-            OrderInOrderManagerDTO orderDTO = new OrderInOrderManagerDTO();
-            orderDTO.setId(order.getId());
-            orderDTO.setTotalPrice(order.getTotalPrice());
-            orders.add(orderDTO);
-        }
-        return orders;
+    @RequestMapping(value = "/detail")
+    public OrderDetailDTO getOrderDetail(long orderId){
+        Orders orders=ordersService.findOrdersById(orderId);
+        return Mapper.makeOrderDetailDTO(orders);
     }
 
 }

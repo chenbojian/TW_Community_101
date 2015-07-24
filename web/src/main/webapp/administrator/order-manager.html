@@ -8,7 +8,7 @@
 </head>
 <body ng-controller="orderManagerController">
     <h2>new order</h2>
-    <table>
+    <table border="1" cellspacing="0">
         <tr>
             <th>order id</th>
             <th>total price</th>
@@ -17,12 +17,11 @@
         <tr ng-repeat="order in newOrders">
             <td>{{order.id}}</td>
             <td>￥{{toFixed(order.totalPrice/100)}}</td>
-            <td>￥{{order.totalPrice/100}}</td>
             <td><button ng-click="dispatchOrder($index)">dispatch</button></td>
         </tr>
     </table>
     <h2>dispatching order</h2>
-    <table>
+    <table border="1" cellspacing="0">
         <tr>
             <th>order id</th>
             <th>total price</th>
@@ -31,12 +30,11 @@
         <tr ng-repeat="order in dispatchingOrders">
             <td>{{order.id}}</td>
             <td>￥{{toFixed(order.totalPrice/100)}}</td>
-            <td>￥{{order.totalPrice/100}}</td>
             <td><button ng-click="completeOrder($index)">complete</button></td>
         </tr>
     </table>
     <h2>completed order</h2>
-    <table>
+    <table border="1" cellspacing="0">
         <tr>
             <th>order id</th>
             <th>total price</th>

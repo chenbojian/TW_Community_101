@@ -15,16 +15,16 @@
 <p>联系方式：{{item["telPhone"]}}</p>
 <p>配送地址：{{item["address"]}}</p>
 <p>选购商品：</p>
-<table>
+<table border="1" cellspacing="0">
     <tr>
         <th>商品名称</th>
         <th>商品单价</th>
         <th>选购数量</th>
     </tr>
     <tr ng-repeat="goods in item.goodsInOrderDTOList">
-            <td> {{goods.name}}<td>
-            <td> {{goods.price/100 | currency}}<td>
-            <td> {{goods.quantity}}<td>
+            <td> {{goods.name}}</td>
+            <td> {{goods.price/100 | currency}}</td>
+            <td> {{goods.quantity}}</td>
     </tr>
 </table>
 <p>订单总价：{{item["totalPrice"]/100 | currency}}</p>
