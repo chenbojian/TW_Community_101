@@ -147,7 +147,16 @@ public class Mapper {
     public static List<OrderDetailDTO> makeOrderDetailDTOList(List<Orders> ordersList){
         List<OrderDetailDTO> orderDetailDTOs=new ArrayList<OrderDetailDTO>();
         for(Orders orders:ordersList){
-            OrderDetailDTO orderDetailDTO=Mapper.makeOrderDetailDTO(orders);
+            OrderDetailDTO orderDetailDTO=makeOrderDetailDTO(orders);
+            orderDetailDTOs.add(orderDetailDTO);
+        }
+        return orderDetailDTOs;
+    }
+
+    public static List<OrderDetailDTO> makeOrderDetailDTOList(Set<Orders> ordersList){
+        List<OrderDetailDTO> orderDetailDTOs = new ArrayList<OrderDetailDTO>();
+        for(Orders order : ordersList){
+            OrderDetailDTO orderDetailDTO = makeOrderDetailDTO(order);
             orderDetailDTOs.add(orderDetailDTO);
         }
         return orderDetailDTOs;

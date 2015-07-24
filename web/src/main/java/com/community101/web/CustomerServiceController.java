@@ -125,6 +125,15 @@ public class CustomerServiceController {
         return submissionResultsDTO;
     }
 
-
-
+    @RequestMapping("/orders")
+    public List<OrderDetailDTO> getOrdersOfCertainUser(String phone) {
+        List<OrderDetailDTO> orderDetailDTOList = null;
+        User user = userService.findUserByTel(phone);
+        if (user == null) {
+            return new LinkedList<OrderDetailDTO>();
+        }
+        else {
+            return Mapper.makeOrderDetailDTOList(user.getOrderses());
+        }
+    }
 }
