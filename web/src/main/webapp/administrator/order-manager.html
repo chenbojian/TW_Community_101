@@ -39,11 +39,12 @@
             <tr>
                 <td rowspan="1">总价:</td>
                 <td rowspan="1">{{order.totalPrice/100 | currency : "¥" : 2}}</td>
-                <td rowspan="3"></td>
+                <td rowspan="3">
+                    <button ng-click="dispatchOrder($index)">派送</button>
+                </td>
             </tr>
             </tfoot>
         </table>
-        <button ng-click="dispatchOrder($index)">派送</button>
     </div>
 
     <h2>派送中订单</h2>
@@ -76,11 +77,11 @@
             <tr>
                 <td rowspan="1">总价:</td>
                 <td rowspan="1">{{order.totalPrice/100 | currency : "¥" : 2}}</td>
-                <td rowspan="3"></td>
+                <td rowspan="3">
+                    <button ng-click="completeOrder($index)">完成</button></td>
             </tr>
             </tfoot>
         </table>
-        <button ng-click="completeOrder($index)">完成</button>
     </div>
 
     <h2>已完成订单</h2>
