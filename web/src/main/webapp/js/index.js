@@ -1,12 +1,11 @@
 ;$(function () {
     var $goodslist = $("#goodslist");
-    $goodslist.delegate("div.btn-sm", "click", function() {
+    $goodslist.delegate(".caption ", "click", function() {
         var $this = $(this);
         var gid = $this.data("gid");//attr("data-gid");
         getGoodsDetail(gid);
     });
-    $goodslist.undelegate(".goodsminus");
-    $goodslist.undelegate(".goodsplus");
+
     $goodslist.delegate(".goodsminus", "click", function () {
         var $next = $(this).next();
         var num = parseInt($next.html());
@@ -28,6 +27,8 @@
 
     getCategory();
     getGoods(0);
+
+    clearCookie();
 });
 
 //api interface
@@ -43,17 +44,17 @@ function getGoods(cid) {
         success: function (data) {
             var htmlTemplate = '<div class="col-md-3">\
                                         <div class="thumbnail">\
-                                            <img src="[goodspic]" />\
-                                            <div class="caption text-center">\
+                                            <div class="caption text-center"">\
+                                                <img src="[goodspic]" />\
                                                 <h5>[goodsname]</h5>\
                                                 <h4 class="pull-left text-danger">[goodsprice]</h4>\
-                                                <div class="btn-group pull-right" role="group">\
-                                                    <button type="button" class="btn btn-sm btn-default goodsminus">-</button>\
-                                                    <div class="btn btn-sm btn-default goodsitem" data-gid="[goodsid]">0</div>\
-                                                    <button type="button" class="btn btn-sm btn-default goodsplus">+</button>\
-                                                </div>\
                                                 <div class="clearfix"></div>\
                                             </div>\
+                                        </div>\
+                                        <div class="btn-group pull-right" role="group" style="position: absolute;right:30px;bottom:30px;">\
+                                            <button type="button" class="btn btn-sm btn-default goodsminus">-</button>\
+                                            <div class="btn btn-sm btn-default goodsitem" data-gid="[goodsid]">0</div>\
+                                            <button type="button" class="btn btn-sm btn-default goodsplus">+</button>\
                                         </div>\
                                     </div>';
 
@@ -72,7 +73,6 @@ function getGoods(cid) {
                     $last.after(html);
                 }
             }
-            initGoodsCount();
         }
     });
 
@@ -132,6 +132,10 @@ function getGoodsDetail(gid) {
     });
 }
 
+function clearCookie()
+{
+    $.cookie("allgoods","", {path: '/web/'});
+}
 function updateCookie(gid, num) {
     var allgoodscookiename = "allgoods";
     var all = $.cookie(allgoodscookiename);
@@ -160,20 +164,5 @@ function updateCookie(gid, num) {
         }
     }
     $.cookie(allgoodscookiename, all, {path: '/web/'});
-}
-function initGoodsCount() {
-    var allgoodscookiename = "allgoods";
-    var all = $.cookie(allgoodscookiename);
-    var list = (all+"").split('|');
-    for (var i = 0; i < list.length; i++) {
-        var $item = $(".goodsitem");
-        for (var j = 0; j < $item.length; j++) {
-            if ($($item[j]).data('gid') == list[i].split(',')[0]) {
-                $($item[j]).html(list[i].split(',')[1]);
-                break;
-            }
-        }
-
-    }
 }
 
