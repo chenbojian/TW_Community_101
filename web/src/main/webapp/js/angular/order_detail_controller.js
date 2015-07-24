@@ -1,6 +1,6 @@
 var App=angular.module('App',['ngCookies']);
 App.controller('OrderDetailController',function($scope,$http,$cookies){
-    $scope.webapi_order_detail="/web/pai/order/detail";
+    $scope.webapi_order_detail="/web/api/order/detail";
     $scope.order_id=null;
     $scope.item=null;
     $scope.order_status=null;
