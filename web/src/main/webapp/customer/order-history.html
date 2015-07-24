@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="App">
+<head>
+    <meta charset="UTF-8">
+    <title>Order History</title>
+    <link rel="stylesheet" href="/web/css/order.css" type="text/css">
+    <script src="/web/js/angular/angular.min.js"></script>
+    <script src="/web/js/angular/angular-cookies.min.js"></script>
+    <script src="/web/js/angular/order_history_controller.js"></script>
+</head>
+<body ng-controller="OrderHistoryController">
+<h1>Order History</h1>
+{{message}}
+
+<div ng-repeat="order in order_list">
+    <div>Order ID: {{order.orderId}} Order Date: {{order.createTime | date:'yyyy-MM-dd HH:mm:ss'}}</div>
+    <table class="order">
+        <thead>
+        <tr>
+            <th rowspan="2">Goods Info</th>
+            <th>Unit Price</th>
+            <th>Quantity</th>
+            <th>Price</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="goods in order.goodsInOrderDTOList">
+            <td><img class="goodsLogoInCart" src={{goods.pic}} alt={{goods.name}}></td>
+            <td>{{goods.name}}</td>
+            <td>{{goods.price/100 | currency : "¥" : 2}}</td>
+            <td>{{goods.quantity}}</td>
+            <td>{{goods.price/100 * goods.quantity | currency : "¥" : 2}}</td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td rowspan="2">Total Price:</td>
+            <td rowspan="1">{{order.totalPrice/100 | currency : "¥" : 2}}</td>
+            <td rowspan="2">Status: {{order.status}}</td>
+        </tr>
+        </tfoot>
+    </table>
+</div>
+
+</body>
+</html>
