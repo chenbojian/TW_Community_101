@@ -57,14 +57,40 @@ App.controller('CartController', function($scope, $http, $cookies) {
     };
 
     $scope.more_selected_item = function(index) {
-        $scope.selected_items[index].quantity = $scope.selected_items[index].quantity + 1;
+        $scope.selected_items[index].quantity = parseInt($scope.selected_items[index].quantity) + 1;
     };
 
     $scope.less_selected_item = function(index) {
         if ($scope.selected_items[index].quantity > 0) {
-            $scope.selected_items[index].quantity = $scope.selected_items[index].quantity - 1;
+            $scope.selected_items[index].quantity = parseInt($scope.selected_items[index].quantity) - 1;
         }
     };
+
+    $scope.getGoodsDetail = function() {
+
+        var url = "/web/api/customer/goods/details?id=" + this.item.id;
+
+        $.ajax({
+            url: url,
+            type: "get",
+            success:function(data) {
+                var html = $("#goodsDetail").html();
+                html = html.replace("[goodsname]", data.name);
+                html = html.replace("[goodsdescription]", data.description);
+                html = html.replace("[goodsprice]", data.price/100);
+                //alert(html);
+
+                $("#goodsDetail").html(html);
+                $("#goodsDetail").modal();
+                $("#goodsDetailName").html(data.name);
+                $("#goodsDetailDescription").html(data.description);
+                var price = data.price/100;
+                $("#goodsDetailPrice").html(price.toFixed(2));
+                $("#goodsDetailPicture").attr("src",data.pic);
+
+            }
+        });
+    }
 
     $scope.bill = {};
     $scope.bill.total = 0;
@@ -116,7 +142,7 @@ App.controller('CartController', function($scope, $http, $cookies) {
             }
             else {
                 var error_messages = data.errorMessages;
-                $scope.message = "无法下单。";
+                $scope.message = "无法下单�?";
                 for (var i = 0, len = error_messages.length; i < len; i++) {
                     var j = i;
                     $scope.message = $scope.message + error_messages[j];
