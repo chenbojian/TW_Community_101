@@ -1,2 +1,2 @@
 ALTER TABLE community101.USER
-ADD COLUMN password VARCHAR(15) NOT NULL AFTER tel_phone;
+ADD COLUMN password VARCHAR(15) NULL AFTER tel_phone;
