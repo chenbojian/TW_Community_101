@@ -1,11 +1,9 @@
 package com.community101.web;
 
 import com.community101.core.*;
-import com.community101.core.DTO.*;
+import com.community101.web.DTO.*;
 import com.community101.core.service.GoodsService;
-import com.community101.core.service.OrdersService;
 import com.community101.core.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.sql.Timestamp;
 import java.util.*;
@@ -69,8 +67,8 @@ public class Mapper {
                 goods.getDescription());
     }
 
-    static public OrderDTO makeOrderDTO(long[] ids, int[] quantities, String phone, String address) {
-        OrderDTO orderDTO = new OrderDTO();
+    public OrderDTO makeOrderDTO(long[] ids, int[] quantities, String phone, String address) {
+        OrderDTO orderDTO = new OrderDTO(goodsService);
         orderDTO.setAddress(address);
         orderDTO.setPhone(phone);
         orderDTO.setGoodsList(new LinkedList<GoodsInSubmissionDTO>());

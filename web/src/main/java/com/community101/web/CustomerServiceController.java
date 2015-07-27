@@ -1,7 +1,7 @@
 package com.community101.web;
 
 import com.community101.core.*;
-import com.community101.core.DTO.*;
+import com.community101.web.DTO.*;
 import com.community101.core.service.CategoryService;
 import com.community101.core.service.GoodsService;
 import com.community101.core.service.OrdersService;
@@ -107,12 +107,13 @@ public class CustomerServiceController {
     @RequestMapping(value = "/submit", method = RequestMethod.POST)
     public SubmissionResultsDTO submitOrder(long[] ids, int[] quantities, String phone, String address) {
         Mapper mapper = new Mapper(userService, goodsService);
-        Orders order = mapper.makeOrder(ids, quantities, phone, address);
+        OrderDTO orderDTO = mapper.makeOrderDTO(ids, quantities, phone, address);
         SubmissionResultsDTO submissionResultsDTO = new SubmissionResultsDTO();
 
-        submissionResultsDTO.setErrorMessages(UserInputChecker.findOrderErrorMessages(order));
+        submissionResultsDTO.setErrorMessages(orderDTO.getErrorMessages());
 
         if (submissionResultsDTO.getErrorMessages().size() == 0) {
+            Orders order = mapper.makeOrder(orderDTO);
             ordersService.addOrder(order);
             submissionResultsDTO.setOrderId(order.getId());
         }

@@ -101,23 +101,4 @@ public class Orders {
         }
         return total;
     }
-
-    public boolean isValidPhone() {
-        String phone = user.getTelPhone();
-        return phone.matches("^\\d{11}$");
-    }
-
-    public boolean isValidAddress() {
-        return address != null && address != "";
-    }
-
-    public boolean isEmpty() {
-        boolean isEmpty = true;
-        for (OrderGoods orderGoods : getOrderGoodses()) {
-            if (orderGoods.getCount() > 0) {
-                isEmpty = false;
-            }
-        }
-        return isEmpty;
-    }
 }

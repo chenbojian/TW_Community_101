@@ -1,6 +1,6 @@
 var App = angular.module('App', ['ngCookies']);
 
-App.controller('OrderHistoryController', function($scope, $http, $cookies) {
+App.controller('OrderHistoryController', function($scope, $http, $cookies, $location) {
     $scope.webapi_order_history = "/web/api/customer/orders";
 
     $scope.message = '';
@@ -39,4 +39,9 @@ App.controller('OrderHistoryController', function($scope, $http, $cookies) {
         });
     }
 
+    $scope.setChosenOrder = function() {
+        $scope.message = this.order.orderId;
+        $cookies.put('orderId', this.order.orderId.toString(), {'path': '/web/'});
+        $location.path('/web/customer/orders.html');
+    }
 });
