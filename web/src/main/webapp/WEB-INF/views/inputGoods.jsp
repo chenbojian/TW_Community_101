@@ -10,38 +10,60 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>input goods page</title>
+  <title>input goods page</title>
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css"/>
 </head>
 <body>
-<p>${message}</p>
-<form:form modelAttribute="inputGoodsDTO" method="post" enctype="multipart/form-data">
-    <div>
-        <label for="name">商品名称:</label>
-        <form:input path="name"/>
+<jsp:include page="./template/navbar.jsp"></jsp:include>
+<div class="container">
+  <p>${message}</p>
+  <form:form cssClass="form-horizontal"
+             modelAttribute="inputGoodsDTO" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+      <label class="col-sm-1 control-label">商品名称:</label>
+
+      <div class="col-sm-10">
+        <form:input cssClass="form-control" path="name"/>
+      </div>
     </div>
-    <div>
-        <label for="categoryId">商品类型 :</label>
-        <select name="categoryId" id="categoryId">
-            <c:forEach var="category" items="${categories}">
-                <option value="${category.id}">${category.name}</option>
-            </c:forEach>
+    <div class="form-group">
+      <label class="col-sm-1 control-label">商品类型:</label>
+
+      <div class="col-sm-10">
+        <select class="form-control" name="categoryId" id="categoryId">
+          <c:forEach var="category" items="${categories}">
+            <option value="${category.id}">${category.name}</option>
+          </c:forEach>
         </select>
+      </div>
     </div>
-    <div>
-        <label for="description">商品详情 :</label>
-        <form:textarea path="description"/>
+    <div class="form-group">
+      <label class="col-sm-1 control-label">商品详情:</label>
+
+      <div class="col-sm-10">
+        <form:textarea cssClass="form-control" path="description"/>
+      </div>
     </div>
-    <div>
-        <label for="price">商品价格 :</label>
-        <form:input path="price"/>
+    <div class="form-group">
+      <label class="col-sm-1 control-label">商品价格:</label>
+
+      <div class="col-sm-10">
+        <form:input path="price" cssClass="form-control"/>
+      </div>
     </div>
-    <div>
-        <label for="pictureFile">商品图片 :</label>
-        <input id="pictureFile" type="file" name="pictureFile"/>
+    <div class="form-group">
+      <label class="col-sm-1 control-label">商品图片:</label>
+
+      <div class="col-sm-10">
+        <input type="file" name="pictureFile"/>
+      </div>
     </div>
-    <div>
-        <input type="submit" value="提交"/>
+    <div class="form-group">
+      <div class="col-sm-offset-1 col-sm-10">
+        <input type="submit" class="btn btn-default" value="提交"/>
+      </div>
     </div>
-</form:form>
+  </form:form>
+</div>
 </body>
 </html>
