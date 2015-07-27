@@ -1,4 +1,4 @@
-package com.community101.core.DTO;
+package com.community101.web.DTO;
 
 import java.util.LinkedList;
 import java.util.List;

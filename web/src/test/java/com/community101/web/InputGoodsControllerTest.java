@@ -47,6 +47,6 @@ public class InputGoodsControllerTest {
                 .param("categoryId", "1")
                 .param("price", "0.01")
                 .param("description", "foods"))
-                .andExpect(status().isOk());
+                .andExpect(status().is3xxRedirection());
     }
 }

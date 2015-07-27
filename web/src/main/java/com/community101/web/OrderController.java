@@ -1,7 +1,7 @@
 package com.community101.web;
 
-import com.community101.core.DTO.OrderDetailDTO;
-import com.community101.core.DTO.OrderInOrderManagerDTO;
+import com.community101.web.DTO.OrderDetailDTO;
+import com.community101.web.DTO.OrderInOrderManagerDTO;
 import com.community101.core.Orders;
 import com.community101.core.service.GoodsService;
 import com.community101.core.service.OrdersService;

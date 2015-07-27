@@ -1,6 +1,6 @@
-;$(function () {
+$(function () {
     var $goodslist = $("#goodslist");
-    $goodslist.delegate(".caption ", "click", function() {
+    $goodslist.delegate(".caption ", "click", function () {
         var $this = $(this);
         var gid = $this.data("gid");//attr("data-gid");
         getGoodsDetail(gid);
@@ -32,9 +32,24 @@
 });
 
 //api interface
+function getGoodsNumByIdFromCookie(cid) {
+    var allGoodsNumStr = $.cookie("allgoods");
+    var allGoodsList = allGoodsNumStr.split("|");
+    var goodsAndNum = {};
+    allGoodsList.forEach(function (goodsWithNum) {
+        if (goodsWithNum.indexOf(",") != -1) {
+            var kv = goodsWithNum.split(",");
+            goodsAndNum[kv[0]] = kv[1];
+        }
+    });
+    if(goodsAndNum.hasOwnProperty(cid.toString())){
+        return goodsAndNum[cid.toString()];
+    }
+    return 0;
+}
 function getGoods(cid) {
 
-    var url = "/web/api/customer/goods?cid="+cid;
+    var url = "/web/api/customer/goods?cid=" + cid;
 
     var $goodslist = $("#goodslist");
     $goodslist.html('');
@@ -53,16 +68,19 @@ function getGoods(cid) {
                                         </div>\
                                         <div class="btn-group pull-right" role="group" style="position: absolute;right:30px;bottom:30px;">\
                                             <button type="button" class="btn btn-sm btn-default goodsminus">-</button>\
-                                            <div class="btn btn-sm btn-default goodsitem" data-gid="[goodsid]">0</div>\
+                                            <div class="btn btn-sm btn-default goodsitem" data-gid="[goodsid]">[goodsnum]</div>\
                                             <button type="button" class="btn btn-sm btn-default goodsplus">+</button>\
                                         </div>\
                                     </div>';
 
             for (var i = 0; i < data.length; i++) {
+
                 var html = htmlTemplate.replace("[goodspic]", data[i].pic)
                     .replace("[goodsname]", data[i].name)
-                    .replace("[goodsprice]", data[i].price/100)
-                    .replace("[goodsid]", data[i].id);
+                    .replace("[goodsprice]", data[i].price / 100)
+                    .replace("[goodsid]", data[i].id)
+                    .replace("[goodsnum]", getGoodsNumByIdFromCookie(data[i].id));
+
 
                 var $last = $goodslist.children(":last");
 
@@ -113,28 +131,28 @@ function getGoodsDetail(gid) {
     $.ajax({
         url: url,
         type: "get",
-        success:function(data) {
+        success: function (data) {
             var html = $("#goodsDetail").html();
             html = html.replace("[goodsname]", data.name);
             html = html.replace("[goodsdescription]", data.description);
-            html = html.replace("[goodsprice]", data.price/100);
+            html = html.replace("[goodsprice]", data.price / 100);
+            html = html.replace("[goodsnum]", getGoodsNumByIdFromCookie(data.id));
             //alert(html);
 
             $("#goodsDetail").html(html);
             $("#goodsDetail").modal();
             $("#goodsDetailName").html(data.name);
             $("#goodsDetailDescription").html(data.description);
-            var price = data.price/100;
+            var price = data.price / 100;
             $("#goodsDetailPrice").html(price.toFixed(2));
-            $("#goodsDetailPicture").attr("src",data.pic);
+            $("#goodsDetailPicture").attr("src", data.pic);
 
         }
     });
 }
 
-function clearCookie()
-{
-    $.cookie("allgoods","", {path: '/web/'});
+function clearCookie() {
+    $.cookie("allgoods", "", {path: '/web/'});
 }
 function updateCookie(gid, num) {
     var allgoodscookiename = "allgoods";

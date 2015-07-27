@@ -1,7 +1,7 @@
 package com.community101.web;
 
 import com.community101.core.Category;
-import com.community101.core.DTO.InputGoodsDTO;
+import com.community101.web.DTO.InputGoodsDTO;
 import com.community101.core.service.CategoryService;
 import com.community101.core.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
