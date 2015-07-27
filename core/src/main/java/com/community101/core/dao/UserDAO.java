@@ -37,4 +37,8 @@ public class UserDAO {
             sessionFactory.getCurrentSession().save(user);
         }
     }
+
+    public void updateUser(User user){
+        sessionFactory.getCurrentSession().update(user);
+    }
 }

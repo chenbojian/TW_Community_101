@@ -27,4 +27,9 @@ public class UserService {
     public void addUser(User user) {
         userDAO.addUser(user);
     }
+
+    @Transactional
+    public void updateUser(User user){
+        userDAO.updateUser(user);
+    }
 }

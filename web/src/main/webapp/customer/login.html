@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <script src="/web/js/angular/angular.min.js"></script>
+    <script src="/web/js/angular/login-controller.js"></script>
+</head>
+<body ng-app="App" ng-controller="loginController">
+    <nav>
+        <a href="/web/index.html">首页</a>
+    </nav>
+
+    <p><span>手机号：</span><input ng-model="tel_phone"/></p>
+    <p><span>密码：</span><input ng-model="password" type="password"/></p>
+    <button ng-click="login()">登录</button>
+    <a href="sign-in.html">还没有账号？去注册</a>
+
+</body>
+</html>
