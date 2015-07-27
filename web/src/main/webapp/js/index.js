@@ -1,4 +1,3 @@
-;
 $(function () {
     var $goodslist = $("#goodslist");
     $goodslist.delegate(".caption ", "click", function () {
