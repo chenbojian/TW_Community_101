@@ -5,8 +5,6 @@ import com.community101.core.Goods;
 import com.community101.core.service.CategoryService;
 import com.community101.core.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,18 +21,18 @@ import java.util.List;
  * Created by chenbojian on 7/17/15.
  */
 @RestController
-@RequestMapping("/input-goods")
-public class InputGoodsController {
+@RequestMapping("/goods/manage")
+public class GoodsManageController {
     private GoodsService goodsService;
     private CategoryService categoryService;
 
     @Autowired
-    public InputGoodsController(GoodsService goodsService, CategoryService categoryService) {
+    public GoodsManageController(GoodsService goodsService, CategoryService categoryService) {
         this.goodsService = goodsService;
         this.categoryService = categoryService;
     }
 
-    @RequestMapping(value = {"", "/"})
+    @RequestMapping(value = "/input", method = RequestMethod.GET)
     public ModelAndView inputGoodsPage() {
         ModelAndView modelAndView = new ModelAndView("inputGoods");
         modelAndView.addObject("goods", new Goods());
@@ -43,7 +41,7 @@ public class InputGoodsController {
         return modelAndView;
     }
 
-    @RequestMapping(value = {"", "/"}, method = RequestMethod.POST)
+    @RequestMapping(value = "/input", method = RequestMethod.POST)
     public ModelAndView inputGoods(Goods goods, float floatPrice,
                                    MultipartFile pictureFile, HttpSession session) throws IOException {
         if (pictureFile != null) {
@@ -56,6 +54,13 @@ public class InputGoodsController {
         goods.setCategory(category);
         goodsService.save(goods);
         return inputGoodsPage();
+    }
+
+    @RequestMapping(value = "/manage", method = RequestMethod.GET)
+    public ModelAndView manageGoodsPage() {
+        ModelAndView modelAndView = new ModelAndView("manageGoods");
+        modelAndView.addObject("categories",categoryService.listCategory());
+        return modelAndView;
     }
 
     private String savePicture(MultipartFile pictureFile, String realPath, String contextPath) throws IOException {

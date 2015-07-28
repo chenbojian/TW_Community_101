@@ -10,7 +10,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-  <title>input goods page</title>
+  <title>录入商品</title>
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css"/>
 </head>
 <body>

@@ -23,16 +23,16 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:spring-servlet.xml", "classpath:applicationContext.xml"})
 @WebAppConfiguration
-public class InputGoodsControllerTest {
+public class GoodsManageControllerTest {
 
     @Autowired
-    private InputGoodsController inputGoodsController;
+    private GoodsManageController goodsManageController;
 
     private MockMvc mockMvc;
 
     @Before
     public void setUp() {
-        mockMvc = MockMvcBuilders.standaloneSetup(inputGoodsController).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(goodsManageController).build();
     }
 
     @Test
