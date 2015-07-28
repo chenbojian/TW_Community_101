@@ -14,6 +14,12 @@
     <script src="/web/js/angular/order_history_controller.js"></script>
 </head>
 <body ng-controller="OrderHistoryController">
+
+<div id="navigationBar"></div>
+<script>
+    $( "#navigationBar" ).load( "/web/html/customerNavigationBar.html" );
+</script>
+
 <h1>订单记录</h1>
 {{message}}
 

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html ng-app="App">
-<head lang="zh-Hans">
+<html lang="zh-Hans" ng-app="App">
+<head>
     <meta charset="UTF-8">
     <title>Shopping Cart | Community 101</title>
 
@@ -29,6 +29,11 @@
     </style>
 </head>
 <body ng-controller="CartController">
+
+<div id="navigationBar"></div>
+<script>
+    $( "#navigationBar" ).load( "/web/html/customerNavigationBar.html" );
+</script>
 
 <div class="container">
     <div class="row">
