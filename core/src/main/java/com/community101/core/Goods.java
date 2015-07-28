@@ -13,26 +13,26 @@ public class Goods {
     @GeneratedValue
     private long id;
 
-    @Column(name="name")
+    @Column(name = "name")
     private String name;
 
-    @Column(name="description")
+    @Column(name = "description")
     private String description;
 
     @ManyToOne
-    @JoinColumn(name="category_id")
+    @JoinColumn(name = "category_id")
     private Category category;
 
-    @Column(name="price")
+    @Column(name = "price")
     private Integer price;
 
-    @Column(name="picture_url")
+    @Column(name = "picture_url")
     private String pictureUrl;
 
-    @Column(name="status")
+    @Column(name = "status")
     private String status;
 
-    public Goods(){
+    public Goods() {
 
     }
 

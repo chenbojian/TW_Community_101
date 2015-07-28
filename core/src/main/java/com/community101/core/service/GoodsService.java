@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * Created by chenbojian on 7/17/15.
  */
@@ -26,5 +28,10 @@ public class GoodsService {
     @Transactional
     public Goods findGoodsById(long id) {
         return goodsDAO.findGoodsById(id);
+    }
+
+    @Transactional
+    public List<Goods> listGoods() {
+        return goodsDAO.goodsList();
     }
 }

@@ -1,4 +1,4 @@
-package com.community101.core.DTO;
+package com.community101.web.DTO;
 
 /**
  * Created by chenjian on 7/20/15.

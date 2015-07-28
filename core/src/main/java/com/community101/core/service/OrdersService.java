@@ -1,6 +1,8 @@
 package com.community101.core.service;
 
+import com.community101.core.OrderGoods;
 import com.community101.core.Orders;
+import com.community101.core.dao.OrderGoodsDAO;
 import com.community101.core.dao.OrdersDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,10 +16,13 @@ import java.util.List;
 @Service
 public class OrdersService {
     private OrdersDAO ordersDAO;
+    private OrderGoodsDAO orderGoodsDAO;
 
     @Autowired
-    public OrdersService(OrdersDAO ordersDAO){
+    public OrdersService(OrdersDAO ordersDAO,
+                         OrderGoodsDAO orderGoodsDAO){
         this.ordersDAO=ordersDAO;
+        this.orderGoodsDAO = orderGoodsDAO;
     }
 
     @Transactional
@@ -63,6 +68,14 @@ public class OrdersService {
     @Transactional
     public void addOrder(Orders order) {
         ordersDAO.addOrder(order);
+        for (OrderGoods orderGoods : order.getOrderGoodses()) {
+            orderGoods.setOrders(order);
+            orderGoodsDAO.addOrderGoods(orderGoods);
+        }
     }
 
+    @Transactional
+    public OrderGoods findOrderGoodsById(long id) {
+        return orderGoodsDAO.findOrderGoodsById(id);
+    }
 }

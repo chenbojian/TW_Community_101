@@ -20,12 +20,12 @@ insert into ORDERS(user_id, address, create_time, status, total_price) values(2,
 insert into ORDERS(user_id, address, create_time, status, total_price) values(3,"Beijing community101 unit5 602", now(), "dispatching", 800);
 
 insert into ORDER_GOODS(order_id, count, goods_name, goods_description, goods_category_name, goods_picture_url, goods_price)
-values(1, 1, "bread", "delecious bread", "foods", "./img/1.jpg", 300);
+values(1, 1, "bread", "delecious bread", "foods", "http://images.quanjing.com/fod007/thu/fod-185130.jpg", 300);
 insert into ORDER_GOODS(order_id, count, goods_name, goods_description, goods_category_name, goods_picture_url, goods_price)
-values(2, 1, "beer", "delecious beer", "drink", "./img/3.jpg", 500);
+values(2, 1, "beer", "delecious beer", "drink", "http://images.quanjing.com/fod007/thu/fod-185130.jpg", 500);
 insert into ORDER_GOODS(order_id, count, goods_name, goods_description, goods_category_name, goods_picture_url, goods_price)
-values(2, 1, "towel", "delecious towel", "groceries", "./img/5.jpg", 600);
+values(2, 1, "towel", "delecious towel", "groceries", "http://images.quanjing.com/fod007/thu/fod-185130.jpg", 600);
 insert into ORDER_GOODS(order_id, count, goods_name, goods_description, goods_category_name, goods_picture_url, goods_price)
-values(3, 1, "bread", "delecious bread", "foods", "./img/1.jpg", 300);
+values(3, 1, "bread", "delecious bread", "foods", "http://images.quanjing.com/fod007/thu/fod-185130.jpg", 300);
 insert into ORDER_GOODS(order_id, count, goods_name, goods_description, goods_category_name, goods_picture_url, goods_price)
-values(3, 1, "beer", "delecious beer", "drink", "./img/3.jpg", 500);
+values(3, 1, "beer", "delecious beer", "drink", "http://images.quanjing.com/fod007/thu/fod-185130.jpg", 500);

@@ -32,9 +32,18 @@ public class UserDAO {
         return users.size() > 0 ? users.get(0) : null;
     }
 
+    public User findUserById(long id) {
+        return (User) sessionFactory.getCurrentSession().get(User.class, id);
+
+    }
+
     public void addUser(User user) {
         if (findUserByTel(user.getTelPhone()) == null) {
             sessionFactory.getCurrentSession().save(user);
         }
+    }
+
+    public void updateUser(User user){
+        sessionFactory.getCurrentSession().update(user);
     }
 }

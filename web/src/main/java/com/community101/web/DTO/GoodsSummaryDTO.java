@@ -1,17 +1,17 @@
-package com.community101.core.DTO;
+package com.community101.web.DTO;
 
 /**
  * Created by MiffyLiye on 16/07/2015.
  */
-public class GoodsSimpleDTO {
+public class GoodsSummaryDTO {
     private long id;
     private String name;
     private int price;
     private String pic; //pic url
 
-    public GoodsSimpleDTO() {}
+    public GoodsSummaryDTO() {}
 
-    public GoodsSimpleDTO(long id, String name, int price, String pic) {
+    public GoodsSummaryDTO(long id, String name, int price, String pic) {
         this.id = id;
         this.name = name;
         this.price = price;

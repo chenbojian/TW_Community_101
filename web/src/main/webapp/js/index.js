@@ -1,12 +1,11 @@
-;$(function () {
+$(function () {
     var $goodslist = $("#goodslist");
-    $goodslist.delegate("div", "click", function() {
+    $goodslist.delegate(".caption ", "click", function () {
         var $this = $(this);
-        var gid = $this.data("gid");
+        var gid = $this.data("gid");//attr("data-gid");
         getGoodsDetail(gid);
     });
-    $goodslist.undelegate(".goodsminus");
-    $goodslist.undelegate(".goodsplus");
+
     $goodslist.delegate(".goodsminus", "click", function () {
         var $next = $(this).next();
         var num = parseInt($next.html());
@@ -28,12 +27,29 @@
 
     getCategory();
     getGoods(0);
+
+    clearCookie();
 });
 
 //api interface
+function getGoodsNumByIdFromCookie(cid) {
+    var allGoodsNumStr = $.cookie("allgoods");
+    var allGoodsList = allGoodsNumStr.split("|");
+    var goodsAndNum = {};
+    allGoodsList.forEach(function (goodsWithNum) {
+        if (goodsWithNum.indexOf(",") != -1) {
+            var kv = goodsWithNum.split(",");
+            goodsAndNum[kv[0]] = kv[1];
+        }
+    });
+    if(goodsAndNum.hasOwnProperty(cid.toString())){
+        return goodsAndNum[cid.toString()];
+    }
+    return 0;
+}
 function getGoods(cid) {
 
-    var url = "/web/api/customer/goods?cid="+cid;
+    var url = "/web/api/customer/goods?cid=" + cid;
 
     var $goodslist = $("#goodslist");
     $goodslist.html('');
@@ -43,25 +59,29 @@ function getGoods(cid) {
         success: function (data) {
             var htmlTemplate = '<div class="col-md-3">\
                                         <div class="thumbnail">\
-                                            <img src="[goodspic]" />\
-                                            <div class="caption text-center">\
+                                            <div class="caption text-center" data-gid="[goodsid]">\
+                                                <img src="[goodspic]" />\
                                                 <h5>[goodsname]</h5>\
                                                 <h4 class="pull-left text-danger">[goodsprice]</h4>\
-                                                <div class="btn-group pull-right" role="group">\
-                                                    <button type="button" class="btn btn-sm btn-default goodsminus">-</button>\
-                                                    <div class="btn btn-sm btn-default goodsitem" data-gid="[goodsid]">0</div>\
-                                                    <button type="button" class="btn btn-sm btn-default goodsplus">+</button>\
-                                                </div>\
                                                 <div class="clearfix"></div>\
                                             </div>\
+                                        </div>\
+                                        <div class="btn-group pull-right" role="group" style="position: absolute;right:30px;bottom:30px;">\
+                                            <button type="button" class="btn btn-sm btn-default goodsminus">-</button>\
+                                            <div class="btn btn-sm btn-default goodsitem" data-gid="[goodsid]">[goodsnum]</div>\
+                                            <button type="button" class="btn btn-sm btn-default goodsplus">+</button>\
                                         </div>\
                                     </div>';
 
             for (var i = 0; i < data.length; i++) {
+
                 var html = htmlTemplate.replace("[goodspic]", data[i].pic)
                     .replace("[goodsname]", data[i].name)
-                    .replace("[goodsprice]", data[i].price)
-                    .replace("[goodsid]", data[i].id);
+                    .replace("[goodsprice]", data[i].price / 100)
+                    .replace("[goodsid]", data[i].id)
+                    .replace("[goodsid]", data[i].id)
+                    .replace("[goodsnum]", getGoodsNumByIdFromCookie(data[i].id));
+
 
                 var $last = $goodslist.children(":last");
 
@@ -72,7 +92,6 @@ function getGoods(cid) {
                     $last.after(html);
                 }
             }
-            initGoodsCount();
         }
     });
 
@@ -86,11 +105,6 @@ function getCategory() {
         url: url,
         type: 'get',
         success: function (data) {
-            //data = [
-            //    { "id": "1", "name": "食品" },
-            //    { "id": "2", "name": "日用品" },
-            //    { "id": "3", "name": "电器" }
-            //];
             var htmlTemplate = '<div data-cid="[categoryid]" class="list-group-item">[categoryName]</div>';
             for (var i = 0; i < data.length; i++) {
                 var link = "" + data[i].id + "";
@@ -113,23 +127,34 @@ function getCategory() {
 }
 function getGoodsDetail(gid) {
 
-    var url = "";
+    var url = "/web/api/customer/goods/details?id=" + gid;
 
     $.ajax({
         url: url,
         type: "get",
-        success:function(data) {
+        success: function (data) {
             var html = $("#goodsDetail").html();
-            html.replace("[goodspic]", data.pic);
-            html.replace("[goodsname]", data.name);
-            html.replace("[goodsprice]", data.price);
-            html.replace("[goodsdescription]", data.description);
+            html = html.replace("[goodsname]", data.name);
+            html = html.replace("[goodsdescription]", data.description);
+            html = html.replace("[goodsprice]", data.price / 100);
+            html = html.replace("[goodsnum]", getGoodsNumByIdFromCookie(data.id));
+            //alert(html);
+
             $("#goodsDetail").html(html);
             $("#goodsDetail").modal();
+            $("#goodsDetailName").html(data.name);
+            $("#goodsDetailDescription").html(data.description);
+            var price = data.price / 100;
+            $("#goodsDetailPrice").html(price.toFixed(2));
+            $("#goodsDetailPicture").attr("src", data.pic);
+
         }
     });
 }
 
+function clearCookie() {
+    $.cookie("allgoods", "", {path: '/web/'});
+}
 function updateCookie(gid, num) {
     var allgoodscookiename = "allgoods";
     var all = $.cookie(allgoodscookiename);
@@ -157,21 +182,6 @@ function updateCookie(gid, num) {
             all += "|" + result;
         }
     }
-    $.cookie(allgoodscookiename, all);
-}
-function initGoodsCount() {
-    var allgoodscookiename = "allgoods";
-    var all = $.cookie(allgoodscookiename);
-    var list = (all+"").split('|');
-    for (var i = 0; i < list.length; i++) {
-        var $item = $(".goodsitem");
-        for (var j = 0; j < $item.length; j++) {
-            if ($($item[j]).data('gid') == list[i].split(',')[0]) {
-                $($item[j]).html(list[i].split(',')[1]);
-                break;
-            }
-        }
-
-    }
+    $.cookie(allgoodscookiename, all, {path: '/web/'});
 }
 

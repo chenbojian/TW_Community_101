@@ -23,16 +23,16 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:spring-servlet.xml", "classpath:applicationContext.xml"})
 @WebAppConfiguration
-public class InputGoodsControllerTest {
+public class GoodsManageControllerTest {
 
     @Autowired
-    private InputGoodsController inputGoodsController;
+    private GoodsManageController goodsManageController;
 
     private MockMvc mockMvc;
 
     @Before
     public void setUp() {
-        mockMvc = MockMvcBuilders.standaloneSetup(inputGoodsController).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(goodsManageController).build();
     }
 
     @Test
@@ -41,12 +41,12 @@ public class InputGoodsControllerTest {
     public void should_post_data_successful() throws Exception {
         MockMultipartFile pictureFile =
                 new MockMultipartFile("pictureFile", "testfile.jpg", "text/plain", "this is test\nnew test\n".getBytes());
-        mockMvc.perform(MockMvcRequestBuilders.fileUpload("/input-goods")
+        mockMvc.perform(MockMvcRequestBuilders.fileUpload("/manage/goods/input")
                 .file(pictureFile)
                 .param("name", "testfile")
-                .param("categoryId", "1")
-                .param("price", "0.01")
+                .param("category.id", "1")
+                .param("floatPrice", "1.10")
                 .param("description", "foods"))
-                .andExpect(status().isOk());
+                .andExpect(status().is3xxRedirection());
     }
 }
