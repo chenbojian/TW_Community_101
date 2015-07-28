@@ -46,9 +46,11 @@ public class InputGoodsController {
     @RequestMapping(value = {"", "/"}, method = RequestMethod.POST)
     public ModelAndView inputGoods(Goods goods, float floatPrice,
                                    MultipartFile pictureFile, HttpSession session) throws IOException {
-        String realPath = session.getServletContext().getRealPath("/");
-        String contextPath = session.getServletContext().getContextPath();
-        goods.setPictureUrl(savePicture(pictureFile, realPath, contextPath));
+        if (pictureFile != null) {
+            String realPath = session.getServletContext().getRealPath("/");
+            String contextPath = session.getServletContext().getContextPath();
+            goods.setPictureUrl(savePicture(pictureFile, realPath, contextPath));
+        }
         goods.setPrice((int) (floatPrice * 100));
         Category category = categoryService.findCategoryById(goods.getCategory().getId());
         goods.setCategory(category);

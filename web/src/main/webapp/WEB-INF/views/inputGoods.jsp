@@ -55,7 +55,19 @@
       <label class="col-sm-1 control-label">商品图片:</label>
 
       <div class="col-sm-10">
-        <input type="file" name="pictureFile"/>
+        <input id="pictureInput" type="file" name="pictureFile"/>
+      </div>
+      <div class="col-sm-1">
+        <button class="btn btn-default" id="pictureSwitch" type="button">使用远程图片</button>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-1">商品状态:</label>
+      <div class="col-sm-10">
+        <select name="status">
+          <option value="selling">售卖中</option>
+          <option value="not selling">下架</option>
+        </select>
       </div>
     </div>
     <div class="form-group">
@@ -67,5 +79,24 @@
 </div>
 <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+<script>
+  $(function () {
+    var pictureSwitch = $("#pictureSwitch");
+    var pictureInput = $("#pictureInput");
+    pictureSwitch.click(function () {
+      if (pictureSwitch.html() == "使用远程图片") {
+        pictureSwitch.html("上传本地图片");
+        pictureInput.attr("type", "text");
+        pictureInput.attr("name", "pictureUrl");
+        pictureInput.addClass("form-control");
+      } else {
+        pictureSwitch.html("使用远程图片");
+        pictureInput.attr("type", "file");
+        pictureInput.attr("name", "pictureFile");
+        pictureInput.removeClass("form-control");
+      }
+    });
+  })
+</script>
 </body>
 </html>
