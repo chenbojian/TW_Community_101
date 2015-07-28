@@ -26,7 +26,7 @@ app.controller("signInController", function($scope, $http) {
     $scope.sign_in = function(){
         if($scope.password==$scope.password_repeat){
             var params = {
-                    "tel_phone":$scope.tel_phone,
+                    "telPhone":$scope.tel_phone,
                     "password":$scope.password,
                     "SMS_code":$scope.SMS_code
             };

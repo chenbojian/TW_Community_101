@@ -45,13 +45,16 @@ public class UserController {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(@RequestBody String data, HttpSession session){
-        User u = gson.fromJson(data, User.class);
         System.out.println(data);
+
+        User u = gson.fromJson(data, User.class);
         User user = userService.findUserByTel(u.getTelPhone());
         if(user.getPassword().equals(u.getPassword())){
-            session.setAttribute("userId",user.getId());
+            session.setAttribute("userId", user.getId());
+            System.out.println("success");
             return "success";
         }else{
+            System.out.println("failed");
             return "failed";
         }
     }
@@ -61,15 +64,16 @@ public class UserController {
         private String password;
         private String SMS_code;
 
-        public String getTelPhone() {
-            return telPhone;
+        public String getSMS_code() {
+            return SMS_code;
         }
 
-        public void setTelPhone(String tel_phone) {
-            this.telPhone = tel_phone;
+        public void setSMS_code(String SMS_code) {
+            this.SMS_code = SMS_code;
         }
 
         public String getPassword() {
+
             return password;
         }
 
@@ -77,12 +81,13 @@ public class UserController {
             this.password = password;
         }
 
-        public String getSMS_code() {
-            return SMS_code;
+        public String getTelPhone() {
+
+            return telPhone;
         }
 
-        public void setSMS_code(String SMS_code) {
-            this.SMS_code = SMS_code;
+        public void setTelPhone(String telPhone) {
+            this.telPhone = telPhone;
         }
     }
 }
