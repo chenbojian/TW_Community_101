@@ -4,6 +4,7 @@ allprojects {
 
 subprojects {
     apply plugin: 'java'
+    compileJava.options.encoding = 'UTF-8'
 
     repositories {
         mavenCentral()
