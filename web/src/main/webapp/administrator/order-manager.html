@@ -14,6 +14,11 @@
 </head>
 <body ng-controller="orderManagerController">
 
+<div id="navigationBar"></div>
+<script>
+    $( "#navigationBar" ).load( "/web/html/administratorNavigationBar.html" );
+</script>
+
 <h2>新订单</h2>
 <div ng-repeat="order in newOrders">
     <hr class="order" />

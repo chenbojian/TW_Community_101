@@ -1,13 +1,22 @@
 <!DOCTYPE html>
-<html ng-app="App">
-<head lang="en">
+<html lang="zh-Hans" ng-app="App">
+<head>
     <meta charset="UTF-8">
     <title>Order Status | Community 101</title>
+    <link href="/web/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <script src="/web/js/jquery.min.js"></script>
+    <script src="/web/js/bootstrap.min.js"></script>
     <script src="/web/js/angular/angular.min.js"></script>
     <script src="/web/js/angular/angular-cookies.min.js"></script>
     <script src="/web/js/angular/order-manager-controller.js"></script>
 </head>
 <body ng-controller="orderManagerController">
+
+<div id="navigationBar"></div>
+<script>
+    $( "#navigationBar" ).load( "/web/html/administratorNavigationBar.html" );
+</script>
 
 <h1>总的订单数：{{orders_total_num}}&nbsp;&nbsp;&nbsp;&nbsp;总的收益：{{orders_total_price/100 | currency}}</h1>
 
