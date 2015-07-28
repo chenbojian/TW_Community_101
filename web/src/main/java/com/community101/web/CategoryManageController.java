@@ -40,5 +40,9 @@ public class CategoryManageController {
         categoryService.save(category);
         return new ModelAndView("redirect:/manage/category");
     }
+    @RequestMapping(value = "/{id}/edit", method = RequestMethod.POST)
+    public ModelAndView editCategoryById(@PathVariable long id) {
+        return new ModelAndView("redirect:/manage/category");
+    }
 
 }
