@@ -62,7 +62,7 @@
       </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-1">商品状态:</label>
+      <label class="col-sm-1 control-label">商品状态:</label>
       <div class="col-sm-10">
         <select name="status">
           <option value="selling">售卖中</option>
