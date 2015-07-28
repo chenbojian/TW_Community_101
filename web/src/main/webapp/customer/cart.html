@@ -19,8 +19,8 @@
         }
 
         table img {
-            height: 120px;
-            width: 120px;
+            height: 60px;
+            width: 60px;
         }
 
         table span{
@@ -44,7 +44,7 @@
     <div>
         <table class="table">
             <tr>
-                <th colspan="2">商品名称</th>
+                <th colspan="2">商品信息</th>
                 <th>单价</th>
                 <th>数量</th>
                 <th>价格</th>
@@ -57,11 +57,11 @@
                 <td style="width:120px;">
                     <div class="input-group">
                         <span class="input-group-addon" ng-show="can_submit_order"
-                                ng-click="more_selected_item($index)">+
+                              ng-click="less_selected_item($index)">-
                         </span>
                         <input type="text" class="form-control" ng-model="selected_items[$index].quantity" value="{{item.quality}}" />
                         <span class="input-group-addon" ng-show="can_submit_order"
-                                ng-click="less_selected_item($index)">-
+                              ng-click="more_selected_item($index)">+
                         </span>
                     </div>
                 </td>
@@ -93,9 +93,9 @@
         </div>
 
         <div class="text-right" ng-model="can_submit_order" ng-show="can_submit_order">
+            <h2>{{message}}</h2>
             <button type="button" class="btn btn-success" ng-click="submit()">提交</button>
         </div>
-        <h2>{{message}}</h2>
     </form>
 
     <div ng-model="order_submitted" ng-show="order_submitted">

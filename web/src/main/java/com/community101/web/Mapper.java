@@ -123,14 +123,28 @@ public class Mapper {
         return order;
     }
 
-    public static OrderDetailDTO makeOrderDetailDTO(Orders orders){
+    public static OrderDetailDTO makeOrderDetailDTO(Orders order){
         OrderDetailDTO orderDetailDTO=new OrderDetailDTO();
-        orderDetailDTO.setOrderId(orders.getId());
-        orderDetailDTO.setStatus(orders.getStatus());
-        orderDetailDTO.setTelPhone(orders.getUser().getTelPhone());
-        orderDetailDTO.setAddress(orders.getAddress());
-        orderDetailDTO.setCreateTime(orders.getCreateTime());
-        Set<OrderGoods> orderGoodses=orders.getOrderGoodses();
+        orderDetailDTO.setOrderId(order.getId());
+
+        String status = order.getStatus();
+        if (status.equals("new")) {
+            orderDetailDTO.setStatus("订单待处理");
+        }
+        else if (status.equals("dispatching")) {
+            orderDetailDTO.setStatus("配送中");
+        }
+        else if (status.equals("completed")) {
+            orderDetailDTO.setStatus("订单已完成");
+        }
+        else {
+            orderDetailDTO.setStatus("无法识别");
+        }
+
+        orderDetailDTO.setTelPhone(order.getUser().getTelPhone());
+        orderDetailDTO.setAddress(order.getAddress());
+        orderDetailDTO.setCreateTime(order.getCreateTime());
+        Set<OrderGoods> orderGoodses=order.getOrderGoodses();
         List<GoodsInOrderDTO> goodsInOrderDTOs=new ArrayList<GoodsInOrderDTO>();
         for(OrderGoods orderGoods:orderGoodses){
             GoodsInOrderDTO goodsInOrderDTO=new GoodsInOrderDTO(orderGoods.getId(),orderGoods.getGoodsName(),
@@ -138,7 +152,7 @@ public class Mapper {
             goodsInOrderDTOs.add(goodsInOrderDTO);
         }
         orderDetailDTO.setGoodsInOrderDTOList(goodsInOrderDTOs);
-        orderDetailDTO.setTotalPrice(orders.getTotalPrice());
+        orderDetailDTO.setTotalPrice(order.getTotalPrice());
         return orderDetailDTO;
     }
 

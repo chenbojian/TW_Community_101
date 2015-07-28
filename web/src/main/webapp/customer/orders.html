@@ -26,10 +26,10 @@
         <th colspan="2">商品信息</th>
         <th>单价</th>
         <th>数量</th>
-        <th>价格</th>
+        <th>金额</th>
     </tr>
     <tr ng-repeat="goods in item.goodsInOrderDTOList">
-            <td><img src="{{goods.pic}}"/></td>
+            <td><img class="goodsLogoInCart" src={{goods.pic}} alt={{goods.name}}"/></td>
             <td><a href="javascript:void(0);" ng-click="getGoodsDetail()">{{goods.name}}</a></td>
             <td>{{goods.price/100 | currency : "¥" : 2}}</td>
             <td>{{goods.quantity}}</td>
