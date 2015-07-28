@@ -31,4 +31,9 @@ public class GoodsDAO {
         return (Goods) sessionFactory.getCurrentSession()
                 .get(Goods.class, goodsId);
     }
+
+    public void update(Goods goods) {
+        sessionFactory.getCurrentSession()
+                .update(goods);
+    }
 }

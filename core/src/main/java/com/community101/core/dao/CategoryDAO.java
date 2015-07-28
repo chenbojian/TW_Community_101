@@ -1,6 +1,7 @@
 package com.community101.core.dao;
 
 import com.community101.core.Category;
+import com.community101.core.Goods;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -17,16 +18,21 @@ public class CategoryDAO {
     private SessionFactory sessionFactory;
 
     @Autowired
-    public CategoryDAO(SessionFactory sessionFactory){
-        this.sessionFactory=sessionFactory;
+    public CategoryDAO(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
     }
 
-    public List<Category> listCategory(){
+    public List<Category> listCategory() {
         return sessionFactory.getCurrentSession().createQuery("from Category").list();
     }
 
     public Category findCategoryById(long categoryId) {
         return (Category) sessionFactory.getCurrentSession()
                 .get(Category.class, categoryId);
+    }
+
+    public void deleteCategory(Category category) {
+        sessionFactory.getCurrentSession()
+                .delete(category);
     }
 }

@@ -21,7 +21,7 @@ import java.util.List;
  * Created by chenbojian on 7/17/15.
  */
 @RestController
-@RequestMapping("/goods/manage")
+@RequestMapping("/manage/goods")
 public class GoodsManageController {
     private GoodsService goodsService;
     private CategoryService categoryService;
@@ -30,6 +30,13 @@ public class GoodsManageController {
     public GoodsManageController(GoodsService goodsService, CategoryService categoryService) {
         this.goodsService = goodsService;
         this.categoryService = categoryService;
+    }
+
+    @RequestMapping(value = "", method = RequestMethod.GET)
+    public ModelAndView manageGoodsPage() {
+        ModelAndView modelAndView = new ModelAndView("manageGoods");
+        modelAndView.addObject("categories",categoryService.listCategory());
+        return modelAndView;
     }
 
     @RequestMapping(value = "/input", method = RequestMethod.GET)
@@ -54,13 +61,6 @@ public class GoodsManageController {
         goods.setCategory(category);
         goodsService.save(goods);
         return inputGoodsPage();
-    }
-
-    @RequestMapping(value = "/manage", method = RequestMethod.GET)
-    public ModelAndView manageGoodsPage() {
-        ModelAndView modelAndView = new ModelAndView("manageGoods");
-        modelAndView.addObject("categories",categoryService.listCategory());
-        return modelAndView;
     }
 
     private String savePicture(MultipartFile pictureFile, String realPath, String contextPath) throws IOException {
