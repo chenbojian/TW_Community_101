@@ -22,7 +22,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/customer")
 public class CustomerServiceController {
-    boolean isFake = true;
     private CategoryService categoryService;
     private GoodsService goodsService;
     private UserService userService;
@@ -131,10 +130,6 @@ public class CustomerServiceController {
 
         if (userId == null) {
             userId = 0;
-        }
-
-        if (isFake) {
-            userId = 1;
         }
 
         User user = userService.findUserById(userId);
