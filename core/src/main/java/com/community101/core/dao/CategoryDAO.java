@@ -31,8 +31,16 @@ public class CategoryDAO {
                 .get(Category.class, categoryId);
     }
 
-    public void deleteCategory(Category category) {
-        sessionFactory.getCurrentSession()
-                .delete(category);
+    public void deleteCategoryById(long id) {
+        Category category = findCategoryById(id);
+        if (category != null) {
+            for (Goods goods : category.getGoodses()) {
+                goods.setCategory(null);
+                sessionFactory.getCurrentSession()
+                        .update(goods);
+            }
+            sessionFactory.getCurrentSession()
+                    .delete(category);
+        }
     }
 }
