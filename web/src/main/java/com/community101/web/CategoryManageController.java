@@ -45,9 +45,11 @@ public class CategoryManageController {
 
     @RequestMapping(value = "/{id}/edit", method = RequestMethod.POST)
     public ModelAndView editCategoryById(@PathVariable long id, String categoryName) {
-        Category category = categoryService.findCategoryById(id);
-        category.setName(categoryName);
-        categoryService.update(category);
+        if (categoryName.length() != 0) {
+            Category category = categoryService.findCategoryById(id);
+            category.setName(categoryName);
+            categoryService.update(category);
+        }
         return new ModelAndView("redirect:/manage/category");
     }
 

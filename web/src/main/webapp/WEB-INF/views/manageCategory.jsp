@@ -50,16 +50,16 @@
     $("table button").click(function () {
       var editObj = $(this).parent().prev();
       if ($(this).html() == "修改") {
-        var html = '<form class="form-inline" action="${pageContext.request.contextPath}/manage/category/' + $(this).val() + '/edit" method="post">' +
-            '<div class="form-group">' +
-            '<input class="form-control" type="text" name="categoryName" placeholder="' + editObj.html().trim() + '"/>' +
+        var html = '<form action="${pageContext.request.contextPath}/manage/category/' + $(this).val() + '/edit" method="post">' +
+            '<div class="form-group col-sm-10">' +
+            '<input class="form-control" type="text" name="categoryName" value="' + editObj.html().trim() + '"/>' +
             '</div>' +
             '<button class="btn btn-default">完成</button>' +
             '</form>';
         editObj.html(html);
         $(this).html("取消");
       } else {
-        editObj.html($("[name='categoryName']").attr("placeholder"));
+        editObj.html($("[name='categoryName']").val());
         $(this).html("修改");
       }
     });
