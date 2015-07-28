@@ -41,12 +41,12 @@ public class GoodsManageControllerTest {
     public void should_post_data_successful() throws Exception {
         MockMultipartFile pictureFile =
                 new MockMultipartFile("pictureFile", "testfile.jpg", "text/plain", "this is test\nnew test\n".getBytes());
-        mockMvc.perform(MockMvcRequestBuilders.fileUpload("/input-goods")
+        mockMvc.perform(MockMvcRequestBuilders.fileUpload("/manage/goods/input")
                 .file(pictureFile)
                 .param("name", "testfile")
                 .param("category.id", "1")
                 .param("floatPrice", "1.10")
                 .param("description", "foods"))
-                .andExpect(status().isOk());
+                .andExpect(status().is3xxRedirection());
     }
 }

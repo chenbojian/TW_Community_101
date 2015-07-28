@@ -60,7 +60,7 @@ public class GoodsManageController {
         Category category = categoryService.findCategoryById(goods.getCategory().getId());
         goods.setCategory(category);
         goodsService.save(goods);
-        return inputGoodsPage();
+        return new ModelAndView("redirect:/manage/goods/input");
     }
 
     private String savePicture(MultipartFile pictureFile, String realPath, String contextPath) throws IOException {
