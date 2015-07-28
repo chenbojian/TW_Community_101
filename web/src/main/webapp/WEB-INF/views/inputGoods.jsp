@@ -18,7 +18,7 @@
 <div class="container">
   <p>${message}</p>
   <form:form cssClass="form-horizontal"
-             modelAttribute="inputGoodsDTO" method="post" enctype="multipart/form-data">
+             modelAttribute="goods" method="post" enctype="multipart/form-data">
     <div class="form-group">
       <label class="col-sm-1 control-label">商品名称:</label>
 
@@ -30,7 +30,7 @@
       <label class="col-sm-1 control-label">商品类型:</label>
 
       <div class="col-sm-10">
-        <select class="form-control" name="categoryId" id="categoryId">
+        <select class="form-control" name="category.id">
           <c:forEach var="category" items="${categories}">
             <option value="${category.id}">${category.name}</option>
           </c:forEach>
@@ -48,7 +48,7 @@
       <label class="col-sm-1 control-label">商品价格:</label>
 
       <div class="col-sm-10">
-        <form:input path="price" cssClass="form-control"/>
+        <input name="floatPrice" class="form-control"/>
       </div>
     </div>
     <div class="form-group">

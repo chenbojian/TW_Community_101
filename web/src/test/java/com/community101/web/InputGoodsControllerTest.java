@@ -44,9 +44,9 @@ public class InputGoodsControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.fileUpload("/input-goods")
                 .file(pictureFile)
                 .param("name", "testfile")
-                .param("categoryId", "1")
-                .param("price", "0.01")
+                .param("category.id", "1")
+                .param("floatPrice", "1.10")
                 .param("description", "foods"))
-                .andExpect(status().is3xxRedirection());
+                .andExpect(status().isOk());
     }
 }
