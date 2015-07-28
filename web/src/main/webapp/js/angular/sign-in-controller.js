@@ -24,22 +24,26 @@ app.controller("signInController", function($scope, $http) {
     }
 
     $scope.sign_in = function(){
-        if($scope.password!=$scope.password_repeat){
+        if($scope.password==$scope.password_repeat){
+            var params = {
+                    "tel_phone":$scope.tel_phone,
+                    "password":$scope.password,
+                    "SMS_code":$scope.SMS_code
+            };
+            //window.alert(params);
+            $http({
+                method: 'POST',
+                url: $scope.sign_in_url,
+                data: params,
+                headers: {'Content-Type': 'application/json'}
+            }).success(function(data){
+                window.alert("sign in successful");
+            });
+            return;
+        }else {
             window.alert("密码不一致，请重新输入");
             $scope.password = "";
             $scope.password_repeat = "";
-            return;
         }
-        var params = {
-            tel_phone:$scope.tel_phone,
-            password:$scope.password,
-            SMS_code:$scope.SMS_code
-        };
-        $http.post($scope.sign_in_url, params, config
-            ).success(function(data, status, headers, config){
-                window.alert("sign in successful");
-            }).error(function(data, status, headers, config){
-                window.alert("sign in failed");
-            });
     };
 });

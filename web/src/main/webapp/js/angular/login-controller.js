@@ -11,14 +11,16 @@ app.controller("loginController", function($scope, $http) {
 
     $scope.login = function(){
         var params = {
-            tel_phone:$scope.tel_phone,
-            password:$scope.password
+            "telPhone":$scope.tel_phone,
+            "password":$scope.password
         }
-        $http.post($scope.login_url, params, config
-            ).success(function(data, status, headers, config){
-                window.alert("login successful");
-            }).error(function(data, status, headers, config){
-                window.alert("login failed");
-            });
+        $http({
+            method: 'POST',
+            url: $scope.login_url,
+            data: params,
+            headers: {'Content-Type': 'application/json'}
+        }).success(function(data){
+            window.alert("sign in successful");
+        });
     };
 });
