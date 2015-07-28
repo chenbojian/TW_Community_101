@@ -126,10 +126,10 @@ public class CustomerServiceController {
     @RequestMapping("/orders")
     public List<OrderDetailDTO> getOrdersOfCertainUser(HttpServletRequest request) {
         HttpSession session = request.getSession();
-        Integer userId = (Integer) session.getAttribute("userId");
+        Long userId = (Long) session.getAttribute("userId");
 
         if (userId == null) {
-            userId = 0;
+            userId = 0L;
         }
 
         User user = userService.findUserById(userId);
