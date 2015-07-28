@@ -38,4 +38,8 @@ public class CategoryService {
     public void save(Category category) {
         categoryDAO.save(category);
     }
+
+    public void update(Category category) {
+        categoryDAO.update(category);
+    }
 }

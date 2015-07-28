@@ -48,4 +48,9 @@ public class CategoryDAO {
         sessionFactory.getCurrentSession()
                 .save(category);
     }
+
+    public void update(Category category) {
+        sessionFactory.getCurrentSession()
+                .update(category);
+    }
 }

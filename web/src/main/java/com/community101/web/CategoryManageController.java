@@ -23,16 +23,18 @@ public class CategoryManageController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public ModelAndView categoryManagePage(){
+    public ModelAndView categoryManagePage() {
         ModelAndView modelAndView = new ModelAndView("manageCategory");
         modelAndView.addObject("categories", categoryService.listCategory());
         return modelAndView;
     }
+
     @RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)
     public ModelAndView deleteCategoryById(@PathVariable long id) {
         categoryService.deleteCategory(id);
         return new ModelAndView("redirect:/manage/category");
     }
+
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public ModelAndView addCategory(String categoryName) {
         Category category = new Category();
@@ -40,8 +42,12 @@ public class CategoryManageController {
         categoryService.save(category);
         return new ModelAndView("redirect:/manage/category");
     }
+
     @RequestMapping(value = "/{id}/edit", method = RequestMethod.POST)
-    public ModelAndView editCategoryById(@PathVariable long id) {
+    public ModelAndView editCategoryById(@PathVariable long id, String categoryName) {
+        Category category = categoryService.findCategoryById(id);
+        category.setName(categoryName);
+        categoryService.update(category);
         return new ModelAndView("redirect:/manage/category");
     }
 
