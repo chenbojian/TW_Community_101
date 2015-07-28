@@ -43,4 +43,9 @@ public class CategoryDAO {
                     .delete(category);
         }
     }
+
+    public void save(Category category) {
+        sessionFactory.getCurrentSession()
+                .save(category);
+    }
 }

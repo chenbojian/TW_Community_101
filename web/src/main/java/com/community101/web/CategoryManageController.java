@@ -1,5 +1,6 @@
 package com.community101.web;
 
+import com.community101.core.Category;
 import com.community101.core.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,6 +31,13 @@ public class CategoryManageController {
     @RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)
     public ModelAndView deleteCategoryById(@PathVariable long id) {
         categoryService.deleteCategory(id);
+        return new ModelAndView("redirect:/manage/category");
+    }
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public ModelAndView addCategory(String categoryName) {
+        Category category = new Category();
+        category.setName(categoryName);
+        categoryService.save(category);
         return new ModelAndView("redirect:/manage/category");
     }
 

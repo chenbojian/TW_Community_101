@@ -34,4 +34,8 @@ public class CategoryService {
         categoryDAO.deleteCategoryById(id);
 
     }
+
+    public void save(Category category) {
+        categoryDAO.save(category);
+    }
 }

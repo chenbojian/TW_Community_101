@@ -26,7 +26,10 @@
       </tr>
     </c:forEach>
   </table>
-  <button class="btn btn-primary">添加</button>
+  <form action="${pageContext.request.contextPath}/manage/category/add" method="post">
+    <input type="text" name="categoryName"/>
+    <button class="btn btn-primary">添加分类</button>
+  </form>
   <a class="btn btn-default" href="${pageContext.request.contextPath}/">返回</a>
 </div>
 <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
