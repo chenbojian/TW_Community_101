@@ -104,6 +104,16 @@ App.controller('CartController', function($scope, $http, $cookies) {
 
     $scope.$watch('selected_items', calculateTotals, true);
 
+    var validateGoodsQuantity = function() {
+        for (var i = 0, len = $scope.selected_items.length; i < len; i++) {
+            if(!($scope.selected_items[i].quantity >= 0)) {
+                $scope.selected_items[i].quantity = 0;
+            }
+        }
+    }
+
+    $scope.$watch('selected_items', validateGoodsQuantity, true);
+
     $scope.phone = "";
     $scope.address = "";
 
