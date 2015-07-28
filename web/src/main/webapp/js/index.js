@@ -59,7 +59,7 @@ function getGoods(cid) {
         success: function (data) {
             var htmlTemplate = '<div class="col-md-3">\
                                         <div class="thumbnail">\
-                                            <div class="caption text-center"">\
+                                            <div class="caption text-center" data-gid="[goodsid]">\
                                                 <img src="[goodspic]" />\
                                                 <h5>[goodsname]</h5>\
                                                 <h4 class="pull-left text-danger">[goodsprice]</h4>\
@@ -78,6 +78,7 @@ function getGoods(cid) {
                 var html = htmlTemplate.replace("[goodspic]", data[i].pic)
                     .replace("[goodsname]", data[i].name)
                     .replace("[goodsprice]", data[i].price / 100)
+                    .replace("[goodsid]", data[i].id)
                     .replace("[goodsid]", data[i].id)
                     .replace("[goodsnum]", getGoodsNumByIdFromCookie(data[i].id));
 
