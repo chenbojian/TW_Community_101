@@ -1,4 +1,4 @@
-package com.community101.web;
+package com.community101.admin;
 
 import org.junit.Before;
 import org.junit.Test;

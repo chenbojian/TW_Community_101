@@ -1,4 +1,4 @@
-package com.community101.web;
+package com.community101.admin;
 
 import com.community101.core.Category;
 import com.community101.core.service.CategoryService;

@@ -1,11 +1,11 @@
-package com.community101.web.api;
+package com.community101.admin.api;
 
-import com.community101.web.DTO.OrderDetailDTO;
-import com.community101.web.DTO.OrderInOrderManagerDTO;
+import com.community101.admin.DTO.OrderDetailDTO;
+import com.community101.admin.DTO.OrderInOrderManagerDTO;
 import com.community101.core.Orders;
 import com.community101.core.service.GoodsService;
 import com.community101.core.service.OrdersService;
-import com.community101.web.Mapper;
+import com.community101.admin.Mapper;
 import com.google.gson.Gson;
 import com.community101.core.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

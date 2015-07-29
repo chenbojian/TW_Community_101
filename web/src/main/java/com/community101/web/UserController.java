@@ -2,7 +2,6 @@ package com.community101.web;
 
 import com.community101.core.User;
 import com.community101.core.service.UserService;
-import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;

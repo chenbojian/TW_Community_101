@@ -1,4 +1,4 @@
-package com.community101.web.DTO;
+package com.community101.admin.DTO;
 
 /**
  * Created by MiffyLiye on 16/07/2015.

@@ -1,21 +1,23 @@
-package com.community101.web.DTO;
+package com.community101.admin.DTO;
 
 /**
  * Created by MiffyLiye on 16/07/2015.
  */
-public class GoodsSummaryDTO {
+public class GoodsInOrderDTO {
     private long id;
     private String name;
     private int price;
     private String pic; //pic url
+    private int quantity;
 
-    public GoodsSummaryDTO() {}
+    public GoodsInOrderDTO() {}
 
-    public GoodsSummaryDTO(long id, String name, int price, String pic) {
+    public GoodsInOrderDTO(long id, String name, int price, String pic, int quantity) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.pic = pic;
+        this.quantity = quantity;
     }
 
     public long getId() {
@@ -48,5 +50,13 @@ public class GoodsSummaryDTO {
 
     public void setPic(String pic) {
         this.pic = pic;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }
