@@ -34,7 +34,7 @@
                     </div>
                     <div class="form-group">
                         <input placeholder="短信验证码" ng-model="SMS_code" type="text" name="SMS_code">
-                        <button ng-click="send_SMS_code()" class="btn margin-left-10">发送验证码</button>
+                        <button ng-click="send_SMS_code()" id="send_SMS_code" class="btn margin-left-10">{{send_msg_btn}}</button>
                     </div>
 
                     <button class="btn-info btn" type="submit">注册</button>

@@ -10,6 +10,7 @@ app.controller("signInController", function($scope, $http) {
     $scope.SMS_code = "";
     $scope.password_msg = "1";
     $scope.msg = "";
+    $scope.send_msg_btn = "发送短信验证码";
 
     $scope.sign_in_url = "/web/api/customer/signIn";
 
@@ -46,4 +47,5 @@ app.controller("signInController", function($scope, $http) {
             $scope.password_repeat = "";
         }
     };
+
 });
