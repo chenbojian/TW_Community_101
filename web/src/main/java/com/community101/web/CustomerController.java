@@ -12,6 +12,11 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 @RequestMapping("/customer")
 public class CustomerController {
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public ModelAndView getIndex() {
+        return new ModelAndView("index");
+    }
+
     @RequestMapping(value = "/order-history/", method = RequestMethod.GET)
     public ModelAndView getOrderHistory() {
         return new ModelAndView("orderHistory");
