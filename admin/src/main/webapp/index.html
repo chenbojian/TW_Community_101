@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="UTF-8">
+    <title>社区101</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/index.css" rel="stylesheet" />
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.cookie.min.js"></script>
+    <script src="js/index.js"></script>
+</head>
+<body>
+
+<div id="navigationBar"></div>
+<script>
+    $( "#navigationBar" ).load( "/admin/html/customerNavigationBar.html" );
+</script>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="jumbotron">
+                <h1 class="text-center">
+                    <kbd>社区101</kbd>
+                </h1>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <a class="btn btn-success btn-block buybtn" href="./customer/cart.html">购买</a>
+            <div class="list-group" id="categorylist">
+                <div data-cid="0" class="list-group-item active">所有商品</div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="row" id="goodslist"></div>
+        </div>
+    </div>
+</div>
+
+<div id="goodsDetailTemplate"></div>
+<script>
+    $( "#goodsDetailTemplate" ).load( "/admin/html/goodsDetail.html" );
+</script>
+
+</body>
+</html>

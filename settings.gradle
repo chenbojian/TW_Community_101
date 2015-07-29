@@ -1,2 +1,2 @@
-include 'web','core','web-admin'
+include 'web','core','admin'
 
