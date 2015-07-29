@@ -12,10 +12,10 @@
   <meta charset="UTF-8">
   <title>Shopping Cart | Community 101</title>
 
-  <link href="../css/bootstrap.min.css" rel="stylesheet"/>
-  <link href="../css/index.css" rel="stylesheet"/>
-  <script src="../js/jquery.min.js"></script>
-  <script src="../js/bootstrap.min.js"></script>
+  <link href="/web/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="/web/css/index.css" rel="stylesheet"/>
+  <script src="/web/js/jquery.min.js"></script>
+  <script src="/web/js/bootstrap.min.js"></script>
 
   <script src="/web/js/angular/angular.min.js"></script>
   <script src="/web/js/angular/angular-cookies.min.js"></script>
