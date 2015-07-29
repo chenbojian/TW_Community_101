@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <script src="/web/js/angular/angular.min.js"></script>
+    <script src="/web/js/angular/login-controller.js"></script>
+    <link href="/web/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/web/css/login.css" rel="stylesheet"/>
+</head>
+<body ng-app="App" ng-controller="loginController">
+    <nav class="navbar navbar-default">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="/web/index.html">首页</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="row">
+        <div class="center">
+            <div class="well well-padding">
+                <legend>注册</legend>
+                <form method="POST" action="/web/customer/login" accept-charset="UTF-8">
+                    <div class="form-group">
+                        <input placeholder="联系电话" ng-model="tel_phone" type="text" name="telPhone">
+                    </div>
+                    <div class="form-group">
+                        <input placeholder="登录密码" ng-model="password" type="password" name="password">
+                    </div>
+                    <button class="btn-info btn" type="submit">登录</button>
+                    <a href="sign-in.html">还没有账号？去注册</a>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

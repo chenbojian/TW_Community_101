@@ -1,0 +1,20 @@
+input{
+    border: solid 1px #cccccc;
+    padding: 6px;
+    border-radius: 6px;
+}
+.center{
+    width: 500px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.well-padding{
+    padding: 30px 80px 30px 80px;
+}
+.margin-left-10{
+    margin-left: 10px;
+}
+small{
+    color: #c9302c;
+    margin-left: 10px;
+}

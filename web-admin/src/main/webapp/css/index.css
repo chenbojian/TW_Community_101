@@ -1,0 +1,37 @@
+.jumbotron {
+    background: url('http://gb.cri.cn/mmsource/images/2013/03/25/nc130325003.jpg') no-repeat;
+    background-size: cover;
+}
+
+#goodslist .thumbnail {
+    height: 210px;
+    cursor: pointer;
+}
+
+#goodslist .thumbnail caption {
+    position: relative;
+    height: 210px;
+    cursor: pointer;
+}
+
+#goodslist .thumbnail:hover {
+    border:solid 1px #337ab7;
+}
+
+#goodslist .thumbnail img {
+    height: 120px;
+    width: 120px;
+}
+
+.buybtn{
+    margin-bottom: 10px;
+}
+
+#goodsDetailPicture{
+    width:300px;
+    height:200px;
+}
+
+#goodsDetail hr{
+    margin:5px auto;
+}
