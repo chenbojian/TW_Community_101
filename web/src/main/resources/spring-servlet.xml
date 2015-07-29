@@ -23,7 +23,6 @@
     <mvc:resources mapping="/lib/**" location="/lib/"/>
     <mvc:resources mapping="/picture/**" location="/picture/"/>
 
-
     <bean id="internalResourceViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
         <property name="prefix" value="/WEB-INF/views/"/>
@@ -34,4 +33,10 @@
         <property name="maxUploadSize" value="20971520"/>
     </bean>
 
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/customer/order-history/*"/>
+            <bean class="com.community101.web.filter.CustomerAccessFilter" />
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>

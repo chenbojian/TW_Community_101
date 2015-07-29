@@ -1,8 +1,8 @@
 package com.community101.web.DTO;
 
 import com.community101.core.service.GoodsService;
-import com.community101.web.Checker;
-import com.community101.web.DTOErrorType;
+import com.community101.web.validator.Checker;
+import com.community101.web.validator.DTOErrorType;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.LinkedList;

@@ -1,4 +1,4 @@
-package com.community101.web;
+package com.community101.web.api;
 
 import com.community101.core.*;
 import com.community101.web.DTO.*;
@@ -6,6 +6,7 @@ import com.community101.core.service.CategoryService;
 import com.community101.core.service.GoodsService;
 import com.community101.core.service.OrdersService;
 import com.community101.core.service.UserService;
+import com.community101.web.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,14 +22,14 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/api/customer")
-public class CustomerServiceController {
+public class CustomerAPIController {
     private CategoryService categoryService;
     private GoodsService goodsService;
     private UserService userService;
     private OrdersService ordersService;
 
     @Autowired
-    public CustomerServiceController(
+    public CustomerAPIController(
             CategoryService categoryService,
             GoodsService goodsService,
             UserService userService,

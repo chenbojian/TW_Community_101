@@ -1,4 +1,4 @@
-package com.community101.web;
+package com.community101.web.validator;
 
 /**
  * Created by MiffyLiye on 24/07/2015.
