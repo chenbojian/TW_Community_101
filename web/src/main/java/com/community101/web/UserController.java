@@ -52,9 +52,9 @@ public class UserController {
                 response.sendRedirect("../index.html");
             }else{
                 System.out.println("failed");
-                response.getWriter().write("<script language=javascript>alert('password is wrong!');window.location.href='login.html';</script>");
+                response.getWriter().write("<script language=javascript>alert('password is wrong!');window.location.href='/web/customer/login/';</script>");
             }
-        }else response.getWriter().write("<script language=javascript>alert('telPhone is not sign in!');window.location.href='login.html';</script>");
+        }else response.getWriter().write("<script language=javascript>alert('telPhone is not signed up!');window.location.href='/web/customer/login/';</script>");
 
     }
 }

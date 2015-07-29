@@ -14,7 +14,27 @@ import org.springframework.web.servlet.ModelAndView;
 public class CustomerController {
     @RequestMapping(value = "/order-history/", method = RequestMethod.GET)
     public ModelAndView getOrderHistory() {
-        ModelAndView modelAndView = new ModelAndView("customerOrderHistory");
-        return modelAndView;
+        return new ModelAndView("orderHistory");
     }
+
+    @RequestMapping(value = "/shopping-cart/", method = RequestMethod.GET)
+    public ModelAndView getShoppingCart() {
+        return new ModelAndView("shoppingCart");
+    }
+
+    @RequestMapping(value = "/order-details/", method = RequestMethod.GET)
+    public ModelAndView getOrderDetails() {
+        return new ModelAndView("orderDetails");
+    }
+
+    @RequestMapping(value = "/signup/", method = RequestMethod.GET)
+    public ModelAndView getSignUp() {
+        return new ModelAndView("signup");
+    }
+
+    @RequestMapping(value = "/login/", method = RequestMethod.GET)
+    public ModelAndView getLogIn() {
+        return new ModelAndView("login");
+    }
+
 }

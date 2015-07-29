@@ -21,7 +21,8 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><a href="/web/customer/order-history/">订单记录</a></li>
-        <li><a href="/web/customer/login.html">登录</a></li>
+        <li><a href="/web/customer/signup/">注册</a></li>
+        <li><a href="/web/customer/login/">登录</a></li>
       </ul>
     </div>
   </div>

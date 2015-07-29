@@ -41,6 +41,6 @@ App.controller('OrderHistoryController', function($scope, $http, $cookies) {
 
     $scope.launchOrderDetails = function() {
         $cookies.put('orderId', this.order.orderId.toString(), {'path': '/web/'});
-        window.location.assign('./orders.html');
+        window.location.assign('/web/customer/order-details/');
     }
 });
