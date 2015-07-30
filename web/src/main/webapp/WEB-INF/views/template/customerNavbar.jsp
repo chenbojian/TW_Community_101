@@ -19,13 +19,17 @@
       <a class="navbar-brand" href="<%=request.getContextPath()%>/">Community101</a>
     </div>
 
+
+    <form name="logout" method="POST" action="<%=request.getContextPath()%>/customer/logout/">
+    </form>
+
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><a href="<%=request.getContextPath()%>/customer/order-history/">订单记录</a></li>
 
         <c:if test="${cookie['username'] != null && cookie['username'].value != '' }">
           <li><a>欢迎${cookie['username'].value}</a></li>
-        <li><a href="<%=request.getContextPath()%>/customer/logout/">登出</a></li>
+        <li><a href="javascript:document.logout.submit()">登出</a></li>
         </c:if>
 
         <c:if test="${cookie['username'] == null || cookie['username'].value == ''}">
