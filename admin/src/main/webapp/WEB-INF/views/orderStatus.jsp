@@ -21,10 +21,7 @@
 </head>
 <body ng-controller="orderManagerController">
 
-<div id="navigationBar"></div>
-<script>
-  $( "#navigationBar" ).load( "${pageContext.request.contextPath}/html/administratorNavigationBar.html" );
-</script>
+<jsp:include page="./template/navbar.jsp"></jsp:include>
 
 <h1>总的订单数：{{orders_total_num}}&nbsp;&nbsp;&nbsp;&nbsp;总的收益：{{orders_total_price/100 | currency}}</h1>
 

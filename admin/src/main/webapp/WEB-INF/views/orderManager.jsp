@@ -22,10 +22,7 @@
 </head>
 <body ng-controller="orderManagerController">
 
-<div id="navigationBar"></div>
-<script>
-  $( "#navigationBar" ).load( "${pageContext.request.contextPath}/html/administratorNavigationBar.html" );
-</script>
+<jsp:include page="./template/navbar.jsp"></jsp:include>
 
 <h2>新订单</h2>
 <div ng-repeat="order in newOrders">
