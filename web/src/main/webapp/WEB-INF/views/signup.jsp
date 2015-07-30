@@ -11,10 +11,10 @@
 <head>
   <meta charset="UTF-8">
   <title>注册</title>
-  <script src="/web/js/angular/angular.min.js"></script>
-  <script src="/web/js/angular/sign-in-controller.js"></script>
-  <link href="/web/css/bootstrap.min.css" rel="stylesheet"/>
-  <link href="/web/css/login.css" rel="stylesheet"/>
+  <script src="<%=request.getContextPath()%>/js/angular/angular.min.js"></script>
+  <script src="<%=request.getContextPath()%>/js/angular/sign-in-controller.js"></script>
+  <link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="<%=request.getContextPath()%>/css/login.css" rel="stylesheet"/>
 </head>
 <body ng-app="App" ng-controller="signInController">
 <jsp:include page="template/customerNavbar.jsp"></jsp:include>
@@ -23,7 +23,7 @@
   <div class="center">
     <div class="well well-padding">
       <legend>注册</legend>
-      <form method="POST" action="/web/customer/signIn" accept-charset="UTF-8">
+      <form method="POST" action="<%=request.getContextPath()%>/customer/signIn" accept-charset="UTF-8">
         <div class="form-group">
           <input placeholder="联系电话" ng-model="tel_phone" type="text" name="telPhone">
         </div>
@@ -40,7 +40,7 @@
         </div>
 
         <button class="btn-info btn" type="submit">注册</button>
-        <a href="/web/customer/login/">已经有账号了？去登录</a>
+        <a href="<%=request.getContextPath()%>/customer/login/">已经有账号了？去登录</a>
       </form>
     </div>
   </div>

@@ -15,14 +15,14 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/web/index.html">Community101</a>
+      <a class="navbar-brand" href="<%=request.getContextPath()%>/">Community101</a>
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="/web/customer/order-history/">订单记录</a></li>
-        <li><a href="/web/customer/signup/">注册</a></li>
-        <li><a href="/web/customer/login/">登录</a></li>
+        <li><a href="<%=request.getContextPath()%>/customer/order-history/">订单记录</a></li>
+        <li><a href="<%=request.getContextPath()%>/customer/signup/">注册</a></li>
+        <li><a href="<%=request.getContextPath()%>/customer/login/">登录</a></li>
       </ul>
     </div>
   </div>

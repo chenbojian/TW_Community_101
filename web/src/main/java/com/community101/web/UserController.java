@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -23,8 +24,9 @@ public class UserController {
     }
 
     @RequestMapping(value = "/signIn", method = RequestMethod.POST)
-    public ModelAndView signIn(String telPhone, String password, String SMS_code, HttpSession session){
+    public ModelAndView signIn(String telPhone, String password, String SMS_code, HttpServletRequest request){
         User user = userService.findUserByTel(telPhone);
+        HttpSession session = request.getSession();
         if(user!=null){
             user.setPassword(password);
             userService.updateUser(user);
@@ -37,23 +39,24 @@ public class UserController {
             user = userService.findUserByTel(telPhone);
             session.setAttribute("userId",user.getId());
         }
-        return new ModelAndView("redirect:/index.html");
+        return new ModelAndView("redirect:" + request.getContextPath());
     }
 
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public void login(String telPhone, String password, HttpSession session, HttpServletResponse response) throws Exception{
+    public void login(String telPhone, String password, HttpServletRequest request, HttpServletResponse response) throws Exception{
         User user = userService.findUserByTel(telPhone);
+        HttpSession session = request.getSession();
         if(user!=null){
             if(user.getPassword().equals(password)){
                 session.setAttribute("userId", user.getId());
                 System.out.println("success");
-                response.sendRedirect("../index.html");
+                response.sendRedirect(request.getContextPath() + "/");
             }else{
                 System.out.println("failed");
-                response.getWriter().write("<script language=javascript>alert('password is wrong!');window.location.href='/web/customer/login/';</script>");
+                response.getWriter().write("<script language=javascript>alert('password is wrong!');window.location.href='" + request.getContextPath() + "/customer/login/';</script>");
             }
-        }else response.getWriter().write("<script language=javascript>alert('telPhone is not signed up!');window.location.href='/web/customer/login/';</script>");
+        }else response.getWriter().write("<script language=javascript>alert('telPhone is not signed up!');window.location.href='" + request.getContextPath() + "/customer/login/';</script>");
 
     }
 }

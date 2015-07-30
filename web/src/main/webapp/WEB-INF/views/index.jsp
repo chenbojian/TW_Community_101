@@ -11,12 +11,12 @@
 <head>
   <meta charset="UTF-8">
   <title>社区101</title>
-  <link href="css/bootstrap.min.css" rel="stylesheet" />
-  <link href="css/index.css" rel="stylesheet" />
-  <script src="js/jquery.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/jquery.cookie.min.js"></script>
-  <script src="js/index.js"></script>
+  <link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="<%=request.getContextPath()%>/css/index.css" rel="stylesheet" />
+  <script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
+  <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
+  <script src="<%=request.getContextPath()%>/js/jquery.cookie.min.js"></script>
+  <script src="<%=request.getContextPath()%>/js/index.js"></script>
 </head>
 <body>
 <jsp:include page="template/customerNavbar.jsp"></jsp:include>
@@ -33,7 +33,7 @@
   </div>
   <div class="row">
     <div class="col-md-3">
-      <a class="btn btn-success btn-block buybtn" href="./customer/shopping-cart/">购买</a>
+      <a class="btn btn-success btn-block buybtn" href="<%=request.getContextPath()%>/customer/shopping-cart/">购买</a>
       <div class="list-group" id="categorylist">
         <div data-cid="0" class="list-group-item active">所有商品</div>
       </div>
@@ -46,7 +46,7 @@
 
 <div id="goodsDetailTemplate"></div>
 <script>
-  $( "#goodsDetailTemplate" ).load( "/web/html/goodsDetail.html" );
+  $( "#goodsDetailTemplate" ).load( "<%=request.getContextPath()%>/html/goodsDetail.html" );
 </script>
 
 </body>

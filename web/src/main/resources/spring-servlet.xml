@@ -15,7 +15,6 @@
 
     <context:component-scan base-package="com.community101.web"/>
 
-    <mvc:resources mapping="/customer/**" location="/customer/"/>
     <mvc:resources mapping="/js/**" location="/js/"/>
     <mvc:resources mapping="/css/**" location="/css/"/>
     <mvc:resources mapping="/sounds/**" location="/sounds/"/>

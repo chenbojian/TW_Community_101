@@ -12,14 +12,14 @@
   <meta charset="UTF-8">
   <title>Shopping Cart | Community 101</title>
 
-  <link href="/web/css/bootstrap.min.css" rel="stylesheet"/>
-  <link href="/web/css/index.css" rel="stylesheet"/>
-  <script src="/web/js/jquery.min.js"></script>
-  <script src="/web/js/bootstrap.min.js"></script>
+  <link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="<%=request.getContextPath()%>/css/index.css" rel="stylesheet"/>
+  <script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
+  <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
 
-  <script src="/web/js/angular/angular.min.js"></script>
-  <script src="/web/js/angular/angular-cookies.min.js"></script>
-  <script src="/web/js/angular/cart_controller.js"></script>
+  <script src="<%=request.getContextPath()%>/js/angular/angular.min.js"></script>
+  <script src="<%=request.getContextPath()%>/js/angular/angular-cookies.min.js"></script>
+  <script src="<%=request.getContextPath()%>/js/angular/cart_controller.js"></script>
   <style>
     table th, td {
       text-align: center;
@@ -110,12 +110,12 @@
   <div ng-model="order_submitted" ng-show="order_submitted">
     <p>订单号: {{order_id}}</p>
 
-    <h2><a href="/web/customer/order-details/">查看订单状态</a></h2>
+    <h2><a href="<%=request.getContextPath()%>/customer/order-details/">查看订单状态</a></h2>
   </div>
 
   <div id="goodsDetailTemplate"></div>
   <script>
-    $( "#goodsDetailTemplate" ).load( "/web/html/goodsDetail.html" );
+    $( "#goodsDetailTemplate" ).load( "<%=request.getContextPath()%>/html/goodsDetail.html" );
   </script>
 
 </div>

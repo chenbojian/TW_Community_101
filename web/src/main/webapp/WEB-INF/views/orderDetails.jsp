@@ -11,15 +11,15 @@
 <head lang="en">
   <meta http-equiv="CONTENT-TYPE" CONTENT="text/html" charset="UTF-8">
   <title>Order Detail | Community 101</title>
-  <link href="/web/css/bootstrap.min.css" rel="stylesheet"/>
-  <link href="/web/css/index.css" rel="stylesheet"/>
-  <link rel="stylesheet" href="/web/css/order.css" type="text/css">
+  <link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="<%=request.getContextPath()%>/css/index.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="<%=request.getContextPath()%>/css/order.css" type="text/css">
 
-  <script src="/web/js/jquery.min.js"></script>
-  <script src="/web/js/bootstrap.min.js"></script>
-  <script src="/web/js/angular/angular.min.js"></script>
-  <script src="/web/js/angular/angular-cookies.min.js"></script>
-  <script src="/web/js/angular/order_detail_controller.js"></script>
+  <script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
+  <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
+  <script src="<%=request.getContextPath()%>/js/angular/angular.min.js"></script>
+  <script src="<%=request.getContextPath()%>/js/angular/angular-cookies.min.js"></script>
+  <script src="<%=request.getContextPath()%>/js/angular/order_detail_controller.js"></script>
 </head>
 <body ng-controller="OrderDetailController">
 <jsp:include page="template/customerNavbar.jsp"></jsp:include>
@@ -51,7 +51,7 @@
 
 <div id="goodsDetailTemplate"></div>
 <script>
-  $( "#goodsDetailTemplate" ).load( "/web/html/goodsDetail.html" );
+  $( "#goodsDetailTemplate" ).load( "<%=request.getContextPath()%>/html/goodsDetail.html" );
 </script>
 
 </body>
