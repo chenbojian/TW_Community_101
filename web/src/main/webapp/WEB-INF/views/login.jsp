@@ -22,7 +22,7 @@
 <div class="row">
   <div class="center">
     <div class="well well-padding">
-      <legend>注册</legend>
+      <legend>登录</legend>
       <form method="POST" action="<%=request.getContextPath()%>/customer/login" accept-charset="UTF-8">
         <div class="form-group">
           <input placeholder="联系电话" ng-model="tel_phone" type="text" name="telPhone">
