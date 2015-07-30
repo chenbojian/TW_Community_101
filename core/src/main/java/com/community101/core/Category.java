@@ -1,10 +1,9 @@
 package com.community101.core;
 
+import com.community101.core.views.Views;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonView;
-import com.fasterxml.jackson.annotation.ObjectIdGenerator;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import com.fasterxml.jackson.core.JsonGenerator;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -19,9 +18,11 @@ public class Category {
     @Id
     @Column(name = "id")
     @GeneratedValue
+    @JsonView(Views.CategoryBase.class)
     private long id;
 
     @Column(name = "name")
+    @JsonView(Views.CategoryBase.class)
     private String name;
 
     @OneToMany(mappedBy = "category")

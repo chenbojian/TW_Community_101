@@ -2,6 +2,8 @@ package com.community101.admin.api;
 
 import com.community101.core.Category;
 import com.community101.core.service.CategoryService;
+import com.community101.core.views.Views;
+import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,6 +25,7 @@ public class CategoryController {
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @JsonView(Views.CategoryBase.class)
     public List<Category> listCategories(){
         return categoryService.listCategory();
     }
