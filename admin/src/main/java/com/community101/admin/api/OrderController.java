@@ -63,6 +63,14 @@ public class OrderController {
         writer.print(json);
     }
 
+    @RequestMapping("/hasNewOrder")
+    public NewOrderMSG hasNewOrder(HttpServletResponse response) throws Exception{
+        if(ordersService.hasNewOrders()){
+            ordersService.cleanNewOrdersTable();
+            return new NewOrderMSG("yes");
+        }else return null;
+    }
+
     @RequestMapping("/dispatchOrder")
     public void dispatchOrder(long orderId){
         ordersService.dispatchOrder(orderId);
@@ -85,4 +93,19 @@ public class OrderController {
         return Mapper.makeOrderDetailDTO(orders);
     }
 
+    class NewOrderMSG{
+        public NewOrderMSG(String s){
+            this.hasNewOrders = s;
+        }
+
+        public String getHasNewOrders() {
+            return hasNewOrders;
+        }
+
+        public void setHasNewOrders(String hasNewOrders) {
+            this.hasNewOrders = hasNewOrders;
+        }
+
+        private String hasNewOrders;
+    }
 }

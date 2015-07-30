@@ -40,6 +40,8 @@ App.controller("orderManagerController", function($scope, $http){
     $scope.orders_total_price=0;
     $scope.orders_total_num=0;
 
+
+
     var getNewOrders = function() {
         $http.get($scope.newOrdersUrl).success(function(data, status, headers, config){
             $scope.newOrders = data;
@@ -92,7 +94,7 @@ App.controller("orderManagerController", function($scope, $http){
         }
 
         else if (Notification.permission === "granted") {
-            var notification = new Notification("已获得桌面通知权限。");
+            //var notification = new Notification("已获得桌面通知权限。");
         }
 
         else if (Notification.permission !== 'denied') {
@@ -130,15 +132,25 @@ App.controller("orderManagerController", function($scope, $http){
         }, 10000);
     };
 
-    $scope.$watch("newOrders", function(newValue, oldValue, scope){  //监测新订单列表，有新订单的话闪烁标题并发出提示音
-        if(newValue.length>oldValue.length){
-            show();
-            $scope.show_desktop_notification('有新订单！');
-            $scope.sound.play();
-        }
-    },true);
+    //$scope.$watch("newOrders", function(newValue, oldValue, scope){  //监测新订单列表，有新订单的话闪烁标题并发出提示音
+    //    if(newValue.length>oldValue.length){
+    //        show();
+    //        $scope.show_desktop_notification('有新订单！');
+    //        $scope.sound.play();
+    //    }
+    //},true);
+    var hasNewOrder = function(){
+        $http.get("/admin/api/order/hasNewOrder").success(function(data, status, headers, config) {
+            if(data.hasNewOrders == "yes"){
+                show();
+                $scope.show_desktop_notification('有新订单！');
+                $scope.sound.play();
+                getNewOrders();
+            }
+        });
+    };
 
-    setInterval(getNewOrders, 5000);
+    setInterval(hasNewOrder, 5000);
 
 
     var get_new_orders_list=function(){

@@ -78,4 +78,14 @@ public class OrdersService {
     public OrderGoods findOrderGoodsById(long id) {
         return orderGoodsDAO.findOrderGoodsById(id);
     }
+
+    @Transactional
+    public boolean hasNewOrders(){
+        return ordersDAO.hasNewOrders();
+    }
+
+    @Transactional
+    public void cleanNewOrdersTable(){
+        ordersDAO.cleanNewOrdersTable();
+    }
 }

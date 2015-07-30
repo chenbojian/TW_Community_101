@@ -1,0 +1,2 @@
+CREATE TABLE community101.NEW_ORDERS(
+  order_id INT NOT NULL);
