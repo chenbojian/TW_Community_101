@@ -31,6 +31,10 @@ $(function () {
     clearCookie();
 });
 
+var getContextPath = function() {
+    return window.location.pathname.substring(0, window.location.pathname.indexOf("/",2));
+};
+
 //api interface
 function getGoodsNumByIdFromCookie(cid) {
     var allGoodsNumStr = $.cookie("allgoods");
@@ -49,7 +53,7 @@ function getGoodsNumByIdFromCookie(cid) {
 }
 function getGoods(cid) {
 
-    var url = "/web/api/customer/goods?cid=" + cid;
+    var url = getContextPath + "/api/customer/goods?cid=" + cid;
 
     var $goodslist = $("#goodslist");
     $goodslist.html('');
@@ -98,7 +102,7 @@ function getGoods(cid) {
 }
 function getCategory() {
 
-    var url = "/web/api/customer/categories";
+    var url = getContextPath + "/api/customer/categories";
 
     var $categorylist = $("#categorylist");
     $.ajax({
@@ -127,7 +131,7 @@ function getCategory() {
 }
 function getGoodsDetail(gid) {
 
-    var url = "/web/api/customer/goods/details?id=" + gid;
+    var url = getContextPath + "/api/customer/goods/details?id=" + gid;
 
     $.ajax({
         url: url,
@@ -153,7 +157,7 @@ function getGoodsDetail(gid) {
 }
 
 function clearCookie() {
-    $.cookie("allgoods", "", {path: '/web/'});
+    $.cookie("allgoods", "", {path: getContextPath + '/'});
 }
 function updateCookie(gid, num) {
     var allgoodscookiename = "allgoods";
@@ -182,6 +186,6 @@ function updateCookie(gid, num) {
             all += "|" + result;
         }
     }
-    $.cookie(allgoodscookiename, all, {path: '/web/'});
+    $.cookie(allgoodscookiename, all, {path: getContextPath + '/'});
 }
 

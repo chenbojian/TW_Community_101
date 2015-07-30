@@ -4,6 +4,10 @@
 var app = angular.module("App",[]);
 
 app.controller("signInController", function($scope, $http) {
+    var getContextPath = function() {
+        return window.location.pathname.substring(0, window.location.pathname.indexOf("/",2));
+    };
+
     $scope.tel_phone = "";
     $scope.password = "";
     $scope.password_repeat = "";
@@ -12,7 +16,7 @@ app.controller("signInController", function($scope, $http) {
     $scope.msg = "";
     $scope.send_msg_btn = "发送短信验证码";
 
-    $scope.sign_in_url = "/web/api/customer/signIn";
+    $scope.sign_in_url = getContextPath + "/api/customer/signIn";
 
     $scope.$watch("password_repeat", function(newValue, oldValue, scope){
         if($scope.password != $scope.password_repeat){

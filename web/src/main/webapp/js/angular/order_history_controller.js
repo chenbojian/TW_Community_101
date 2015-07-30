@@ -1,7 +1,11 @@
 var App = angular.module('App', ['ngCookies']);
 
 App.controller('OrderHistoryController', function($scope, $http, $cookies) {
-    $scope.webapi_order_history = "/web/api/customer/orders";
+    var getContextPath = function() {
+        return window.location.pathname.substring(0, window.location.pathname.indexOf("/",2));
+    };
+
+    $scope.webapi_order_history = getContextPath + "/api/customer/orders";
 
     $scope.message = '';
     $scope.order_list = null;
@@ -15,7 +19,7 @@ App.controller('OrderHistoryController', function($scope, $http, $cookies) {
 
     $scope.getGoodsDetail = function() {
 
-        var url = "/web/api/customer/order/goods?" + "&goodsId=" + this.goods.id;
+        var url = getContextPath + "/api/customer/order/goods?" + "&goodsId=" + this.goods.id;
 
         $.ajax({
             url: url,
@@ -40,7 +44,7 @@ App.controller('OrderHistoryController', function($scope, $http, $cookies) {
     }
 
     $scope.launchOrderDetails = function() {
-        $cookies.put('orderId', this.order.orderId.toString(), {'path': '/web/'});
-        window.location.assign('/web/customer/order-details/');
+        $cookies.put('orderId', this.order.orderId.toString(), {'path': getContextPath + '/'});
+        window.location.assign(getContextPath + '/customer/order-details/');
     }
 });
