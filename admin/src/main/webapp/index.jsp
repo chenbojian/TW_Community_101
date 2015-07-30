@@ -8,9 +8,18 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-  <title></title>
+  <title>后台管理系统</title>
+  <link rel="stylesheet" href="js/components/bootstrap/dist/css/bootstrap.min.css"/>
 </head>
-<body onload="parent.location='./manage/goods'">
+<body>
+<jsp:include page="/navbar"></jsp:include>
 
+<div ng-view></div>
+
+<script src="js/components/jquery/dist/jquery.min.js"></script>
+<script src="js/components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="js/components/angular/angular.min.js"></script>
+<script src="js/components/angular-cookie/angular-cookie.min.js"></script>
+<script src="js/components/angular-route/angular-route.min.js"></script>
 </body>
 </html>
