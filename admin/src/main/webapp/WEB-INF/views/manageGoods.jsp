@@ -10,7 +10,7 @@
 <html>
 <head>
   <title>管理商品</title>
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/js/components/bootstrap/dist/css/bootstrap.min.css"/>
 </head>
 <body>
 <jsp:include page="./template/navbar.jsp"></jsp:include>
@@ -29,7 +29,7 @@
 
   </div>
 </div>
-<script src="${pageContext.request.contextPath}/js/components/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/components/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/components/jquery/dist/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/components/bootstrap/dist/js/bootstrap.min.js"></script>
 </body>
 </html>

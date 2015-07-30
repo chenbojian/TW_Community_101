@@ -15,7 +15,7 @@
   <link href="<%=request.getContextPath()%>/css/index.css" rel="stylesheet" />
   <script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
   <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
-  <script src="<%=request.getContextPath()%>/js/jquery.cookie.min.js"></script>
+  <script src="<%=request.getContextPath()%>/js/jquery.cookie.js"></script>
   <script src="<%=request.getContextPath()%>/js/default.js"></script>
   <script src="<%=request.getContextPath()%>/js/index.js"></script>
 </head>

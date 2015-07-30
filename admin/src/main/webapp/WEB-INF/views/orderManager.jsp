@@ -11,13 +11,13 @@
 <head>
   <meta charset="UTF-8">
   <title>订单管理</title>
-  <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="${pageContext.request.contextPath}/js/components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
   <link href="${pageContext.request.contextPath}/css/index.css" rel="stylesheet"/>
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/order.css" type="text/css">
 
-  <script src="${pageContext.request.contextPath}/js/components/jquery.min.js"></script>
-  <script src="${pageContext.request.contextPath}/js/components/bootstrap.min.js"></script>
-  <script src="${pageContext.request.contextPath}/js/angular/angular.min.js"></script>
+  <script src="${pageContext.request.contextPath}/js/components/jquery/dist/jquery.min.js"></script>
+  <script src="${pageContext.request.contextPath}/js/components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="${pageContext.request.contextPath}/js/components/angular/angular.min.js"></script>
   <script src="${pageContext.request.contextPath}/js/app/controller/order-manager-controller.js"></script>
 </head>
 <body ng-controller="orderManagerController">

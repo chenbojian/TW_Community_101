@@ -3,7 +3,7 @@
 <html>
 <head>
   <title>管理商品分类</title>
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/js/components/bootstrap/dist/css/bootstrap.min.css"/>
 </head>
 <body>
 <jsp:include page="./template/navbar.jsp"></jsp:include>
@@ -42,9 +42,9 @@
     </form>
   </div>
 </div>
-<script src="${pageContext.request.contextPath}/js/components/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/components/bootstrap.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/components/underscore-min.js"></script>
+<script src="${pageContext.request.contextPath}/js/components/jquery/dist/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/components/underscore/underscore-min.js"></script>
 <script type="text/html" id="editCategory">
   <form action="${pageContext.request.contextPath}/manage/category/<\%=id%>/edit" method="post">
     <div class="form-group col-sm-10">
