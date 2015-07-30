@@ -125,32 +125,7 @@ function getCategory() {
         $(this).addClass("active");
     });
 }
-function getGoodsDetail(gid) {
-
-    var url = $env.contextPath + "/api/customer/goods/details?id=" + gid;
-
-    $.ajax({
-        url: url,
-        type: "get",
-        success: function (data) {
-            var html = $("#goodsDetail").html();
-            html = html.replace("[goodsname]", data.name);
-            html = html.replace("[goodsdescription]", data.description);
-            html = html.replace("[goodsprice]", data.price / 100);
-            html = html.replace("[goodsnum]", getGoodsNumByIdFromCookie(data.id));
-            //alert(html);
-
-            $("#goodsDetail").html(html);
-            $("#goodsDetail").modal();
-            $("#goodsDetailName").html(data.name);
-            $("#goodsDetailDescription").html(data.description);
-            var price = data.price / 100;
-            $("#goodsDetailPrice").html(price.toFixed(2));
-            $("#goodsDetailPicture").attr("src", data.pic);
-
-        }
-    });
-}
+var getGoodsDetail = $functions.getGoodsDetail;
 
 function clearCookie() {
     $.cookie("allgoods", "", {path: $env.contextPath + '/'});

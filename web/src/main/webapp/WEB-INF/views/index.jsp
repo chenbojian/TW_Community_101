@@ -16,7 +16,7 @@
   <script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
   <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
   <script src="<%=request.getContextPath()%>/js/jquery.cookie.min.js"></script>
-  <script src="<%=request.getContextPath()%>/js/env.js"></script>
+  <script src="<%=request.getContextPath()%>/js/default.js"></script>
   <script src="<%=request.getContextPath()%>/js/index.js"></script>
 </head>
 <body>
@@ -45,10 +45,7 @@
   </div>
 </div>
 
-<div id="goodsDetailTemplate"></div>
-<script>
-  $( "#goodsDetailTemplate" ).load( "<%=request.getContextPath()%>/html/goodsDetail.html" );
-</script>
+<jsp:include page="template/goodsDetails.jsp"></jsp:include>
 
 </body>
 </html>

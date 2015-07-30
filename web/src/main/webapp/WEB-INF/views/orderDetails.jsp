@@ -19,7 +19,7 @@
   <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
   <script src="<%=request.getContextPath()%>/js/angular/angular.min.js"></script>
   <script src="<%=request.getContextPath()%>/js/angular/angular-cookies.min.js"></script>
-  <script src="<%=request.getContextPath()%>/js/env.js"></script>
+  <script src="<%=request.getContextPath()%>/js/default.js"></script>
   <script src="<%=request.getContextPath()%>/js/angular/order_detail_controller.js"></script>
 </head>
 <body ng-controller="OrderDetailController">
@@ -40,7 +40,7 @@
   </tr>
   <tr ng-repeat="goods in item.goodsInOrderDTOList">
     <td><img class="goodsLogoInCart" src={{goods.pic}} alt={{goods.name}}"/></td>
-    <td><a href="javascript:void(0);" ng-click="getGoodsDetail()">{{goods.name}}</a></td>
+    <td><a href="javascript:void(0);" ng-click="getOrderGoodsDetail()">{{goods.name}}</a></td>
     <td>{{goods.price/100 | currency : "¥" : 2}}</td>
     <td>{{goods.quantity}}</td>
     <td>{{goods.price/100 * goods.quantity | currency : "¥" : 2}}</td>
@@ -50,10 +50,7 @@
   总价:<strong>{{item.totalPrice/100 | currency : "¥" : 2}}</strong>
 </div>
 
-<div id="goodsDetailTemplate"></div>
-<script>
-  $( "#goodsDetailTemplate" ).load( "<%=request.getContextPath()%>/html/goodsDetail.html" );
-</script>
+<jsp:include page="template/goodsDetails.jsp"></jsp:include>
 
 </body>
 </html>
