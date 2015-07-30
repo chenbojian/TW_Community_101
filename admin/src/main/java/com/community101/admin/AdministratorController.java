@@ -8,13 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
  * Created by chenjian on 7/30/15.
  */
 @RestController
-@RequestMapping("")
 public class AdministratorController {
-
-    @RequestMapping("/")
-    public ModelAndView getIndex(){
-        return new ModelAndView("orderManager");
-    }
 
     @RequestMapping("/order-manager")
     public ModelAndView getOrderManager(){
