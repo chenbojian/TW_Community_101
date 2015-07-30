@@ -39,7 +39,7 @@ public class UserController {
             user = userService.findUserByTel(telPhone);
             session.setAttribute("userId",user.getId());
         }
-        return new ModelAndView("redirect:" + request.getContextPath());
+        return new ModelAndView("redirect:/");
     }
 
 
