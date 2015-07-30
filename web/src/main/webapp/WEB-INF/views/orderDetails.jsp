@@ -19,6 +19,7 @@
   <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
   <script src="<%=request.getContextPath()%>/js/angular/angular.min.js"></script>
   <script src="<%=request.getContextPath()%>/js/angular/angular-cookies.min.js"></script>
+  <script src="<%=request.getContextPath()%>/js/env.js"></script>
   <script src="<%=request.getContextPath()%>/js/angular/order_detail_controller.js"></script>
 </head>
 <body ng-controller="OrderDetailController">

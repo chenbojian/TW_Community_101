@@ -4,15 +4,12 @@
 var app = angular.module("App",[]);
 
 app.controller("loginController", function($scope, $http, $location) {
-    var getContextPath = function() {
-        return window.location.pathname.substring(0, window.location.pathname.indexOf("/",2));
-    };
 
     $scope.tel_phone = "";
     $scope.password = "";
     $scope.currentUrl = "123";
 
-    $scope.login_url = getContextPath() + "/api/customer/login";
+    $scope.login_url = $env.contextPath + "/api/customer/login";
 
     $scope.login = function(){
         var params = {

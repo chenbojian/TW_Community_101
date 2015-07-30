@@ -1,14 +1,11 @@
 var App = angular.module('App', ['ngCookies']);
 
 App.controller('CartController', function($scope, $http, $cookies) {
-    var getContextPath = function() {
-        return window.location.pathname.substring(0, window.location.pathname.indexOf("/",2));
-    };
 
     $scope.message = '';
     $scope.is_fake = true;
-    $scope.webapi_goods_simple_info = getContextPath() + "/api/customer/goods/simple";
-    $scope.webapi_order_submit = getContextPath() + "/api/customer/submit";
+    $scope.webapi_goods_simple_info = $env.contextPath + "/api/customer/goods/simple";
+    $scope.webapi_order_submit = $env.contextPath + "/api/customer/submit";
     $scope.selected_items_cookie_key = "allgoods";
     $scope.selected_items_id = [];
     $scope.selected_items_quantity = [];
@@ -71,7 +68,7 @@ App.controller('CartController', function($scope, $http, $cookies) {
 
     $scope.getGoodsDetail = function() {
 
-        var url = getContextPath() + "/api/customer/goods/details?id=" + this.item.id;
+        var url = $env.contextPath + "/api/customer/goods/details?id=" + this.item.id;
 
         $.ajax({
             url: url,
@@ -150,8 +147,8 @@ App.controller('CartController', function($scope, $http, $cookies) {
                 $scope.message = "";
                 $scope.can_submit_order = false;
                 $scope.order_submitted = true;
-                $cookies.put("orderId", $scope.order_id, {'path': getContextPath() + '/', 'expires':$scope.expires_date});
-                $cookies.put($scope.selected_items_cookie_key,'', {'path': getContextPath() + '/'});
+                $cookies.put("orderId", $scope.order_id, {'path': $env.contextPath + '/', 'expires':$scope.expires_date});
+                $cookies.put($scope.selected_items_cookie_key,'', {'path': $env.contextPath + '/'});
             }
             else {
                 var error_messages = data.errorMessages;

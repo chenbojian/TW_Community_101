@@ -19,6 +19,7 @@
 
   <script src="<%=request.getContextPath()%>/js/angular/angular.min.js"></script>
   <script src="<%=request.getContextPath()%>/js/angular/angular-cookies.min.js"></script>
+  <script src="<%=request.getContextPath()%>/js/env.js"></script>
   <script src="<%=request.getContextPath()%>/js/angular/cart_controller.js"></script>
   <style>
     table th, td {

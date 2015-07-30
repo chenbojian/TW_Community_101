@@ -12,6 +12,7 @@
   <meta charset="UTF-8">
   <title>登录</title>
   <script src="<%=request.getContextPath()%>/js/angular/angular.min.js"></script>
+  <script src="<%=request.getContextPath()%>/js/env.js"></script>
   <script src="<%=request.getContextPath()%>/js/angular/login-controller.js"></script>
   <link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet"/>
   <link href="<%=request.getContextPath()%>/css/login.css" rel="stylesheet"/>
