@@ -16,6 +16,11 @@ dependencies {
 }
 
 jettyRun {
+    httpPort = 8081
     reload = "automatic"
     scanIntervalSeconds = 1
+}
+
+task startWeb (dependsOn: jettyRun) {
+
 }
