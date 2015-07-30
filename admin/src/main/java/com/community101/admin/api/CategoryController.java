@@ -1,9 +1,13 @@
 package com.community101.admin.api;
 
+import com.community101.core.Category;
 import com.community101.core.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * Created by chenbojian on 7/28/15.
@@ -18,6 +22,10 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    public List<Category> listCategories(){
+        return categoryService.listCategory();
+    }
 
 
 }

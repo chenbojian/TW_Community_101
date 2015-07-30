@@ -21,6 +21,7 @@
 <script src="js/components/angular/angular.min.js"></script>
 <script src="js/components/angular-cookie/angular-cookie.min.js"></script>
 <script src="js/components/angular-route/angular-route.min.js"></script>
+<script src="js/components/angular-resource/angular-resource.min.js"></script>
 <script src="js/app/admin.js"></script>
 <script src="js/app/controller/categoryController.js"></script>
 </body>
