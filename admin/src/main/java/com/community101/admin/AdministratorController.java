@@ -11,6 +11,11 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("")
 public class AdministratorController {
 
+    @RequestMapping("/")
+    public ModelAndView getIndex(){
+        return new ModelAndView("orderManager");
+    }
+
     @RequestMapping("/order-manager")
     public ModelAndView getOrderManager(){
         return new ModelAndView("orderManager");
