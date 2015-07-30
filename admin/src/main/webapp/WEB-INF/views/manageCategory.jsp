@@ -44,18 +44,23 @@
 </div>
 <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/underscore-min.js"></script>
+<script type="text/html" id="editCategory">
+  <form action="${pageContext.request.contextPath}/manage/category/<\%=id%>/edit" method="post">
+    <div class="form-group col-sm-10">
+      <input class="form-control" type="text" name="categoryName" value="<\%=editObj.html().trim()%>"/>
+    </div>
+    <button class="btn btn-default">完成</button>
+  </form>
+</script>
 
 <script>
   $(function () {
     $("table button").click(function () {
       var editObj = $(this).parent().prev();
       if ($(this).html() == "修改") {
-        var html = '<form action="${pageContext.request.contextPath}/manage/category/' + $(this).val() + '/edit" method="post">' +
-            '<div class="form-group col-sm-10">' +
-            '<input class="form-control" type="text" name="categoryName" value="' + editObj.html().trim() + '"/>' +
-            '</div>' +
-            '<button class="btn btn-default">完成</button>' +
-            '</form>';
+        var template = _.template($("#editCategory").html());
+        var html = template({id: $(this).id, editObj: editObj});
         editObj.html(html);
         $(this).html("取消");
       } else {
