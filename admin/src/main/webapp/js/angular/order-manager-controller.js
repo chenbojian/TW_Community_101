@@ -5,6 +5,9 @@ var App = angular.module("App",[]);
 
 App.controller("orderManagerController", function($scope, $http){
 
+    $scope.host = window.location.host;
+    $scope.host2=document.domain;
+
     $scope.newOrdersUrl = "/admin/api/order/newOrders";
     $scope.dispatchingOrdersUrl = "/admin/api/order/dispatchingOrders";
     $scope.completedOrdersUrl = "/admin/api/order/completedOrders";
