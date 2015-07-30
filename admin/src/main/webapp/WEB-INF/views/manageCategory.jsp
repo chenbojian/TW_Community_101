@@ -42,9 +42,9 @@
     </form>
   </div>
 </div>
-<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/underscore-min.js"></script>
+<script src="${pageContext.request.contextPath}/js/components/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/components/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/components/underscore-min.js"></script>
 <script type="text/html" id="editCategory">
   <form action="${pageContext.request.contextPath}/manage/category/<\%=id%>/edit" method="post">
     <div class="form-group col-sm-10">

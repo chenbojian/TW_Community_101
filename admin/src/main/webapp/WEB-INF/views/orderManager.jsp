@@ -15,10 +15,10 @@
   <link href="${pageContext.request.contextPath}/css/index.css" rel="stylesheet"/>
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/order.css" type="text/css">
 
-  <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
-  <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+  <script src="${pageContext.request.contextPath}/js/components/jquery.min.js"></script>
+  <script src="${pageContext.request.contextPath}/js/components/bootstrap.min.js"></script>
   <script src="${pageContext.request.contextPath}/js/angular/angular.min.js"></script>
-  <script src="${pageContext.request.contextPath}/js/angular/order-manager-controller.js"></script>
+  <script src="${pageContext.request.contextPath}/js/app/controller/order-manager-controller.js"></script>
 </head>
 <body ng-controller="orderManagerController">
 

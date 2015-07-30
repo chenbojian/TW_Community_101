@@ -13,11 +13,11 @@
   <title>Order Status | Community 101</title>
   <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet"/>
 
-  <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
-  <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+  <script src="${pageContext.request.contextPath}/js/components/jquery.min.js"></script>
+  <script src="${pageContext.request.contextPath}/js/components/bootstrap.min.js"></script>
   <script src="${pageContext.request.contextPath}/js/angular/angular.min.js"></script>
   <script src="${pageContext.request.contextPath}/js/angular/angular-cookies.min.js"></script>
-  <script src="${pageContext.request.contextPath}/js/angular/order-manager-controller.js"></script>
+  <script src="${pageContext.request.contextPath}/js/app/controller/order-manager-controller.js"></script>
 </head>
 <body ng-controller="orderManagerController">
 
