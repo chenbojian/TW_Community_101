@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -51,6 +52,10 @@ public class UserController {
             if(user.getPassword().equals(password)){
                 session.setAttribute("userId", user.getId());
                 System.out.println("success");
+                Cookie cookie = new Cookie("username", user.getTelPhone());
+                cookie.setPath(request.getContextPath() + "/");
+
+                response.addCookie(cookie);
                 response.sendRedirect(request.getContextPath() + "/");
             }else{
                 System.out.println("failed");
@@ -60,11 +65,14 @@ public class UserController {
 
     }
 
-    @RequestMapping(value = "/logout", method = RequestMethod.POST)
-    public void logout(HttpServletRequest request) {
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public ModelAndView logout(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         session.removeAttribute("userId");
 
-        return;
+        Cookie cookie = new Cookie("username", null);
+        cookie.setPath(request.getContextPath() + "/");
+        response.addCookie(cookie);
+        return new ModelAndView("redirect:/");
     }
 }

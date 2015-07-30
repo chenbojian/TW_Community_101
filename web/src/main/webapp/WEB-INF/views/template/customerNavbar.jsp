@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: MiffyLiye
@@ -21,9 +22,17 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><a href="<%=request.getContextPath()%>/customer/order-history/">订单记录</a></li>
+
+        <c:if test="${cookie['username'] != null && cookie['username'].value != '' }">
+          <li><a>欢迎${cookie['username'].value}</a></li>
+        <li><a href="<%=request.getContextPath()%>/customer/logout/">登出</a></li>
+        </c:if>
+
+        <c:if test="${cookie['username'] == null || cookie['username'].value == ''}">
         <li><a href="<%=request.getContextPath()%>/customer/signup/">注册</a></li>
         <li><a href="<%=request.getContextPath()%>/customer/login/">登录</a></li>
-        <li><a onclick="$functions.logout()" href="javascript:void(0);">登出</a></li>
+        </c:if>
+
       </ul>
     </div>
   </div>
