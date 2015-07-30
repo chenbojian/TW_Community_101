@@ -24,7 +24,7 @@ public class CategoryManageController {
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public ModelAndView categoryManagePage() {
-        ModelAndView modelAndView = new ModelAndView("manageCategory");
+        ModelAndView modelAndView = new ModelAndView("oldManageCategory");
         modelAndView.addObject("categories", categoryService.listCategory());
         return modelAndView;
     }

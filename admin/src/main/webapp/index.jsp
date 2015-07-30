@@ -11,7 +11,7 @@
   <title>后台管理系统</title>
   <link rel="stylesheet" href="js/components/bootstrap/dist/css/bootstrap.min.css"/>
 </head>
-<body>
+<body ng-app="adminApp">
 <jsp:include page="/navbar"></jsp:include>
 
 <div ng-view></div>
@@ -21,5 +21,7 @@
 <script src="js/components/angular/angular.min.js"></script>
 <script src="js/components/angular-cookie/angular-cookie.min.js"></script>
 <script src="js/components/angular-route/angular-route.min.js"></script>
+<script src="js/app/admin.js"></script>
+<script src="js/app/controller/categoryController.js"></script>
 </body>
 </html>
