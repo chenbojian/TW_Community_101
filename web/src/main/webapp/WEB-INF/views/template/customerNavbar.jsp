@@ -23,6 +23,7 @@
         <li><a href="<%=request.getContextPath()%>/customer/order-history/">订单记录</a></li>
         <li><a href="<%=request.getContextPath()%>/customer/signup/">注册</a></li>
         <li><a href="<%=request.getContextPath()%>/customer/login/">登录</a></li>
+        <li><a onclick="$functions.logout()" href="javascript:void(0);">登出</a></li>
       </ul>
     </div>
   </div>

@@ -55,4 +55,16 @@ $functions.getGoodsDetail = function(gid) {
 
         }
     });
-}
+};
+
+$functions.logout = function() {
+    var url = $env.contextPath + "/customer/logout";
+
+    $.ajax({
+        url: url,
+        type: "post",
+        success:function(data) {
+            window.location.assign($env.contextPath + "/");
+        }
+    });
+};

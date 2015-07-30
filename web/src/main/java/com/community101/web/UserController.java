@@ -59,4 +59,12 @@ public class UserController {
         }else response.getWriter().write("<script language=javascript>alert('telPhone is not signed up!');window.location.href='" + request.getContextPath() + "/customer/login/';</script>");
 
     }
+
+    @RequestMapping(value = "/logout", method = RequestMethod.POST)
+    public void logout(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        session.removeAttribute("userId");
+
+        return;
+    }
 }
