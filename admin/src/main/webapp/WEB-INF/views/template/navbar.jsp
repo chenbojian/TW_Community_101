@@ -27,7 +27,7 @@
              aria-expanded="false">商品管理<span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="${pageContext.request.contextPath}/manage/goods/input">添加商品</a></li>
-            <li><a href="#">类型管理</a></li>
+            <li><a href="${pageContext.request.contextPath}/manage/category">类型管理</a></li>
             <li><a href="#">库存管理</a></li>
             <li><a href="#">打折活动</a></li>
           </ul>
