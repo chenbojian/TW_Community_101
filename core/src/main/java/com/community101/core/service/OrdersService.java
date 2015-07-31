@@ -9,12 +9,16 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Created by jiaoming on 7/17/15.
  */
 @Service
 public class OrdersService {
+    static private final Lock lock = new ReentrantLock();
+
     private OrdersDAO ordersDAO;
     private OrderGoodsDAO orderGoodsDAO;
 
@@ -51,18 +55,51 @@ public class OrdersService {
     }
 
     @Transactional
-    public void dispatchOrder(long orderId) {
-        ordersDAO.dispatchOrder(orderId);
+    public boolean dispatchOrder(long orderId) {
+        boolean isDone = false;
+        try {
+            lock.tryLock();
+            if (ordersDAO.findOrdersById(orderId).getStatus().equals("new")) {
+                ordersDAO.dispatchOrder(orderId);
+                isDone = true;
+            }
+        }
+        finally {
+            lock.unlock();
+        }
+        return isDone;
     }
 
     @Transactional
-    public void completeOrder(long orderId) {
-        ordersDAO.completeOrder(orderId);
+    public boolean completeOrder(long orderId) {
+        boolean isDone = false;
+        try {
+            lock.tryLock();
+            if (ordersDAO.findOrdersById(orderId).getStatus().equals("dispatching")) {
+                ordersDAO.completeOrder(orderId);
+                isDone = true;
+            }
+        }
+        finally {
+            lock.unlock();
+        }
+        return isDone;
     }
 
     @Transactional
-    public void cancelOrder(long orderId){
-        ordersDAO.cancelOrder(orderId);
+    public boolean cancelOrder(long orderId){
+        boolean isDone = false;
+        try {
+            lock.tryLock();
+            if (!ordersDAO.findOrdersById(orderId).getStatus().equals("cancel")) {
+                ordersDAO.cancelOrder(orderId);
+                isDone = true;
+            }
+        }
+        finally {
+            lock.unlock();
+        }
+        return isDone;
     }
 
     @Transactional
