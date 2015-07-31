@@ -65,6 +65,11 @@ public class CustomerAPIController {
         return goodsSummaryDTOList;
     }
 
+    @RequestMapping("/goodsWithoutCategory")
+    public List<GoodsSummaryDTO> listGoodsWithoutCategory(){
+        return Mapper.makeGoodsSummaryDTOList(goodsService.listGoodsWithoutCategory());
+    }
+
     @RequestMapping("/goods/all")
     public List<GoodsSummaryDTO> listAllGoods() {
         return Mapper.makeGoodsSummaryDTOList(goodsService.listGoods());

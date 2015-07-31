@@ -36,4 +36,8 @@ public class GoodsDAO {
         sessionFactory.getCurrentSession()
                 .update(goods);
     }
+
+    public List<Goods> goodsWithoutCategory() {
+        return sessionFactory.getCurrentSession().createQuery("from Goods g where g.category=null").list();
+    }
 }
