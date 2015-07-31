@@ -79,7 +79,7 @@ public class OrderController {
         boolean isDone = false;
         try {
             lock.tryLock();
-            if (ordersService.findOrdersById(orderId).getStatus().equals("dispatching")) {
+            if (ordersService.findOrdersById(orderId).getStatus().equals("new")) {
                 ordersService.dispatchOrder(orderId);
                 isDone = true;
             }
@@ -95,7 +95,7 @@ public class OrderController {
         boolean isDone = false;
         try {
             lock.tryLock();
-            if (ordersService.findOrdersById(orderId).getStatus().equals("completed")) {
+            if (ordersService.findOrdersById(orderId).getStatus().equals("dispatching")) {
                 ordersService.completeOrder(orderId);
                 isDone = true;
             }
