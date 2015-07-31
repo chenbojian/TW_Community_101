@@ -6,32 +6,16 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%--<!DOCTYPE html>--%>
-<%--<html lang="zh-Hans" ng-app="App">--%>
-<%--<head>--%>
-  <%--<meta charset="UTF-8">--%>
-  <%--<title>Order Status | Community 101</title>--%>
-  <%--<link href="${pageContext.request.contextPath}/js/components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>--%>
-
-  <%--<script src="${pageContext.request.contextPath}/api/env/env.js"></script>--%>
-  <%--<script src="${pageContext.request.contextPath}/js/components/jquery/dist/jquery.min.js"></script>--%>
-  <%--<script src="${pageContext.request.contextPath}/js/components/bootstrap/dist/js/bootstrap.min.js"></script>--%>
-  <%--<script src="${pageContext.request.contextPath}/js/components/angular/angular.min.js"></script>--%>
-  <%--<script src="${pageContext.request.contextPath}/js/components/angular-cookie/angular-cookie.min.js"></script>--%>
-  <%--<script src="${pageContext.request.contextPath}/js/app/controller/order-manager-controller.js"></script>--%>
-<%--</head>--%>
-<%--<body ng-controller="orderManagerController">--%>
-
-<%--<jsp:include page="./template/navbar.jsp"></jsp:include>--%>
-
-<h1>总的订单数：{{orders_total_num}}&nbsp;&nbsp;&nbsp;&nbsp;总的收益：{{orders_total_price/100 | currency}}</h1>
+<h1>总的订单数：{{orders_total_num}}总的收益：{{orders_total_price/100 | currency}}</h1>
 
 <h2>新订单</h2>
-<h2>数量：{{new_num}} &nbsp;&nbsp;&nbsp;&nbsp;收益：{{new_total_price/100 | currency}}</h2>
+
+<h2>数量：{{new_num}} 收益：{{new_total_price/100 | currency}}</h2>
+
 <div ng-repeat="item in new_list">
-  <div>订单号：{{item["orderId"]}} &nbsp;&nbsp;&nbsp;&nbsp;
-    下单时间：{{item["createTime"] | date:'yyyy-MM-dd HH:mm:ss'}}&nbsp;&nbsp;&nbsp;&nbsp;
-    联系方式：{{item["telPhone"]}}&nbsp;&nbsp;&nbsp;&nbsp;
+  <div>订单号：{{item["orderId"]}}
+    下单时间：{{item["createTime"] | date:'yyyy-MM-dd HH:mm:ss'}}
+    联系方式：{{item["telPhone"]}}
     配送地址：{{item["address"]}}
   </div>
   <div>选购商品：
@@ -52,12 +36,15 @@
   <br/>
 </div>
 <br/><br/>
+
 <h2>配送中订单</h2>
-<h2>数量：{{dispatching_num}} &nbsp;&nbsp;&nbsp;&nbsp;收益：{{dispatching_total_price/100 | currency}}</h2>
+
+<h2>数量：{{dispatching_num}} 收益：{{dispatching_total_price/100 | currency}}</h2>
+
 <div ng-repeat="item in dispatching_list">
-  <div>订单号：{{item["orderId"]}} &nbsp;&nbsp;&nbsp;&nbsp;
-    下单时间：{{item["createTime"] | date:'yyyy-MM-dd HH:mm:ss'}}&nbsp;&nbsp;&nbsp;&nbsp;
-    联系方式：{{item["telPhone"]}}&nbsp;&nbsp;&nbsp;&nbsp;
+  <div>订单号：{{item["orderId"]}}
+    下单时间：{{item["createTime"] | date:'yyyy-MM-dd HH:mm:ss'}}
+    联系方式：{{item["telPhone"]}}
     配送地址：{{item["address"]}}
   </div>
   <div>选购商品：
@@ -78,12 +65,15 @@
   <br/>
 </div>
 <br/><br/>
+
 <h2>已完成订单</h2>
-<h2>数量：{{completed_num}} &nbsp;&nbsp;&nbsp;&nbsp;收益：{{completed_total_price/100 | currency}}</h2>
+
+<h2>数量：{{completed_num}} 收益：{{completed_total_price/100 | currency}}</h2>
+
 <div ng-repeat="item in completed_list">
-  <div>订单号：{{item["orderId"]}} &nbsp;&nbsp;&nbsp;&nbsp;
-    下单时间：{{item["createTime"] | date:'yyyy-MM-dd HH:mm:ss'}}&nbsp;&nbsp;&nbsp;&nbsp;
-    联系方式：{{item["telPhone"]}}&nbsp;&nbsp;&nbsp;&nbsp;
+  <div>订单号：{{item["orderId"]}}
+    下单时间：{{item["createTime"] | date:'yyyy-MM-dd HH:mm:ss'}}
+    联系方式：{{item["telPhone"]}}
     配送地址：{{item["address"]}}
   </div>
   <div>选购商品：
@@ -103,5 +93,3 @@
   <div>订单总价：{{item["totalPrice"]/100 | currency}}</div>
   <br/>
 </div>
-</body>
-</html>
