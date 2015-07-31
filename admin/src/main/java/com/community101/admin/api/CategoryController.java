@@ -5,9 +5,8 @@ import com.community101.core.service.CategoryService;
 import com.community101.core.views.Views;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,11 +23,23 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     @JsonView(Views.CategoryBase.class)
-    public List<Category> listCategories(){
+    public List<Category> listAll() {
         return categoryService.listCategory();
     }
+    
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteCategory(@PathVariable long id) {
+        categoryService.deleteCategory(id);
+    }
 
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.CREATED)
+    public long addCategory(@RequestBody Category category){
+        categoryService.save(category);
+        return category.getId();
+    }
 
 }

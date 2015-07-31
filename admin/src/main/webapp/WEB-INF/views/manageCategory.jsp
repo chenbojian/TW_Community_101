@@ -19,20 +19,20 @@
       </td>
       <td>
         <button class="btn btn-default">修改</button>
-        <a class="btn btn-default">删除</a>
+        <a class="btn btn-default" ng-click="deleteCategory(category.id)">删除</a>
       </td>
     </tr>
   </table>
 
   <div class="col-sm-8">
-    <form class="form-horizontal" action="${pageContext.request.contextPath}/manage/category/add" method="post">
+    <form class="form-horizontal" ng-submit="createCategory()">
       <div class="col-sm-6">
         <div class="form-group">
-          <input class="form-control" type="text" name="categoryName"/>
+          <input class="form-control" type="text" name="categoryName" ng-model="category.name"/>
         </div>
       </div>
       <div class="col-sm-6">
-        <button class="btn btn-primary">添加分类</button>
+        <button class="btn btn-primary" type="submit">添加分类</button>
         <a class="btn btn-default" href="${pageContext.request.contextPath}/">返回</a>
       </div>
     </form>

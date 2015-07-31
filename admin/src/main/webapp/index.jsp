@@ -18,6 +18,7 @@
 
 <script src="js/components/jquery/dist/jquery.min.js"></script>
 <script src="js/components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="js/components/underscore/underscore-min.js"></script>
 <script src="js/components/angular/angular.min.js"></script>
 <script src="js/components/angular-cookie/angular-cookie.min.js"></script>
 <script src="js/components/angular-route/angular-route.min.js"></script>
