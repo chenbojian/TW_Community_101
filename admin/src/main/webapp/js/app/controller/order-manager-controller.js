@@ -69,21 +69,24 @@ App.controller("orderManagerController", function($scope, $http){
     getDispatchingOrders();
     getNewOrders();
 
-    $scope.dispatchOrder = function(index){
-        var orderId = $scope.newOrders[index].orderId;
+    $scope.dispatchOrder = function(orderId){
         $http.get($scope.dispatchOrderUrl+"?orderId="+orderId).success(function(data, status, headers, config){
-            $scope.newOrders.splice(index, 1);
-
+            var is_done = data;
+            if (!is_done) {
+                alert('订单已在别处被操作！请勿重复操作。');
+            }
+            getNewOrders();
             getDispatchingOrders();  //刷新派送中的订单
-
         });
     };
 
-    $scope.completeOrder = function(index){
-        var orderId = $scope.dispatchingOrders[index].orderId;
+    $scope.completeOrder = function(orderId){
         $http.get($scope.completeOrderUrl+"?orderId="+orderId).success(function(data, status, headers, config){
-            $scope.dispatchingOrders.splice(index, 1);
-
+            var is_done = data;
+            if (!is_done) {
+                alert('订单已在别处被操作！请勿重复操作。');
+            }
+            getDispatchingOrders();
             getCompletedOrders();    //刷新已完成的订单
         });
     };
