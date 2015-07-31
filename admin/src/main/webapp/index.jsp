@@ -16,6 +16,7 @@
 
 <div ng-view></div>
 
+<script src="api/env/env.js"></script>
 <script src="js/components/jquery/dist/jquery.min.js"></script>
 <script src="js/components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="js/components/underscore/underscore-min.js"></script>
@@ -25,5 +26,6 @@
 <script src="js/components/angular-resource/angular-resource.min.js"></script>
 <script src="js/app/admin.js"></script>
 <script src="js/app/controller/categoryController.js"></script>
+<script src="js/app/controller/order-manager-controller.js"></script>
 </body>
 </html>

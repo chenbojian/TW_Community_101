@@ -6,31 +6,14 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
-<html ng-app="App" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8">
-  <title>订单管理</title>
-  <link href="${pageContext.request.contextPath}/js/components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
-  <link href="${pageContext.request.contextPath}/css/index.css" rel="stylesheet"/>
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/order.css" type="text/css">
-
-  <script src="${pageContext.request.contextPath}/api/env/env.js"></script>
-  <script src="${pageContext.request.contextPath}/js/components/jquery/dist/jquery.min.js"></script>
-  <script src="${pageContext.request.contextPath}/js/components/bootstrap/dist/js/bootstrap.min.js"></script>
-  <script src="${pageContext.request.contextPath}/js/components/angular/angular.min.js"></script>
-  <script src="${pageContext.request.contextPath}/js/app/controller/order-manager-controller.js"></script>
-</head>
-<body ng-controller="orderManagerController">
-
-<jsp:include page="./template/navbar.jsp"></jsp:include>
 
 <h2>新订单</h2>
+
 <div ng-repeat="order in newOrders">
-  <hr class="order" />
-  <div>订单号：{{order.orderId}}<br />
-    下单时间：{{order.createTime | date:'yyyy-MM-dd HH:mm:ss'}}<br />
-    电话：{{order.telPhone}}<br />
+  <hr class="order"/>
+  <div>订单号：{{order.orderId}}<br/>
+    下单时间：{{order.createTime | date:'yyyy-MM-dd HH:mm:ss'}}<br/>
+    电话：{{order.telPhone}}<br/>
     地址：{{order.address}}
   </div>
   <table class="table">
@@ -60,15 +43,16 @@
     </tr>
     </tfoot>
   </table>
-  <hr class="order" />
+  <hr class="order"/>
 </div>
 
 <h2>派送中订单</h2>
+
 <div ng-repeat="order in dispatchingOrders">
-  <hr class="order" />
-  <div>订单号：{{order.orderId}}<br />
-    下单时间：{{order.createTime | date:'yyyy-MM-dd HH:mm:ss'}}<br />
-    电话：{{order.telPhone}}<br />
+  <hr class="order"/>
+  <div>订单号：{{order.orderId}}<br/>
+    下单时间：{{order.createTime | date:'yyyy-MM-dd HH:mm:ss'}}<br/>
+    电话：{{order.telPhone}}<br/>
     地址：{{order.address}}
   </div>
   <table class="table">
@@ -93,19 +77,21 @@
     <tr>
       <td colspan="2">总价:<strong>{{order.totalPrice/100 | currency : "¥" : 2}}</strong></td>
       <td colspan="3">
-        <button type="button" class="btn btn-success" ng-click="completeOrder(order.orderId)">完成</button></td>
+        <button type="button" class="btn btn-success" ng-click="completeOrder(order.orderId)">完成</button>
+      </td>
     </tr>
     </tfoot>
   </table>
-  <hr class="order" />
+  <hr class="order"/>
 </div>
 
 <h2>已完成订单</h2>
+
 <div ng-repeat="order in completedOrders">
-  <hr class="order" />
-  <div>订单号：{{order.orderId}}<br />
-    下单时间：{{order.createTime | date:'yyyy-MM-dd HH:mm:ss'}}<br />
-    电话：{{order.telPhone}}<br />
+  <hr class="order"/>
+  <div>订单号：{{order.orderId}}<br/>
+    下单时间：{{order.createTime | date:'yyyy-MM-dd HH:mm:ss'}}<br/>
+    电话：{{order.telPhone}}<br/>
     地址：{{order.address}}
   </div>
   <table class="table">
@@ -133,14 +119,12 @@
     </tr>
     </tfoot>
   </table>
-  <hr class="order" />
+  <hr class="order"/>
 </div>
 
-<audio src="/web/sounds/msg.wav" id="sound" preload="preload"></audio>
+<audio src="sounds/msg.wav" id="sound" preload="preload"></audio>
 
 <div id="goodsDetailTemplate"></div>
 <script>
-  $( "#goodsDetailTemplate" ).load( "${pageContext.request.contextPath}/html/goodsDetail.html" );
+  $("#goodsDetailTemplate").load("${pageContext.request.contextPath}/html/goodsDetail.html");
 </script>
-</body>
-</html>
