@@ -15,6 +15,7 @@
   <link href="<%=request.getContextPath()%>/css/index.css" rel="stylesheet"/>
   <link rel="stylesheet" href="<%=request.getContextPath()%>/css/order.css" type="text/css">
 
+  <script src="<%=request.getContextPath()%>/api/env/env.js"></script>
   <script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
   <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
   <script src="<%=request.getContextPath()%>/js/angular/angular.min.js"></script>

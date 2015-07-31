@@ -11,6 +11,7 @@
 <head>
   <meta charset="UTF-8">
   <title>注册</title>
+  <script src="<%=request.getContextPath()%>/api/env/env.js"></script>
   <script src="<%=request.getContextPath()%>/js/angular/angular.min.js"></script>
   <script src="<%=request.getContextPath()%>/js/default.js"></script>
   <script src="<%=request.getContextPath()%>/js/angular/sign-in-controller.js"></script>

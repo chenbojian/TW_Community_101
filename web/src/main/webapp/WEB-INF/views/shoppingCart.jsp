@@ -17,6 +17,7 @@
   <script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
   <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
 
+  <script src="<%=request.getContextPath()%>/api/env/env.js"></script>
   <script src="<%=request.getContextPath()%>/js/angular/angular.min.js"></script>
   <script src="<%=request.getContextPath()%>/js/angular/angular-cookies.min.js"></script>
   <script src="<%=request.getContextPath()%>/js/default.js"></script>

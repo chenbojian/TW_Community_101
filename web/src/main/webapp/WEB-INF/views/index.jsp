@@ -11,6 +11,7 @@
 <head>
   <meta charset="UTF-8">
   <title>社区101</title>
+  <script src="<%=request.getContextPath()%>/api/env/env.js"></script>
   <link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet" />
   <link href="<%=request.getContextPath()%>/css/index.css" rel="stylesheet" />
   <script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
