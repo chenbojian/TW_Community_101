@@ -1,43 +1,35 @@
-package com.community101.web.api;
+package com.community101.web;
 
-import com.community101.core.*;
-import com.community101.web.DTO.*;
+import com.community101.core.Category;
+import com.community101.core.Goods;
 import com.community101.core.service.CategoryService;
 import com.community101.core.service.GoodsService;
-import com.community101.core.service.OrdersService;
-import com.community101.core.service.UserService;
-import com.community101.web.Mapper;
+import com.community101.web.DTO.CategoryDTO;
+import com.community101.web.DTO.GoodsDetailedDTO;
+import com.community101.web.DTO.GoodsSummaryDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by MiffyLiye on 16/07/2015.
+ * Created by MiffyLiye on 31/07/2015.
  */
+
 @RestController
-@RequestMapping("/api/customer")
-public class CustomerAPIController {
+@RequestMapping("/api/goods")
+public class GoodsController {
     private CategoryService categoryService;
     private GoodsService goodsService;
-    private UserService userService;
-    private OrdersService ordersService;
 
     @Autowired
-    public CustomerAPIController(
+    public GoodsController(
             CategoryService categoryService,
-            GoodsService goodsService,
-            UserService userService,
-            OrdersService ordersService) {
+            GoodsService goodsService) {
         this.categoryService = categoryService;
         this.goodsService = goodsService;
-        this.userService = userService;
-        this.ordersService = ordersService;
     }
 
     @RequestMapping("/categories")
@@ -47,7 +39,7 @@ public class CustomerAPIController {
         return categoryDTOList;
     }
 
-    @RequestMapping("/goods")
+    @RequestMapping("/")
     public List<GoodsSummaryDTO> listAllGoodsOfCertainCategory(long cid) {
         if (cid == 0) {
             return listAllGoods();
@@ -73,13 +65,13 @@ public class CustomerAPIController {
         return Mapper.makeGoodsSummaryDTOList(goodsService.listGoodsWithoutCategory());
     }
 
-    @RequestMapping("/goods/all")
+    @RequestMapping("/summary/all")
     public List<GoodsSummaryDTO> listAllGoods() {
         return Mapper.makeGoodsSummaryDTOList(goodsService.listGoods());
     }
 
 
-    @RequestMapping("/goods/simple")
+    @RequestMapping("/summary")
     public GoodsSummaryDTO getGoodsSummaryInformationById(long id) {
         GoodsSummaryDTO goodsSummaryDTO = null;
         Goods goods = goodsService.findGoodsById(id);
@@ -95,7 +87,7 @@ public class CustomerAPIController {
         return goodsSummaryDTO;
     }
 
-    @RequestMapping("goods/details")
+    @RequestMapping("/details")
     public GoodsDetailedDTO getGoodsGetailsById(long id) {
         GoodsDetailedDTO goodsDetailedDTO = null;
         Goods goods = goodsService.findGoodsById(id);
@@ -112,49 +104,4 @@ public class CustomerAPIController {
         return goodsDetailedDTO;
     }
 
-    @RequestMapping(value = "/submit", method = RequestMethod.POST)
-    public SubmissionResultsDTO submitOrder(long[] ids, int[] quantities, String phone, String address) {
-        Mapper mapper = new Mapper(userService, goodsService);
-        OrderDTO orderDTO = mapper.makeOrderDTO(ids, quantities, phone, address);
-        SubmissionResultsDTO submissionResultsDTO = new SubmissionResultsDTO();
-
-        submissionResultsDTO.setErrorMessages(orderDTO.getErrorMessages());
-
-        if (submissionResultsDTO.getErrorMessages().size() == 0) {
-            Orders order = mapper.makeOrder(orderDTO);
-            ordersService.addOrder(order);
-            submissionResultsDTO.setOrderId(order.getId());
-        }
-        else {
-            submissionResultsDTO.setOrderId(0);
-        }
-
-        return submissionResultsDTO;
-    }
-
-    @RequestMapping("/orders")
-    public List<OrderDetailDTO> getOrdersOfCertainUser(HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        Long userId = (Long) session.getAttribute("userId");
-
-        if (userId == null) {
-            userId = 0L;
-        }
-
-        User user = userService.findUserById(userId);
-        if (user == null) {
-            return new LinkedList<OrderDetailDTO>();
-        }
-        else {
-            return Mapper.makeOrderDetailDTOList(user.getOrderses());
-        }
-    }
-
-    @RequestMapping("/order/goods")
-    public OrderGoodsDTO getOrderGoodsDetails(long goodsId)
-    {
-        OrderGoods orderGoods = ordersService.findOrderGoodsById(goodsId);
-        OrderGoodsDTO orderGoodsDTO = Mapper.makeOrderGoodsDTO(orderGoods);
-        return orderGoodsDTO;
-    }
 }

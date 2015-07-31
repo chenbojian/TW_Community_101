@@ -24,8 +24,8 @@ public class UserController {
         this.userService = userService;
     }
 
-    @RequestMapping(value = "/signIn", method = RequestMethod.POST)
-    public ModelAndView signIn(String telPhone, String password, String SMS_code, HttpServletRequest request){
+    @RequestMapping(value = "/signup", method = RequestMethod.POST)
+    public ModelAndView signup(String telPhone, String password, String SMS_code, HttpServletRequest request){
         User user = userService.findUserByTel(telPhone);
         HttpSession session = request.getSession();
         if(user!=null){

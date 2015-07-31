@@ -13,7 +13,7 @@ app.controller("signInController", function($scope, $http) {
     $scope.msg = "";
     $scope.send_msg_btn = "发送短信验证码";
 
-    $scope.sign_in_url = $env.contextPath + "/api/customer/signIn";
+    $scope.sign_in_url = $env.contextPath + "/api/customer/signup";
 
     $scope.$watch("password_repeat", function(newValue, oldValue, scope){
         if($scope.password != $scope.password_repeat){

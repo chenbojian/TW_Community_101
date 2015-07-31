@@ -1,4 +1,4 @@
-package com.community101.web.api;
+package com.community101.web;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/api/env")
-public class EnvironmentVariablesController {
+public class JavaScriptsController {
     @RequestMapping("/env.js")
     public ModelAndView getEnvJs(HttpServletRequest request) {
         return new ModelAndView("env");

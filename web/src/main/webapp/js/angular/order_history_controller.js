@@ -2,7 +2,7 @@ var App = angular.module('App', ['ngCookies']);
 
 App.controller('OrderHistoryController', function($scope, $http, $cookies) {
 
-    $scope.webapi_order_history = $env.contextPath + "/api/customer/orders";
+    $scope.webapi_order_history = $env.contextPath + "/api/order/history";
 
     $scope.message = '';
     $scope.order_list = null;

@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @RestController
 @RequestMapping("/customer")
-public class CustomerController {
+public class ViewController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView getIndex() {
         return new ModelAndView("index");

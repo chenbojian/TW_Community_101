@@ -14,7 +14,7 @@
   <script src="<%=request.getContextPath()%>/api/env/env.js"></script>
   <script src="<%=request.getContextPath()%>/js/angular/angular.min.js"></script>
   <script src="<%=request.getContextPath()%>/js/default.js"></script>
-  <script src="<%=request.getContextPath()%>/js/angular/sign-in-controller.js"></script>
+  <script src="<%=request.getContextPath()%>/js/angular/sign-up-controller.js"></script>
   <link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet"/>
   <link href="<%=request.getContextPath()%>/css/login.css" rel="stylesheet"/>
 </head>
@@ -25,7 +25,7 @@
   <div class="center">
     <div class="well well-padding">
       <legend>注册</legend>
-      <form method="POST" action="<%=request.getContextPath()%>/customer/signIn" accept-charset="UTF-8">
+      <form method="POST" action="<%=request.getContextPath()%>/customer/signup" accept-charset="UTF-8">
         <div class="form-group">
           <input placeholder="联系电话" ng-model="tel_phone" type="text" name="telPhone">
         </div>

@@ -4,8 +4,8 @@ App.controller('CartController', function($scope, $http, $cookies) {
 
     $scope.message = '';
     $scope.is_fake = true;
-    $scope.webapi_goods_simple_info = $env.contextPath + "/api/customer/goods/simple";
-    $scope.webapi_order_submit = $env.contextPath + "/api/customer/submit";
+    $scope.webapi_goods_simple_info = $env.contextPath + "/api/goods/summary";
+    $scope.webapi_order_submit = $env.contextPath + "/api/order/submit";
     $scope.selected_items_cookie_key = "allgoods";
     $scope.selected_items_id = [];
     $scope.selected_items_quantity = [];
