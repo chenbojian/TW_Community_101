@@ -11,6 +11,16 @@ angular.module('adminApp')
             })
         };
 
+        $scope.isEditCategory = {};
+        $scope.clickEditButton = function (category) {
+            $scope.isEditCategory[category.id] = !$scope.isEditCategory[category.id];
+        };
+        $scope.clickCompleteButton = function (category) {
+            $scope.isEditCategory[category.id] = !$scope.isEditCategory[category.id];
+            categoryResource.save({categoryId:category.id},category);
+
+        };
+
         $scope.category = {};
         $scope.createCategory = function () {
             $http.post('api/category/add', $scope.category)

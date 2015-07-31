@@ -28,11 +28,25 @@ public class CategoryController {
     public List<Category> listAll() {
         return categoryService.listCategory();
     }
-    
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.OK)
+    public void getCategory(@PathVariable long id) {
+        categoryService.deleteCategory(id);
+    }
+
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteCategory(@PathVariable long id) {
         categoryService.deleteCategory(id);
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.CREATED)
+    public void deleteCategory(@PathVariable long id,@RequestBody Category newCategory) {
+        Category category = categoryService.findCategoryById(id);
+        category.setName(newCategory.getName());
+        categoryService.update(category);
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)

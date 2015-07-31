@@ -15,10 +15,16 @@
     </tr>
     <tr ng-repeat="category in categories">
       <td>
-        {{category.name}}
+        <div ng-show="! isEditCategory[category.id]">{{category.name}}</div>
+        <input ng-model="category.name" ng-show="isEditCategory[category.id]"/>
       </td>
       <td>
-        <button class="btn btn-default">修改</button>
+        <button class="btn btn-default" ng-click="clickEditButton(category)" ng-show="! isEditCategory[category.id]">
+          修改
+        </button>
+        <button class="btn btn-default" ng-click="clickCompleteButton(category)"
+                ng-show="isEditCategory[category.id]"> 完成
+        </button>
         <a class="btn btn-default" ng-click="deleteCategory(category.id)">删除</a>
       </td>
     </tr>
@@ -38,3 +44,13 @@
     </form>
   </div>
 </div>
+
+<script type="text/html" id="editCategory">
+  <form action="${pageContext.request.contextPath}/manage/category/<\%=id%>/edit" method="post">
+    <div class="form-group col-sm-10">
+      <input class="form-control" type="text" name="categoryName" value="<\%=editObj.html().trim()%>"/>
+    </div>
+    <button class="btn btn-default">完成</button>
+  </form>
+</script>
+
