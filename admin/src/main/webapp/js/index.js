@@ -49,7 +49,7 @@ function getGoodsNumByIdFromCookie(cid) {
 }
 function getGoods(cid) {
 
-    var url = "/admin/api/customer/goods?cid=" + cid;
+    var url = $env.contextPath + "/api/customer/goods?cid=" + cid;
 
     var $goodslist = $("#goodslist");
     $goodslist.html('');
@@ -98,7 +98,7 @@ function getGoods(cid) {
 }
 function getCategory() {
 
-    var url = "/admin/api/customer/categories";
+    var url = $env.contextPath + "/api/customer/categories";
 
     var $categorylist = $("#categorylist");
     $.ajax({
@@ -127,7 +127,7 @@ function getCategory() {
 }
 function getGoodsDetail(gid) {
 
-    var url = "/admin/api/customer/goods/details?id=" + gid;
+    var url = $env.contextPath + "/api/customer/goods/details?id=" + gid;
 
     $.ajax({
         url: url,

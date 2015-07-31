@@ -15,6 +15,7 @@
   <link href="${pageContext.request.contextPath}/css/index.css" rel="stylesheet"/>
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/order.css" type="text/css">
 
+  <script src="${pageContext.request.contextPath}/api/env/env.js"></script>
   <script src="${pageContext.request.contextPath}/js/components/jquery/dist/jquery.min.js"></script>
   <script src="${pageContext.request.contextPath}/js/components/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="${pageContext.request.contextPath}/js/components/angular/angular.min.js"></script>

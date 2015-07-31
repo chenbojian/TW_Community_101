@@ -13,6 +13,7 @@
   <title>Order Status | Community 101</title>
   <link href="${pageContext.request.contextPath}/js/components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
 
+  <script src="${pageContext.request.contextPath}/api/env/env.js"></script>
   <script src="${pageContext.request.contextPath}/js/components/jquery/dist/jquery.min.js"></script>
   <script src="${pageContext.request.contextPath}/js/components/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="${pageContext.request.contextPath}/js/components/angular/angular.min.js"></script>

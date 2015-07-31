@@ -8,12 +8,12 @@ App.controller("orderManagerController", function($scope, $http){
     $scope.host = window.location.host;
     $scope.host2=document.domain;
 
-    $scope.newOrdersUrl = "/admin/api/order/newOrders";
-    $scope.dispatchingOrdersUrl = "/admin/api/order/dispatchingOrders";
-    $scope.completedOrdersUrl = "/admin/api/order/completedOrders";
+    $scope.newOrdersUrl = $env.contextPath + "/api/order/newOrders";
+    $scope.dispatchingOrdersUrl = $env.contextPath + "/api/order/dispatchingOrders";
+    $scope.completedOrdersUrl = $env.contextPath + "/api/order/completedOrders";
 
-    $scope.dispatchOrderUrl = "/admin/api/order/dispatchOrder";
-    $scope.completeOrderUrl = "/admin/api/order/completeOrder";
+    $scope.dispatchOrderUrl = $env.contextPath + "/api/order/dispatchOrder";
+    $scope.completeOrderUrl = $env.contextPath + "/api/order/completeOrder";
 
     $scope.newOrders = [];
     $scope.dispatchingOrders = [];
@@ -143,7 +143,7 @@ App.controller("orderManagerController", function($scope, $http){
     //    }
     //},true);
     var hasNewOrder = function(){
-        $http.get("/admin/api/order/hasNewOrder").success(function(data, status, headers, config) {
+        $http.get($env.contextPath + "/api/order/hasNewOrder").success(function(data, status, headers, config) {
             if(data.hasNewOrders == "yes"){
                 show();
                 $scope.show_desktop_notification('有新订单！');
@@ -208,7 +208,7 @@ App.controller("orderManagerController", function($scope, $http){
 
     $scope.getGoodsDetail = function() {
 
-        var url = "/admin/api/customer/order/goods?" + "&goodsId=" + this.goods.id;
+        var url = $env.contextPath + "/api/customer/order/goods?" + "&goodsId=" + this.goods.id;
 
         $.ajax({
             url: url,
