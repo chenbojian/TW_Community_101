@@ -6,23 +6,23 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
-<html lang="zh-Hans" ng-app="App">
-<head>
-  <meta charset="UTF-8">
-  <title>Order Status | Community 101</title>
-  <link href="${pageContext.request.contextPath}/js/components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<%--<!DOCTYPE html>--%>
+<%--<html lang="zh-Hans" ng-app="App">--%>
+<%--<head>--%>
+  <%--<meta charset="UTF-8">--%>
+  <%--<title>Order Status | Community 101</title>--%>
+  <%--<link href="${pageContext.request.contextPath}/js/components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>--%>
 
-  <script src="${pageContext.request.contextPath}/api/env/env.js"></script>
-  <script src="${pageContext.request.contextPath}/js/components/jquery/dist/jquery.min.js"></script>
-  <script src="${pageContext.request.contextPath}/js/components/bootstrap/dist/js/bootstrap.min.js"></script>
-  <script src="${pageContext.request.contextPath}/js/components/angular/angular.min.js"></script>
-  <script src="${pageContext.request.contextPath}/js/components/angular-cookie/angular-cookie.min.js"></script>
-  <script src="${pageContext.request.contextPath}/js/app/controller/order-manager-controller.js"></script>
-</head>
-<body ng-controller="orderManagerController">
+  <%--<script src="${pageContext.request.contextPath}/api/env/env.js"></script>--%>
+  <%--<script src="${pageContext.request.contextPath}/js/components/jquery/dist/jquery.min.js"></script>--%>
+  <%--<script src="${pageContext.request.contextPath}/js/components/bootstrap/dist/js/bootstrap.min.js"></script>--%>
+  <%--<script src="${pageContext.request.contextPath}/js/components/angular/angular.min.js"></script>--%>
+  <%--<script src="${pageContext.request.contextPath}/js/components/angular-cookie/angular-cookie.min.js"></script>--%>
+  <%--<script src="${pageContext.request.contextPath}/js/app/controller/order-manager-controller.js"></script>--%>
+<%--</head>--%>
+<%--<body ng-controller="orderManagerController">--%>
 
-<jsp:include page="./template/navbar.jsp"></jsp:include>
+<%--<jsp:include page="./template/navbar.jsp"></jsp:include>--%>
 
 <h1>总的订单数：{{orders_total_num}}&nbsp;&nbsp;&nbsp;&nbsp;总的收益：{{orders_total_price/100 | currency}}</h1>
 

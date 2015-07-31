@@ -21,7 +21,7 @@
 
     <div class="collapse navbar-collapse" id="navbar-collapse">
       <ul class="nav navbar-nav">
-        <li><a href="${pageContext.request.contextPath}/order-manager">订单管理</a></li>
+        <li><a href="${pageContext.request.contextPath}/#/order-manager">订单管理</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
              aria-expanded="false">商品管理<span class="caret"></span></a>
@@ -36,7 +36,7 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
              aria-expanded="false">报表管理<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="${pageContext.request.contextPath}/order-status">订单汇总</a></li>
+            <li><a href="${pageContext.request.contextPath}/#/order-status">订单汇总</a></li>
             <li><a href="#">时间报表</a></li>
             <li><a href="#">商品报表</a></li>
           </ul>
