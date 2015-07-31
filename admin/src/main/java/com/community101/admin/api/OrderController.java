@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 import java.util.*;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Created by chenjian on 7/17/15.
@@ -22,6 +24,7 @@ import java.util.*;
 @RestController
 @RequestMapping("/api/order")
 public class OrderController {
+    static private final Lock lock = new ReentrantLock();
     static Gson gson = new Gson();
 
     private OrdersService ordersService;
@@ -72,18 +75,51 @@ public class OrderController {
     }
 
     @RequestMapping("/dispatchOrder")
-    public void dispatchOrder(long orderId){
-        ordersService.dispatchOrder(orderId);
+    public boolean dispatchOrder(long orderId){
+        boolean isDone = false;
+        try {
+            lock.tryLock();
+            if (ordersService.findOrdersById(orderId).getStatus().equals("dispatching")) {
+                ordersService.dispatchOrder(orderId);
+                isDone = true;
+            }
+        }
+        finally {
+            lock.unlock();
+        }
+        return isDone;
     }
 
     @RequestMapping("/completeOrder")
-    public void completeOrder(long orderId){
-        ordersService.completeOrder(orderId);
+    public boolean completeOrder(long orderId){
+        boolean isDone = false;
+        try {
+            lock.tryLock();
+            if (ordersService.findOrdersById(orderId).getStatus().equals("completed")) {
+                ordersService.completeOrder(orderId);
+                isDone = true;
+            }
+        }
+        finally {
+            lock.unlock();
+        }
+        return isDone;
     }
 
     @RequestMapping("/cancelOrder")
-    public void cancelOrder(long orderId){
-        ordersService.cancelOrder(orderId);
+    public boolean cancelOrder(long orderId){
+        boolean isDone = false;
+        try {
+            lock.tryLock();
+            if (!ordersService.findOrdersById(orderId).getStatus().equals("cancel")) {
+                ordersService.cancelOrder(orderId);
+                isDone = true;
+            }
+        }
+        finally {
+            lock.unlock();
+        }
+        return isDone;
     }
 
 
