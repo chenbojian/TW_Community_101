@@ -105,6 +105,7 @@ function getCategory() {
         url: url,
         type: 'get',
         success: function (data) {
+            data.push({id:-1,name:"未分类"});
             var htmlTemplate = '<div data-cid="[categoryid]" class="list-group-item">[categoryName]</div>';
             for (var i = 0; i < data.length; i++) {
                 var link = "" + data[i].id + "";

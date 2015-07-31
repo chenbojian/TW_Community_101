@@ -52,6 +52,9 @@ public class CustomerAPIController {
         if (cid == 0) {
             return listAllGoods();
         }
+        if (cid == -1){
+            return listGoodsWithoutCategory();
+        }
 
         List<GoodsSummaryDTO> goodsSummaryDTOList = null;
         Category category = categoryService.findCategoryById(cid);
