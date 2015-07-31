@@ -10,7 +10,7 @@
 <head>
   <title></title>
 </head>
-<body onload="parent.location='./customer/'">
+<body>
 
 </body>
 </html>
