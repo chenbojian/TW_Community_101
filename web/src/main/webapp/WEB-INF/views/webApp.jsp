@@ -26,11 +26,11 @@
 <script src="<%=request.getContextPath()%>/js/angular/angular-route.min.js"></script>
 <script src="<%=request.getContextPath()%>/js/angular/angular-cookies.min.js"></script>
 
-<script src="<%=request.getContextPath()%>/js/webApp.js"></script>
-<script src="<%=request.getContextPath()%>/js/angular/index_controller.js"></script>
-<script src="<%=request.getContextPath()%>/js/angular/cart_controller.js"></script>
-<script src="<%=request.getContextPath()%>/js/angular/order_details_controller.js"></script>
-<script src="<%=request.getContextPath()%>/js/angular/order_history_controller.js"></script>
-<script src="<%=request.getContextPath()%>/js/angular/sign-up-controller.js"></script>
+<script src="<%=request.getContextPath()%>/js/app/webApp.js"></script>
+<script src="<%=request.getContextPath()%>/js/app/controller/index_controller.js"></script>
+<script src="<%=request.getContextPath()%>/js/app/controller/cart_controller.js"></script>
+<script src="<%=request.getContextPath()%>/js/app/controller/order_details_controller.js"></script>
+<script src="<%=request.getContextPath()%>/js/app/controller/order_history_controller.js"></script>
+<script src="<%=request.getContextPath()%>/js/app/controller/sign-up-controller.js"></script>
 </body>
 </html>
