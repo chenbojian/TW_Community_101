@@ -1,5 +1,5 @@
 angular.module('webApp')
-    .controller('OrderDetailsController',function($scope, $http, $cookies){
+    .controller('OrderDetailsController',function($scope, $http, $cookies, SharedFunctions){
 
     $scope.webapi_order_detail=env.contextPath + "/api/order/detail";
     $scope.order_id=null;
@@ -8,6 +8,7 @@ angular.module('webApp')
 
     var get_order_id=function(){
         $scope.order_id=parseInt($cookies.get("orderId"),10);
+        //$scope.order_id = SharedProperties.getOrderId();
     };
     get_order_id();
 
@@ -20,6 +21,6 @@ angular.module('webApp')
 
     get_order_detail();
 
-    $scope.getOrderGoodsDetail = functions.getOrderGoodsDetail;
+    $scope.getOrderGoodsDetail = SharedFunctions.getOrderGoodsDetail;
 
 });

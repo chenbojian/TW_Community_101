@@ -1,5 +1,5 @@
 angular.module('webApp')
-    .controller('CartController', function($scope, $http, $cookies, SharedProperties) {
+    .controller('CartController', function($scope, $http, $cookies, SharedFunctions) {
 
     $scope.message = '';
     $scope.is_fake = true;
@@ -13,8 +13,8 @@ angular.module('webApp')
 
 
     var get_items_list = function() {
-        //var encoded_string = $cookies.get($scope.selected_items_cookie_key).toString();
-        var encoded_string = SharedProperties.getAllGoods();
+        var encoded_string = $cookies.get($scope.selected_items_cookie_key).toString();
+        //var encoded_string = SharedProperties.getAllGoods();
         var item_list = encoded_string.split('|');
 
         for (var i = 0; i < item_list.length; i++) {
@@ -52,7 +52,7 @@ angular.module('webApp')
         }
     };
 
-    $scope.getGoodsDetail = functions.getGoodsDetail;
+    $scope.getGoodsDetail = SharedFunctions.getGoodsDetail;
 
     $scope.bill = {};
     $scope.bill.total = 0;
@@ -105,7 +105,9 @@ angular.module('webApp')
                 $scope.can_submit_order = false;
                 $scope.order_submitted = true;
                 $cookies.put("orderId", $scope.order_id, {'path': env.contextPath + '/', 'expires':$scope.expires_date});
+                //SharedProperties.setOrderId($scope.order_id);
                 $cookies.put($scope.selected_items_cookie_key,'', {'path': env.contextPath + '/'});
+                //SharedProperties.setAllGoods("");
             }
             else {
                 var error_messages = data.errorMessages;

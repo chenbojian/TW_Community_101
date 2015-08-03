@@ -1,9 +1,9 @@
 angular.module('webApp')
-    .controller('IndexController', function($scope, $http, $cookies, $resource, SharedProperties) {
+    .controller('IndexController', function($scope, $http, $cookies, $resource, SharedFunctions) {
     $scope.goods_quantities_key = 'allgoods';
     (function clearCookie () {
-        //$cookies.put($scope.goods_quantities_key, "", {path: env.contextPath + '/'});
-        SharedProperties.setAllGoods("");
+        $cookies.put($scope.goods_quantities_key, "", {path: env.contextPath + '/'});
+        //SharedProperties.setAllGoods("");
     })();
 
     var categoryResource = $resource(env.contextPath + "/api/goods/categories");
@@ -20,8 +20,8 @@ angular.module('webApp')
     $scope.goods_to_list = [];
 
     $scope.getGoodsQuantityCookie = function(gid) {
-        //var allgoods = $cookies.get($scope.goods_quantities_key);
-        var allgoods = SharedProperties.getAllGoods();
+        var allgoods = $cookies.get($scope.goods_quantities_key);
+        //var allgoods = SharedProperties.getAllGoods();
         var goodslist = allgoods.split('|');
         for (var i = 0, len = goodslist.length; i < len; i++) {
             var details = goodslist[i].split(',');
@@ -44,8 +44,8 @@ angular.module('webApp')
 
     $scope.setGoodsQuantityCookie = function(gid, quantity) {
         var isRecorded = false;
-        //var allgoods = $cookies.get($scope.goods_quantities_key);
-        var allgoods = SharedProperties.getAllGoods();
+        var allgoods = $cookies.get($scope.goods_quantities_key);
+        //var allgoods = SharedProperties.getAllGoods();
         if (allgoods === "") {
             allgoods = [gid.toString(), quantity.toString()].join(',');
         }
@@ -65,8 +65,8 @@ angular.module('webApp')
             }
             allgoods = goodslist.join('|');
         }
-        //$cookies.put($scope.goods_quantities_key, allgoods, {path: env.contextPath + '/'});
-        SharedProperties.setAllGoods(allgoods);
+        $cookies.put($scope.goods_quantities_key, allgoods, {path: env.contextPath + '/'});
+        //SharedProperties.setAllGoods(allgoods);
     };
 
     $scope.setGoodsQuantity = function(gid, quantity) {
@@ -90,5 +90,5 @@ angular.module('webApp')
         $scope.setGoodsQuantity(gid, quantity);
     };
 
-    $scope.getGoodsDetail = functions.getGoodsDetail;
+    $scope.getGoodsDetail = SharedFunctions.getGoodsDetail;
 });

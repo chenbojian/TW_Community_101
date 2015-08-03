@@ -1,5 +1,5 @@
 angular.module('webApp')
-    .controller('OrderHistoryController', function($scope, $http, $cookies, $resource) {
+    .controller('OrderHistoryController', function($scope, $http, $cookies, $resource, SharedFunctions) {
 
     var orderHistoryResource = $resource(env.contextPath + "/api/order/history");
     $scope.order_list = orderHistoryResource.query();
@@ -7,10 +7,11 @@ angular.module('webApp')
     $scope.message = '';
     $scope.order_list = null;
 
-    $scope.getOrderGoodsDetail = functions.getOrderGoodsDetail;
+    $scope.getOrderGoodsDetail = SharedFunctions.getOrderGoodsDetail;
 
     $scope.launchOrderDetails = function() {
         $cookies.put('orderId', this.order.orderId.toString(), {'path': env.contextPath + '/'});
+        //SharedProperties.setOrderId(this.order.orderId.toString());
         window.location.assign('#/order-details');
     }
 });
