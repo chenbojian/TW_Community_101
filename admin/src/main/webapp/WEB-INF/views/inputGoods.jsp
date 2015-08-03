@@ -9,20 +9,22 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="container">
-  <form class="form-horizontal">
+
+  <form class="form-horizontal" ng-submit="submitNewGoods()">
     <div class="form-group">
       <label class="col-sm-1 control-label">商品名称:</label>
 
       <div class="col-sm-10">
-        <input type="text" class="form-control" title=""/>
+        <input type="text" class="form-control" ng-model="goods.name" title=""/>
       </div>
     </div>
     <div class="form-group">
       <label class="col-sm-1 control-label">商品类型:</label>
 
       <div class="col-sm-10">
-        <select class="form-control" name="category.id" title="">
-          <option>1</option>
+        <select class="form-control" ng-model="goods.category"
+                ng-options="category.name for category in categories">
+          <option value="">---Choose Category---</option>
         </select>
       </div>
     </div>
@@ -30,14 +32,14 @@
       <label class="col-sm-1 control-label">商品详情:</label>
 
       <div class="col-sm-10">
-        <textarea class="form-control" rows="3" title=""></textarea>
+        <textarea class="form-control" rows="3" ng-model="goods.description" title=""></textarea>
       </div>
     </div>
     <div class="form-group">
       <label class="col-sm-1 control-label">商品价格:</label>
 
       <div class="col-sm-10">
-        <input type="text" class="form-control" title=""/>
+        <input type="text" class="form-control" ng-model="goods.price" title=""/>
       </div>
     </div>
 
@@ -45,7 +47,7 @@
       <label class="col-sm-1 control-label">商品图片:</label>
 
       <div class="col-sm-8">
-        <input type="text" class="form-control" title=""/>
+        <input type="text" class="form-control" ng-model="goods.pictureUrl" title=""/>
       </div>
       <div class="col-sm-2">
         <button class="btn btn-default" type="button" ng-click="useLocalPicture()">
@@ -62,7 +64,9 @@
                ng-disabled="uploader.queue.length"/>
       </div>
       <div class="col-sm-2">
-        <button class="btn btn-default" type="button" ng-click="useRemotePicture()">
+        <button class="btn btn-default" type="button"
+                ng-disabled="uploader.queue.length"
+                ng-click="useRemotePicture()">
           使用远程图片
         </button>
       </div>
@@ -112,7 +116,7 @@
       <label class="col-sm-1 control-label">商品状态:</label>
 
       <div class="col-sm-10">
-        <select name="status" title="">
+        <select name="status" ng-model="goods.status" title="">
           <option value="selling">售卖中</option>
           <option value="not selling">下架</option>
         </select>
@@ -124,5 +128,6 @@
         <input type="submit" class="btn btn-primary" value="提交"/>
       </div>
     </div>
+    <p><strong>{{addGoodsMessage}}</strong></p>
   </form>
 </div>
