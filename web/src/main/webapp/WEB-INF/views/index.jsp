@@ -1,13 +1,7 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: MiffyLiye
-  Date: 29/07/2015
-  Time: 18:59
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
-<html lang="zh-Hans">
+<html lang="zh-Hans" ng-app="App">
+
 <head>
   <meta charset="UTF-8">
   <title>社区101</title>
@@ -17,12 +11,14 @@
   <script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
   <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
   <script src="<%=request.getContextPath()%>/js/jquery.cookie.min.js"></script>
+  <script src="<%=request.getContextPath()%>/js/angular/angular.min.js"></script>
+  <script src="<%=request.getContextPath()%>/js/angular/angular-cookies.min.js"></script>
   <script src="<%=request.getContextPath()%>/js/default.js"></script>
-  <script src="<%=request.getContextPath()%>/js/index.js"></script>
+  <script src="<%=request.getContextPath()%>/js/angular/index_controller.js"></script>
 </head>
-<body>
-<jsp:include page="template/customerNavbar.jsp"></jsp:include>
 
+<body ng-controller="IndexController">
+<jsp:include page="template/customerNavbar.jsp"></jsp:include>
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-12">
@@ -37,16 +33,34 @@
     <div class="col-md-3">
       <a class="btn btn-success btn-block buybtn" href="<%=request.getContextPath()%>/customer/shopping-cart/">购买</a>
       <div class="list-group" id="categorylist">
-        <div data-cid="0" class="list-group-item active">所有商品</div>
+        <div ng-click="select_category(0)" class="list-group-item " ng-class="active_category_id === 0 ? 'active' : ''">所有商品</div>
+        <div ng-repeat="category in categories" ng-click="select_category(category.id)" class="list-group-item" ng-class="active_category_id === category.id ? 'active' : ''">
+          {{category.name}}
+        </div>
       </div>
     </div>
     <div class="col-md-9">
-      <div class="row" id="goodslist"></div>
+      <div class="row" id="goodslist">
+        <div ng-repeat="goods in goods_to_list" class="col-md-3">
+          <div class="thumbnail">
+            <div ng-click='getGoodsDetail(goods.id)' class="caption text-center" data-gid="{{goods.id}}">
+              <img src="{{goods.pic}}" />
+              <h5>{{goods.name}}</h5>
+              <h4 class="pull-left text-danger">{{goods.price/100 | currency : "¥" : 2}}</h4>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+          <div class="btn-group pull-right" role="group" style="position: absolute;right:30px;bottom:30px;">
+            <button ng-click='goodsMinus(goods.id)' type="button" class="btn btn-sm btn-default">-</button>
+            <div class="btn btn-sm btn-default goodsitem">{{goods.quantity}}</div>
+            <button ng-click='goodsPlus(goods.id)' type="button" class="btn btn-sm btn-default">+</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
-
 <jsp:include page="template/goodsDetails.jsp"></jsp:include>
-
 </body>
+
 </html>
