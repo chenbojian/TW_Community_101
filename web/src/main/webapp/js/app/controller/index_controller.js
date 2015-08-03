@@ -86,5 +86,5 @@ angular.module('webApp')
         $scope.setGoodsQuantity(gid, quantity);
     };
 
-    $scope.getGoodsDetail = $functions.getGoodsDetail;
+    $scope.getGoodsDetail = functions.getGoodsDetail;
 });

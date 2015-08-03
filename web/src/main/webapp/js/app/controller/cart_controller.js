@@ -65,7 +65,7 @@ angular.module('webApp')
         }
     };
 
-    $scope.getGoodsDetail = $functions.getGoodsDetail;
+    $scope.getGoodsDetail = functions.getGoodsDetail;
 
     $scope.bill = {};
     $scope.bill.total = 0;

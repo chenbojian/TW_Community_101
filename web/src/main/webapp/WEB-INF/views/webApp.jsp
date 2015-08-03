@@ -28,7 +28,6 @@
 <script src="<%=request.getContextPath()%>/js/angular/angular-cookies.min.js"></script>
 
 <script src="<%=request.getContextPath()%>/js/app/webApp.js"></script>
-<script src="<%=request.getContextPath()%>/js/app/service/goods_service.js"></script>
 <script src="<%=request.getContextPath()%>/js/app/controller/index_controller.js"></script>
 <script src="<%=request.getContextPath()%>/js/app/controller/cart_controller.js"></script>
 <script src="<%=request.getContextPath()%>/js/app/controller/order_details_controller.js"></script>

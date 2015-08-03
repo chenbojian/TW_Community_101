@@ -1,8 +1,8 @@
 /**
  * Created by MiffyLiye on 30/07/2015.
  */
-$functions = {};
-$functions.getOrderGoodsDetail = function() {
+functions = {};
+functions.getOrderGoodsDetail = function() {
 
     var url = env.contextPath + "/api/order/goods?" + "&goodsId=" + this.goods.id;
 
@@ -28,7 +28,7 @@ $functions.getOrderGoodsDetail = function() {
     });
 };
 
-$functions.getGoodsDetail = function(gid) {
+functions.getGoodsDetail = function(gid) {
 
     var url = env.contextPath + "/api/goods/details?id=" + gid;
 

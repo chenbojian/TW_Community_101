@@ -1,5 +1,5 @@
 angular.module('webApp')
-    .controller('OrderDetailsController',function($scope,$http,$cookies){
+    .controller('OrderDetailsController',function($scope, $http, $cookies){
 
     $scope.webapi_order_detail=env.contextPath + "/api/order/detail";
     $scope.order_id=null;
@@ -20,6 +20,6 @@ angular.module('webApp')
 
     get_order_detail();
 
-    $scope.getOrderGoodsDetail = $functions.getOrderGoodsDetail;
+    $scope.getOrderGoodsDetail = functions.getOrderGoodsDetail;
 
 });

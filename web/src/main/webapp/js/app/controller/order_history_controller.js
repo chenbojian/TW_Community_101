@@ -7,7 +7,7 @@ angular.module('webApp')
     $scope.message = '';
     $scope.order_list = null;
 
-    $scope.getOrderGoodsDetail = $functions.getOrderGoodsDetail;
+    $scope.getOrderGoodsDetail = functions.getOrderGoodsDetail;
 
     $scope.launchOrderDetails = function() {
         $cookies.put('orderId', this.order.orderId.toString(), {'path': env.contextPath + '/'});
