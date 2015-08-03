@@ -29,5 +29,8 @@ angular.module("adminApp")
                     $scope.goods = {};
                     $scope.addGoodsMessage = "Add goods successful!"
                 })
+                .error(function () {
+                    $scope.addGoodsMessage = "Have errors!"
+                })
         }
     }]);
