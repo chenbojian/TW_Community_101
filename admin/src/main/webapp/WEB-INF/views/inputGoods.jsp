@@ -56,10 +56,50 @@
       <label class="col-sm-1 control-label">商品图片:</label>
 
       <div class="col-sm-8">
-        <input type="file"/>
+        <input type="file" nv-file-select="" uploader="uploader"/>
       </div>
       <div class="col-sm-2">
         <button class="btn btn-default" type="button">使用远程图片</button>
+      </div>
+    </div>
+    <div class="form-group" ng-show="uploader.queue.length > 0">
+      <div class=" col-sm-offset-1 col-sm-10">
+        <table class="table">
+          <tr>
+            <th width="40%">Name</th>
+            <th ng-show="uploader.isHTML5">Size</th>
+            <th ng-show="uploader.isHTML5">Progress</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+          <tr ng-repeat="item in uploader.queue">
+            <td><strong>{{ item.file.name }}</strong></td>
+            <td ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
+            <td ng-show="uploader.isHTML5">
+              <div class="progress" style="margin-bottom: 0;">
+                <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+              </div>
+            </td>
+            <td class="text-center">
+              <span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
+              <span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
+              <span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+            </td>
+            <td nowrap>
+              <button type="button" class="btn btn-success btn-xs" ng-click="item.upload()"
+                      ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+                <span class="glyphicon glyphicon-upload"></span> Upload
+              </button>
+              <button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()"
+                      ng-disabled="!item.isUploading">
+                <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+              </button>
+              <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+                <span class="glyphicon glyphicon-trash"></span> Remove
+              </button>
+            </td>
+          </tr>
+        </table>
       </div>
     </div>
 
@@ -80,63 +120,4 @@
       </div>
     </div>
   </form>
-  <%--<form:form cssClass="form-horizontal" method="post" enctype="multipart/form-data">--%>
-  <%--<div class="form-group">--%>
-  <%--<label class="col-sm-1 control-label">商品名称:</label>--%>
-
-  <%--<div class="col-sm-10">--%>
-  <%--<form:input cssClass="form-control" path="name"/>--%>
-  <%--</div>--%>
-  <%--</div>--%>
-  <%--<div class="form-group">--%>
-  <%--<label class="col-sm-1 control-label">商品类型:</label>--%>
-
-  <%--<div class="col-sm-10">--%>
-  <%--<select class="form-control" name="category.id">--%>
-  <%--<c:forEach var="category" items="${categories}">--%>
-  <%--<option value="${category.id}">${category.name}</option>--%>
-  <%--</c:forEach>--%>
-  <%--</select>--%>
-  <%--</div>--%>
-  <%--</div>--%>
-  <%--<div class="form-group">--%>
-  <%--<label class="col-sm-1 control-label">商品详情:</label>--%>
-
-  <%--<div class="col-sm-10">--%>
-  <%--<form:textarea cssClass="form-control" path="description"/>--%>
-  <%--</div>--%>
-  <%--</div>--%>
-  <%--<div class="form-group">--%>
-  <%--<label class="col-sm-1 control-label">商品价格:</label>--%>
-
-  <%--<div class="col-sm-10">--%>
-  <%--<input name="floatPrice" class="form-control"/>--%>
-  <%--</div>--%>
-  <%--</div>--%>
-  <%--<div class="form-group">--%>
-  <%--<label class="col-sm-1 control-label">商品图片:</label>--%>
-
-  <%--<div class="col-sm-10">--%>
-  <%--<input id="pictureInput" type="file" name="pictureFile"/>--%>
-  <%--</div>--%>
-  <%--<div class="col-sm-1">--%>
-  <%--<button class="btn btn-default" id="pictureSwitch" type="button">使用远程图片</button>--%>
-  <%--</div>--%>
-  <%--</div>--%>
-  <%--<div class="form-group">--%>
-  <%--<label class="col-sm-1 control-label">商品状态:</label>--%>
-
-  <%--<div class="col-sm-10">--%>
-  <%--<select name="status">--%>
-  <%--<option value="selling">售卖中</option>--%>
-  <%--<option value="not selling">下架</option>--%>
-  <%--</select>--%>
-  <%--</div>--%>
-  <%--</div>--%>
-  <%--<div class="form-group">--%>
-  <%--<div class="col-sm-offset-1 col-sm-10">--%>
-  <%--<input type="submit" class="btn btn-default" value="提交"/>--%>
-  <%--</div>--%>
-  <%--</div>--%>
-  <%--</form:form>--%>
 </div>

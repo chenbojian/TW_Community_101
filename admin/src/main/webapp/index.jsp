@@ -24,6 +24,7 @@
 <script src="js/components/angular-cookie/angular-cookie.min.js"></script>
 <script src="js/components/angular-route/angular-route.min.js"></script>
 <script src="js/components/angular-resource/angular-resource.min.js"></script>
+<script src="js/components/angular-file-upload/dist/angular-file-upload.min.js"></script>
 <script src="js/app/admin.js"></script>
 <script src="js/app/controller/categoryController.js"></script>
 <script src="js/app/controller/order-manager-controller.js"></script>

@@ -1,7 +1,8 @@
 angular
     .module("adminApp", [
         "ngRoute",
-        "ngResource"
+        "ngResource",
+        'angularFileUpload'
     ])
     .config(function ($routeProvider) {
         $routeProvider
