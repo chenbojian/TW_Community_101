@@ -1,5 +1,5 @@
 angular.module('webApp')
-    .controller('CartController', function($scope, $http, $cookies) {
+    .controller('CartController', function($scope, $http, $cookies, SharedProperties) {
 
     $scope.message = '';
     $scope.is_fake = true;
@@ -13,7 +13,8 @@ angular.module('webApp')
 
 
     var get_items_list = function() {
-        var encoded_string = $cookies.get($scope.selected_items_cookie_key).toString();
+        //var encoded_string = $cookies.get($scope.selected_items_cookie_key).toString();
+        var encoded_string = SharedProperties.getAllGoods();
         var item_list = encoded_string.split('|');
 
         for (var i = 0; i < item_list.length; i++) {
