@@ -9,6 +9,10 @@ angular
                 controller: 'categoryController',
                 templateUrl: 'manageCategory'
             })
+            .when('/goods/input', {
+                controller: 'goodsController',
+                templateUrl: 'inputGoods'
+            })
             .when('/order-manager', {
                 controller: 'orderManagerController',
                 templateUrl: 'order-manager'

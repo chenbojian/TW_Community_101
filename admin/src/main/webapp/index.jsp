@@ -28,5 +28,6 @@
 <script src="js/app/controller/categoryController.js"></script>
 <script src="js/app/controller/order-manager-controller.js"></script>
 <script src="js/app/controller/order-status-controller.js"></script>
+<script src="js/app/controller/goodsController.js"></script>
 </body>
 </html>
