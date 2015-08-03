@@ -1,22 +1,16 @@
 angular.module('webApp')
-    .controller('OrderHistoryController', function($scope, $http, $cookies) {
+    .controller('OrderHistoryController', function($scope, $http, $cookies, $resource) {
 
-    $scope.webapi_order_history = $env.contextPath + "/api/order/history";
+    var orderHistoryResource = $resource(env.contextPath + "/api/order/history");
+    $scope.order_list = orderHistoryResource.query();
 
     $scope.message = '';
     $scope.order_list = null;
 
-    var get_order_list = function() {
-        $http.get($scope.webapi_order_history).success(function(data) {
-            $scope.order_list = data;
-        });
-    };
-    get_order_list();
-
     $scope.getOrderGoodsDetail = $functions.getOrderGoodsDetail;
 
     $scope.launchOrderDetails = function() {
-        $cookies.put('orderId', this.order.orderId.toString(), {'path': $env.contextPath + '/'});
+        $cookies.put('orderId', this.order.orderId.toString(), {'path': env.contextPath + '/'});
         window.location.assign('#/order-details');
     }
 });

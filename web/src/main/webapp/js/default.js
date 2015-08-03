@@ -4,7 +4,7 @@
 $functions = {};
 $functions.getOrderGoodsDetail = function() {
 
-    var url = $env.contextPath + "/api/order/goods?" + "&goodsId=" + this.goods.id;
+    var url = env.contextPath + "/api/order/goods?" + "&goodsId=" + this.goods.id;
 
     $.ajax({
         url: url,
@@ -30,7 +30,7 @@ $functions.getOrderGoodsDetail = function() {
 
 $functions.getGoodsDetail = function(gid) {
 
-    var url = $env.contextPath + "/api/goods/details?id=" + gid;
+    var url = env.contextPath + "/api/goods/details?id=" + gid;
 
     $.ajax({
         url: url,

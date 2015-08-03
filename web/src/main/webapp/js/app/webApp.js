@@ -1,4 +1,4 @@
-angular.module("webApp", ["ngRoute", "ngCookies"])
+angular.module("webApp", ["ngRoute", "ngResource", "ngCookies"])
     .config(function ($routeProvider) {
         $routeProvider
             .when('/demonstration', {

@@ -1,15 +1,12 @@
 angular.module('webApp')
-.controller('IndexController', function($scope, $http, $cookies) {
+    .controller('IndexController', function($scope, $http, $cookies, $resource) {
     $scope.goods_quantities_key = 'allgoods';
     (function clearCookie () {
-        $cookies.put($scope.goods_quantities_key, "", {path: $env.contextPath + '/'});
+        $cookies.put($scope.goods_quantities_key, "", {path: env.contextPath + '/'});
     })();
 
-    $scope.webapi_categories = $env.contextPath + "/api/goods/categories";
-    $scope.categories = [];
-    $http.get($scope.webapi_categories).success(function(data) {
-        $scope.categories = data;
-    });
+    var categoryResource = $resource(env.contextPath + "/api/goods/categories");
+    $scope.categories = categoryResource.query();
 
     $scope.active_category_id = 0;
 
@@ -18,7 +15,7 @@ angular.module('webApp')
         $scope.active_category_id = cid;
     };
 
-    $scope.webapi_goods_summary = $env.contextPath + "/api/goods/";
+    $scope.webapi_goods_summary = env.contextPath + "/api/goods/";
     $scope.goods_to_list = [];
 
     $scope.getGoodsQuantityCookie = function(gid) {
@@ -65,7 +62,7 @@ angular.module('webApp')
             }
             allgoods = goodslist.join('|');
         }
-        $cookies.put($scope.goods_quantities_key, allgoods, {path: $env.contextPath + '/'});
+        $cookies.put($scope.goods_quantities_key, allgoods, {path: env.contextPath + '/'});
     };
 
     $scope.setGoodsQuantity = function(gid, quantity) {

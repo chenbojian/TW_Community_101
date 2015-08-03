@@ -3,8 +3,8 @@ angular.module('webApp')
 
     $scope.message = '';
     $scope.is_fake = true;
-    $scope.webapi_goods_simple_info = $env.contextPath + "/api/goods/summary";
-    $scope.webapi_order_submit = $env.contextPath + "/api/order/submit";
+    $scope.webapi_goods_simple_info = env.contextPath + "/api/goods/summary";
+    $scope.webapi_order_submit = env.contextPath + "/api/order/submit";
     $scope.selected_items_cookie_key = "allgoods";
     $scope.selected_items_id = [];
     $scope.selected_items_quantity = [];
@@ -122,8 +122,8 @@ angular.module('webApp')
                 $scope.message = "";
                 $scope.can_submit_order = false;
                 $scope.order_submitted = true;
-                $cookies.put("orderId", $scope.order_id, {'path': $env.contextPath + '/', 'expires':$scope.expires_date});
-                $cookies.put($scope.selected_items_cookie_key,'', {'path': $env.contextPath + '/'});
+                $cookies.put("orderId", $scope.order_id, {'path': env.contextPath + '/', 'expires':$scope.expires_date});
+                $cookies.put($scope.selected_items_cookie_key,'', {'path': env.contextPath + '/'});
             }
             else {
                 var error_messages = data.errorMessages;

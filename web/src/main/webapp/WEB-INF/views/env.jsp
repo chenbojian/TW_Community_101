@@ -6,5 +6,5 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="application/x-javascript;charset=UTF-8" language="java" %>
-$env = {};
-$env.contextPath = '<%=request.getContextPath()%>';
+env = {};
+env.contextPath = '<%=request.getContextPath()%>';
