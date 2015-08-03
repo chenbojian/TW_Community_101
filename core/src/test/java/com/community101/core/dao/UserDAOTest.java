@@ -21,7 +21,7 @@ import static org.junit.Assert.*;
  * Created by jiaoming on 7/17/15.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations="/applicationContext.xml")
+@ContextConfiguration(locations="/springTest.xml")
 @TransactionConfiguration
 @Transactional
 public class UserDAOTest {
@@ -34,7 +34,6 @@ public class UserDAOTest {
     public void should_return_correct_number_of_users(){
         List<User>  userList=userDAO.listUsers();
         assertTrue(userList.size() > 0);
-        assertEquals("18888888880",userList.get(0).getTelPhone());
     }
 
     @Transactional

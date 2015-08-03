@@ -25,7 +25,7 @@ import static org.junit.Assert.assertTrue;
  * Created by jiaoming on 7/17/15.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations="/applicationContext.xml")
+@ContextConfiguration(locations="/springTest.xml")
 @TransactionConfiguration
 @Transactional
 public class OrderGoodsDAOTest {
