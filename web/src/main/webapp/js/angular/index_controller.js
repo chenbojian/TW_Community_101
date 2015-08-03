@@ -1,9 +1,8 @@
-var App = angular.module('App', ['ngCookies']);
-
-App.controller('IndexController', function($scope, $http, $cookies) {
+angular.module('webApp')
+.controller('IndexController', function($scope, $http, $cookies) {
     $scope.goods_quantities_key = 'allgoods';
     (function clearCookie () {
-        $.cookie($scope.goods_quantities_key, "", {path: $env.contextPath + '/'});
+        $cookies.put($scope.goods_quantities_key, "", {path: $env.contextPath + '/'});
     })();
 
     $scope.webapi_categories = $env.contextPath + "/api/goods/categories";

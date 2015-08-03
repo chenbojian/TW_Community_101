@@ -1,30 +1,6 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: MiffyLiye
-  Date: 29/07/2015
-  Time: 16:47
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
-<html ng-app="App">
-<head lang="en">
-  <meta http-equiv="CONTENT-TYPE" CONTENT="text/html" charset="UTF-8">
-  <title>Order Detail | Community 101</title>
-  <link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet"/>
   <link href="<%=request.getContextPath()%>/css/index.css" rel="stylesheet"/>
   <link rel="stylesheet" href="<%=request.getContextPath()%>/css/order.css" type="text/css">
-
-  <script src="<%=request.getContextPath()%>/api/env/env.js"></script>
-  <script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
-  <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
-  <script src="<%=request.getContextPath()%>/js/angular/angular.min.js"></script>
-  <script src="<%=request.getContextPath()%>/js/angular/angular-cookies.min.js"></script>
-  <script src="<%=request.getContextPath()%>/js/default.js"></script>
-  <script src="<%=request.getContextPath()%>/js/angular/order_detail_controller.js"></script>
-</head>
-<body ng-controller="OrderDetailController">
-<jsp:include page="template/customerNavbar.jsp"></jsp:include>
 
 <p>订单号：{{item["orderId"]}}</p>
 <p>订单状态：{{order_status}}</p>
@@ -52,6 +28,3 @@
 </div>
 
 <jsp:include page="template/goodsDetails.jsp"></jsp:include>
-
-</body>
-</html>

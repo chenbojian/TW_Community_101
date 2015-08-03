@@ -1,26 +1,5 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: MiffyLiye
-  Date: 29/07/2015
-  Time: 17:02
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>注册</title>
-  <script src="<%=request.getContextPath()%>/api/env/env.js"></script>
-  <script src="<%=request.getContextPath()%>/js/angular/angular.min.js"></script>
-  <script src="<%=request.getContextPath()%>/js/default.js"></script>
-  <script src="<%=request.getContextPath()%>/js/angular/sign-up-controller.js"></script>
-  <link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet"/>
   <link href="<%=request.getContextPath()%>/css/login.css" rel="stylesheet"/>
-</head>
-<body ng-app="App" ng-controller="signInController">
-<jsp:include page="template/customerNavbar.jsp"></jsp:include>
-
 <div class="row">
   <div class="center">
     <div class="well well-padding">
@@ -42,12 +21,8 @@
         </div>
 
         <button class="btn-info btn" type="submit">注册</button>
-        <a href="<%=request.getContextPath()%>/customer/login/">已经有账号了？去登录</a>
+        <a href="#/login">已经有账号了？去登录</a>
       </form>
     </div>
   </div>
 </div>
-
-
-</body>
-</html>

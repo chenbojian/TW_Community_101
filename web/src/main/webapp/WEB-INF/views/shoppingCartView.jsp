@@ -1,27 +1,6 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: MiffyLiye
-  Date: 29/07/2015
-  Time: 16:44
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
-<html lang="zh-Hans" ng-app="App">
-<head>
-  <meta charset="UTF-8">
-  <title>Shopping Cart | Community 101</title>
 
-  <link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet"/>
   <link href="<%=request.getContextPath()%>/css/index.css" rel="stylesheet"/>
-  <script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
-  <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
-
-  <script src="<%=request.getContextPath()%>/api/env/env.js"></script>
-  <script src="<%=request.getContextPath()%>/js/angular/angular.min.js"></script>
-  <script src="<%=request.getContextPath()%>/js/angular/angular-cookies.min.js"></script>
-  <script src="<%=request.getContextPath()%>/js/default.js"></script>
-  <script src="<%=request.getContextPath()%>/js/angular/cart_controller.js"></script>
   <style>
     table th, td {
       text-align: center;
@@ -37,9 +16,6 @@
       cursor: pointer;
     }
   </style>
-</head>
-<body ng-controller="CartController">
-<jsp:include page="template/customerNavbar.jsp"></jsp:include>
 
 <div class="container">
   <div class="row">
@@ -112,11 +88,9 @@
   <div ng-model="order_submitted" ng-show="order_submitted">
     <p>订单号: {{order_id}}</p>
 
-    <h2><a href="<%=request.getContextPath()%>/customer/order-details/">查看订单状态</a></h2>
+    <h2><a href="#/order-details">查看订单状态</a></h2>
   </div>
 
   <jsp:include page="template/goodsDetails.jsp"></jsp:include>
 
 </div>
-</body>
-</html>

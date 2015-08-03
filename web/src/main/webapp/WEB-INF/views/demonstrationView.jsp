@@ -1,24 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
-<html lang="zh-Hans" ng-app="App">
-
-<head>
-  <meta charset="UTF-8">
-  <title>社区101</title>
-  <script src="<%=request.getContextPath()%>/api/env/env.js"></script>
-  <link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="<%=request.getContextPath()%>/css/index.css" rel="stylesheet" />
-  <script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
-  <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
-  <script src="<%=request.getContextPath()%>/js/jquery.cookie.min.js"></script>
-  <script src="<%=request.getContextPath()%>/js/angular/angular.min.js"></script>
-  <script src="<%=request.getContextPath()%>/js/angular/angular-cookies.min.js"></script>
-  <script src="<%=request.getContextPath()%>/js/default.js"></script>
-  <script src="<%=request.getContextPath()%>/js/angular/index_controller.js"></script>
-</head>
-
-<body ng-controller="IndexController">
-<jsp:include page="template/customerNavbar.jsp"></jsp:include>
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-12">
@@ -31,7 +11,7 @@
   </div>
   <div class="row">
     <div class="col-md-3">
-      <a class="btn btn-success btn-block buybtn" href="<%=request.getContextPath()%>/customer/shopping-cart/">购买</a>
+      <a class="btn btn-success btn-block buybtn" href="#/shopping-cart">购买</a>
       <div class="list-group" id="categorylist">
         <div ng-click="select_category(0)" class="list-group-item " ng-class="active_category_id === 0 ? 'active' : ''">所有商品</div>
         <div ng-repeat="category in categories" ng-click="select_category(category.id)" class="list-group-item" ng-class="active_category_id === category.id ? 'active' : ''">
@@ -61,6 +41,5 @@
   </div>
 </div>
 <jsp:include page="template/goodsDetails.jsp"></jsp:include>
-</body>
 
-</html>
+<link href="<%=request.getContextPath()%>/css/index.css" rel="stylesheet" />

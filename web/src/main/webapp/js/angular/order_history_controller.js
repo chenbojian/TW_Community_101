@@ -1,6 +1,5 @@
-var App = angular.module('App', ['ngCookies']);
-
-App.controller('OrderHistoryController', function($scope, $http, $cookies) {
+angular.module('webApp')
+    .controller('OrderHistoryController', function($scope, $http, $cookies) {
 
     $scope.webapi_order_history = $env.contextPath + "/api/order/history";
 
@@ -18,6 +17,6 @@ App.controller('OrderHistoryController', function($scope, $http, $cookies) {
 
     $scope.launchOrderDetails = function() {
         $cookies.put('orderId', this.order.orderId.toString(), {'path': $env.contextPath + '/'});
-        window.location.assign($env.contextPath + '/customer/order-details/');
+        window.location.assign('#/order-details');
     }
 });

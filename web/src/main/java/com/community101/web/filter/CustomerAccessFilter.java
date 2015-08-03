@@ -17,7 +17,7 @@ class CustomerAccessFilter extends HandlerInterceptorAdapter {
         Long userId = (Long) session.getAttribute("userId");
 
         if (userId == null) {
-            response.sendRedirect("/web/customer/login/");
+            response.sendRedirect("/web/");
         }
         return true;
     }

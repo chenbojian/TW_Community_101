@@ -70,7 +70,6 @@ public class GoodsController {
         return Mapper.makeGoodsSummaryDTOList(goodsService.listGoods());
     }
 
-
     @RequestMapping("/summary")
     public GoodsSummaryDTO getGoodsSummaryInformationById(long id) {
         GoodsSummaryDTO goodsSummaryDTO = null;
@@ -103,5 +102,4 @@ public class GoodsController {
         }
         return goodsDetailedDTO;
     }
-
 }

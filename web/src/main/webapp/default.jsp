@@ -1,16 +1,16 @@
 <%--
   Created by IntelliJ IDEA.
-  User: chenbojian
-  Date: 7/30/15
-  Time: 12:25 PM
+  User: MiffyLiye
+  Date: 03/08/2015
+  Time: 10:47
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<html lang="zh-Hans">
 <head>
-  <title></title>
+  <title>社区101</title>
 </head>
-<body>
+<body onload="parent.location='./app/'">
 
 </body>
 </html>

@@ -1,5 +1,5 @@
-var App=angular.module('App',['ngCookies']);
-App.controller('OrderDetailController',function($scope,$http,$cookies){
+angular.module('webApp')
+    .controller('OrderDetailsController',function($scope,$http,$cookies){
 
     $scope.webapi_order_detail=$env.contextPath + "/api/order/detail";
     $scope.order_id=null;

@@ -1,6 +1,5 @@
-var App = angular.module('App', ['ngCookies']);
-
-App.controller('CartController', function($scope, $http, $cookies) {
+angular.module('webApp')
+    .controller('CartController', function($scope, $http, $cookies) {
 
     $scope.message = '';
     $scope.is_fake = true;

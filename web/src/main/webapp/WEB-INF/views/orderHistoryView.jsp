@@ -1,30 +1,6 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: MiffyLiye
-  Date: 29/07/2015
-  Time: 15:26
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
-<html lang="en" ng-app="App">
-<head>
-  <meta charset="UTF-8">
-  <title>订单记录</title>
-  <link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet"/>
-  <link href="<%=request.getContextPath()%>/css/index.css" rel="stylesheet"/>
-  <link rel="stylesheet" href="<%=request.getContextPath()%>/css/order.css" type="text/css">
 
-  <script src="<%=request.getContextPath()%>/api/env/env.js"></script>
-  <script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
-  <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
-  <script src="<%=request.getContextPath()%>/js/angular/angular.min.js"></script>
-  <script src="<%=request.getContextPath()%>/js/angular/angular-cookies.min.js"></script>
-  <script src="<%=request.getContextPath()%>/js/default.js"></script>
-  <script src="<%=request.getContextPath()%>/js/angular/order_history_controller.js"></script>
-</head>
-<body ng-controller="OrderHistoryController">
-<jsp:include page="template/customerNavbar.jsp"></jsp:include>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/order.css" type="text/css">
 
 <h1>订单记录</h1>
 {{message}}
@@ -60,6 +36,3 @@
 </div>
 
 <jsp:include page="template/goodsDetails.jsp"></jsp:include>
-
-</body>
-</html>

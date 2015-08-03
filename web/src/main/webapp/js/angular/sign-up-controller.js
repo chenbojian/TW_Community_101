@@ -1,9 +1,5 @@
-/**
- * Created by chenjian on 7/27/15.
- */
-var app = angular.module("App",[]);
-
-app.controller("signInController", function($scope, $http) {
+angular.module("webApp")
+    .controller("SignUpController", function($scope, $http) {
 
     $scope.tel_phone = "";
     $scope.password = "";
