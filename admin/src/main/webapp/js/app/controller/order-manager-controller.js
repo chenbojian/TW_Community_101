@@ -2,7 +2,7 @@
  * Created by chenjian on 7/21/15.
  */
 angular.module("adminApp")
-    .controller("orderManagerController", function ($scope, $http) {
+    .controller("orderManagerController", function ($scope, $http, $interval) {
 
         $scope.newOrdersUrl = $env.contextPath + "/api/order/newOrders";
         $scope.dispatchingOrdersUrl = $env.contextPath + "/api/order/dispatchingOrders";
@@ -98,7 +98,7 @@ angular.module("adminApp")
         var show = function () { //有新消息时在title处闪烁提示
             var step = 0;
 
-            var timer = setInterval(function () {
+            var timer = $interval(function () {
                 step++;
                 if (step == 3) {
                     step = 1
@@ -115,7 +115,7 @@ angular.module("adminApp")
             }, 500);
 
             setTimeout(function () {
-                clearInterval(timer);
+                $interval.cancel(timer);
                 document.title = $scope._title;
             }, 10000);
         };
@@ -131,7 +131,11 @@ angular.module("adminApp")
             });
         };
 
-        setInterval(hasNewOrder, 5000);
+        var hasNewOrderInterval = $interval(hasNewOrder, 5000);
+
+        $scope.$on('$destroy', function () {
+            $interval.cancel(hasNewOrderInterval);
+        });
 
         $scope.getGoodsDetail = function () {
 
