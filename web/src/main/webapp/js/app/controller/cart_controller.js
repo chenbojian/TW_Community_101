@@ -14,25 +14,11 @@ angular.module('webApp')
 
     var get_items_list = function() {
         var encoded_string = $cookies.get($scope.selected_items_cookie_key).toString();
-        var item_list = [];
-
-        var j = -1;
-        if (encoded_string[0] !== '|') {
-            item_list.push('');
-            j++;
-        }
-        for (var i = 0; i < encoded_string.length; i++) {
-            if (encoded_string[i] === '|') {
-                item_list.push('');
-                j++;
-                continue;
-            }
-            item_list[j] = item_list[j] + encoded_string[i];
-        }
+        var item_list = encoded_string.split('|');
 
         for (var i = 0; i < item_list.length; i++) {
             var details = item_list[i].split(',');
-            if (details[1] > 0) {
+            if (parseFloat(details[1]) > 0) {
                 $scope.selected_items_id.push(parseFloat(details[0]));
                 $scope.selected_items_quantity.push(parseFloat(details[1]));
             }
@@ -85,7 +71,7 @@ angular.module('webApp')
                 $scope.selected_items[i].quantity = 0;
             }
         }
-    }
+    };
 
     $scope.$watch('selected_items', validateGoodsQuantity, true);
 
@@ -98,10 +84,8 @@ angular.module('webApp')
     $scope.order_submitted = false;
 
     $scope.submit = function() {
-        //var order = {};
         var id_string = "ids=";
         var quantity_string = "quantities=";
-        //order.goodsList = [];
         for (var i = 0, len = $scope.selected_items.length; i < len; i++) {
             id_string = id_string + $scope.selected_items[i].id;
             quantity_string = quantity_string + $scope.selected_items[i].quantity;
@@ -109,10 +93,7 @@ angular.module('webApp')
                 id_string = id_string + ',';
                 quantity_string = quantity_string + ',';
             }
-            //order.goodsList.push({"id": $scope.selected_items[i].id, "quantity": $scope.selected_items[i].quantity});
         }
-        //order.phone = $scope.phone;
-        //order.address = $scope.address;
 
         $scope.submit_string = "?" + id_string + '&' + quantity_string + '&phone=' + $scope.phone + '&address=' + $scope.address;
 
