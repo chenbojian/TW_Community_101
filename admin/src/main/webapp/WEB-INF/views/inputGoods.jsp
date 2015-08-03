@@ -14,14 +14,14 @@
       <label class="col-sm-1 control-label">商品名称:</label>
 
       <div class="col-sm-10">
-        <input type="text" class="form-control"/>
+        <input type="text" class="form-control" title=""/>
       </div>
     </div>
     <div class="form-group">
       <label class="col-sm-1 control-label">商品类型:</label>
 
       <div class="col-sm-10">
-        <select class="form-control" name="category.id">
+        <select class="form-control" name="category.id" title="">
           <option>1</option>
         </select>
       </div>
@@ -41,28 +41,33 @@
       </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group" ng-show="! isUseLocalPicture">
       <label class="col-sm-1 control-label">商品图片:</label>
 
       <div class="col-sm-8">
         <input type="text" class="form-control" title=""/>
       </div>
       <div class="col-sm-2">
-        <button class="btn btn-default" type="button">使用本地图片</button>
+        <button class="btn btn-default" type="button" ng-click="useLocalPicture()">
+          使用本地图片
+        </button>
       </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group" ng-show="isUseLocalPicture">
       <label class="col-sm-1 control-label">商品图片:</label>
 
       <div class="col-sm-8">
-        <input type="file" nv-file-select="" uploader="uploader"/>
+        <input type="file" nv-file-select="" uploader="uploader"
+               ng-disabled="uploader.queue.length"/>
       </div>
       <div class="col-sm-2">
-        <button class="btn btn-default" type="button">使用远程图片</button>
+        <button class="btn btn-default" type="button" ng-click="useRemotePicture()">
+          使用远程图片
+        </button>
       </div>
     </div>
-    <div class="form-group" ng-show="uploader.queue.length > 0">
+    <div class="form-group" ng-show="uploader.queue.length">
       <div class=" col-sm-offset-1 col-sm-10">
         <table class="table">
           <tr>
