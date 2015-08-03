@@ -1,19 +1,24 @@
 package com.community101.web;
 
-import com.community101.web.DTO.OrderDetailDTO;
-import com.community101.web.DTO.OrderInOrderManagerDTO;
+import com.community101.core.OrderGoods;
 import com.community101.core.Orders;
+import com.community101.core.User;
 import com.community101.core.service.GoodsService;
 import com.community101.core.service.OrdersService;
-import com.google.gson.Gson;
 import com.community101.core.service.UserService;
+import com.community101.web.DTO.OrderDTO;
+import com.community101.web.DTO.OrderDetailDTO;
+import com.community101.web.DTO.OrderGoodsDTO;
+import com.community101.web.DTO.SubmissionResultsDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
-import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletResponse;
-import java.io.PrintWriter;
-import java.util.*;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by chenjian on 7/17/15.
@@ -21,62 +26,19 @@ import java.util.*;
 @RestController
 @RequestMapping("/api/order")
 public class OrderController {
-    static Gson gson = new Gson();
-
+    private GoodsService goodsService;
+    private UserService userService;
     private OrdersService ordersService;
 
     @Autowired
-    public OrderController(OrdersService ordersService, GoodsService goodsService, UserService userService){
+    public OrderController(
+            GoodsService goodsService,
+            UserService userService,
+            OrdersService ordersService) {
+        this.goodsService = goodsService;
+        this.userService = userService;
         this.ordersService = ordersService;
     }
-
-    @RequestMapping("/newOrders")
-    public List<OrderDetailDTO> getNewOrdersList(){
-        List<Orders> newOrdersList=ordersService.listNewOrders();
-        return Mapper.makeOrderDetailDTOList(newOrdersList);
-    }
-
-    @RequestMapping("/dispatchingOrders")
-    public List<OrderDetailDTO> getDispatchingOrdersList(){
-        List<Orders> dispatchingOrdersList=ordersService.listDispatchingOrders();
-        return Mapper.makeOrderDetailDTOList(dispatchingOrdersList);
-    }
-
-    @RequestMapping("/completedOrders")
-    public List<OrderDetailDTO> getCompletedOrdersList(){
-        List<Orders> completedOrdersList=ordersService.listCompletedOrders();
-        return Mapper.makeOrderDetailDTOList(completedOrdersList);
-    }
-
-    @RequestMapping("/getOrder")
-    public void dispatchingOrder(long orderId, HttpServletResponse response) throws Exception{
-        PrintWriter writer = response.getWriter();
-        Orders orders = ordersService.findOrdersById(orderId);
-
-        OrderInOrderManagerDTO orderDTO = new OrderInOrderManagerDTO();
-        orderDTO.setId(orders.getId());
-        orderDTO.setTotalPrice(orders.getTotalPrice());
-
-        String json = gson.toJson(orderDTO);
-        System.out.print(json);
-        writer.print(json);
-    }
-
-    @RequestMapping("/dispatchOrder")
-    public void dispatchOrder(long orderId){
-        ordersService.dispatchOrder(orderId);
-    }
-
-    @RequestMapping("/completeOrder")
-    public void completeOrder(long orderId){
-        ordersService.completeOrder(orderId);
-    }
-
-    @RequestMapping("/cancelOrder")
-    public void cancelOrder(long orderId){
-        ordersService.cancelOrder(orderId);
-    }
-
 
     @RequestMapping(value = "/detail")
     public OrderDetailDTO getOrderDetail(long orderId){
@@ -84,4 +46,49 @@ public class OrderController {
         return Mapper.makeOrderDetailDTO(orders);
     }
 
+    @RequestMapping("/history")
+    public List<OrderDetailDTO> getOrdersOfCertainUser(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        Long userId = (Long) session.getAttribute("userId");
+
+        if (userId == null) {
+            userId = 0L;
+        }
+
+        User user = userService.findUserById(userId);
+        if (user == null) {
+            return new LinkedList<OrderDetailDTO>();
+        }
+        else {
+            return Mapper.makeOrderDetailDTOList(user.getOrderses());
+        }
+    }
+
+    @RequestMapping(value = "/submit", method = RequestMethod.POST)
+    public SubmissionResultsDTO submitOrder(long[] ids, int[] quantities, String phone, String address) {
+        Mapper mapper = new Mapper(userService, goodsService);
+        OrderDTO orderDTO = mapper.makeOrderDTO(ids, quantities, phone, address);
+        SubmissionResultsDTO submissionResultsDTO = new SubmissionResultsDTO();
+
+        submissionResultsDTO.setErrorMessages(orderDTO.getErrorMessages());
+
+        if (submissionResultsDTO.getErrorMessages().size() == 0) {
+            Orders order = mapper.makeOrder(orderDTO);
+            ordersService.addOrder(order);
+            submissionResultsDTO.setOrderId(order.getId());
+        }
+        else {
+            submissionResultsDTO.setOrderId(0);
+        }
+
+        return submissionResultsDTO;
+    }
+
+    @RequestMapping("/goods")
+    public OrderGoodsDTO getOrderGoodsDetails(long goodsId)
+    {
+        OrderGoods orderGoods = ordersService.findOrderGoodsById(goodsId);
+        OrderGoodsDTO orderGoodsDTO = Mapper.makeOrderGoodsDTO(orderGoods);
+        return orderGoodsDTO;
+    }
 }

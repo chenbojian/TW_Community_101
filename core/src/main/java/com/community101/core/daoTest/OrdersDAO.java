@@ -65,4 +65,13 @@ public class OrdersDAO {
     public void addOrder(Orders order) {
         sessionFactory.getCurrentSession().save(order);
     }
+
+    public boolean hasNewOrders(){
+        int count = sessionFactory.getCurrentSession().createSQLQuery("SELECT * from NEW_ORDERS").list().size();
+        return count>0?true:false;
+    }
+
+    public void cleanNewOrdersTable(){
+        sessionFactory.getCurrentSession().createSQLQuery("TRUNCATE TABLE NEW_ORDERS").executeUpdate();
+    }
 }

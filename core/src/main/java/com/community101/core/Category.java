@@ -1,5 +1,11 @@
 package com.community101.core;
 
+import com.community101.core.views.Views;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonView;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -8,19 +14,22 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "CATEGORY")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Category {
     @Id
     @Column(name = "id")
     @GeneratedValue
+    @JsonView(Views.CategoryBase.class)
     private long id;
 
-    @Column(name="name")
+    @Column(name = "name")
+    @JsonView(Views.CategoryBase.class)
     private String name;
 
     @OneToMany(mappedBy = "category")
     private Set<Goods> goodses;
 
-    public Category(){
+    public Category() {
 
     }
 

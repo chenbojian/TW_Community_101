@@ -31,4 +31,13 @@ public class GoodsDAO {
         return (Goods) sessionFactory.getCurrentSession()
                 .get(Goods.class, goodsId);
     }
+
+    public void update(Goods goods) {
+        sessionFactory.getCurrentSession()
+                .update(goods);
+    }
+
+    public List<Goods> goodsWithoutCategory() {
+        return sessionFactory.getCurrentSession().createQuery("from Goods g where g.category=null").list();
+    }
 }

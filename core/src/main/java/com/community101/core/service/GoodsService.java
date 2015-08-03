@@ -34,4 +34,8 @@ public class GoodsService {
     public List<Goods> listGoods() {
         return goodsDAO.goodsList();
     }
+
+    public List<Goods> listGoodsWithoutCategory() {
+        return goodsDAO.goodsWithoutCategory();
+    }
 }
