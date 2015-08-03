@@ -1,7 +1,7 @@
 package com.community101.core.service;
 
 import com.community101.core.User;
-import com.community101.core.dao.UserDAO;
+import com.community101.core.daoTest.UserDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

@@ -1,3 +1,4 @@
+apply plugin: 'java'
 apply plugin:'org.flywaydb.flyway'
 
 buildscript {
@@ -24,7 +25,9 @@ dependencies {
     compile 'org.hibernate:hibernate-core:4.3.5.Final'
     compile 'org.hibernate:hibernate-entitymanager:4.3.5.Final'
 
+    testCompile 'junit:junit:4.10'
     testCompile 'org.springframework:spring-test:4.0.6.RELEASE'
+
 }
 
 flyway {
@@ -42,6 +45,19 @@ task cleanSeed(type:Exec) {
     standardInput = new FileInputStream("$project.projectDir"+"/src/main/resources/db/seed/clean.sql")
 }
 
+
+//run test with testDB steps:create database community101_test -->gradle runTestDB flywayMigrate testDBImport --> gradle test
+task runTestDB << {
+    flyway {
+        url = 'jdbc:mysql://localhost:3306/community101_test'
+        user = 'root'
+    }
+}
+
+task testDBImport(type:Exec){
+    commandLine "mysql", "-u", "root", "-D", "community101_test"
+    standardInput = new FileInputStream("$project.projectDir"+"/src/test/resources/testDB/import.sql")
+}
 
 
 

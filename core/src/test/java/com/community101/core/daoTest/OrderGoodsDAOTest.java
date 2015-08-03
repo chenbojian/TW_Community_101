@@ -1,9 +1,8 @@
-package com.community101.core.dao;
+package com.community101.core.daoTest;
 
 import com.community101.core.OrderGoods;
 import com.community101.core.Orders;
 import com.community101.core.User;
-import org.hibernate.SessionFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.activation.DataSource;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -25,8 +23,8 @@ import static org.junit.Assert.assertTrue;
  * Created by jiaoming on 7/17/15.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations="/springTest.xml")
-@TransactionConfiguration
+@ContextConfiguration(locations="classpath:springTest.xml")
+@TransactionConfiguration(transactionManager="transactionManager",defaultRollback=false)
 @Transactional
 public class OrderGoodsDAOTest {
     @Autowired

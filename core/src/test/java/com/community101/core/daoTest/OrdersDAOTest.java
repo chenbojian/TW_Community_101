@@ -1,10 +1,7 @@
-package com.community101.core.dao;
+package com.community101.core.daoTest;
 
-import com.community101.core.Goods;
-import com.community101.core.OrderGoods;
 import com.community101.core.Orders;
 import com.community101.core.User;
-import junit.framework.TestCase;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +12,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.xml.bind.annotation.XmlRootElement;
-import java.util.LinkedHashSet;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -27,7 +22,7 @@ import static org.junit.Assert.assertTrue;
  * Created by jiaoming on 7/17/15.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "/springTest.xml")
+@ContextConfiguration(locations = "classpath:springTest.xml")
 @TransactionConfiguration
 @Transactional
 public class OrdersDAOTest  {

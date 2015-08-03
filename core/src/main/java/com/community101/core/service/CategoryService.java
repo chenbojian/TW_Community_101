@@ -1,7 +1,7 @@
 package com.community101.core.service;
 
 import com.community101.core.Category;
-import com.community101.core.dao.CategoryDAO;
+import com.community101.core.daoTest.CategoryDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

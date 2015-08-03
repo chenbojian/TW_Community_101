@@ -1,8 +1,5 @@
 package com.community101.web;
 
-import com.community101.core.Orders;
-import com.community101.core.User;
-import com.community101.core.dao.UserDAO;
 import com.community101.core.service.GoodsService;
 import com.community101.web.DTO.GoodsInSubmissionDTO;
 import com.community101.web.DTO.OrderDTO;
@@ -10,15 +7,12 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.LinkedHashSet;
 import java.util.LinkedList;
-import java.util.List;
 
 import static org.junit.Assert.*;
 

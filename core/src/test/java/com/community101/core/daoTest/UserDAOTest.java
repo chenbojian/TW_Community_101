@@ -1,4 +1,4 @@
-package com.community101.core.dao;
+package com.community101.core.daoTest;
 
 import com.community101.core.Orders;
 import com.community101.core.User;
@@ -21,7 +21,7 @@ import static org.junit.Assert.*;
  * Created by jiaoming on 7/17/15.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations="/springTest.xml")
+@ContextConfiguration(locations="classpath:springTest.xml")
 @TransactionConfiguration
 @Transactional
 public class UserDAOTest {

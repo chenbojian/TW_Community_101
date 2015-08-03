@@ -1,6 +1,6 @@
-alter table community101.GOODS
+alter table GOODS
 change column price price INT NULL DEFAULT null;
-alter table community101.ORDERS
+alter table ORDERS
 change column total_price total_price int null default null;
-alter table community101.ORDER_GOODS
+alter table ORDER_GOODS
 add column goods_price int null default null;
