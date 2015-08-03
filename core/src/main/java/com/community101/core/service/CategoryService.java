@@ -1,12 +1,7 @@
 package com.community101.core.service;
 
 import com.community101.core.Category;
-<<<<<<< HEAD
-import com.community101.core.daoTest.CategoryDAO;
-=======
 import com.community101.core.dao.CategoryDAO;
-import com.community101.core.dao.GoodsDAO;
->>>>>>> 35688471c6241585b91b80351d9baa6abb307cfd
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

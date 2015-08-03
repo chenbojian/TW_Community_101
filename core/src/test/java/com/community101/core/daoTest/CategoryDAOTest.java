@@ -1,6 +1,7 @@
 package com.community101.core.daoTest;
 
 import com.community101.core.Category;
+import com.community101.core.dao.CategoryDAO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

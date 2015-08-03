@@ -11,7 +11,7 @@
 
        <context:annotation-config/>
        <context:component-scan base-package="com.community101.core"/>
-       <context:component-scan base-package="com.community101.core.daoTest"/>
+       <context:component-scan base-package="com.community101.core.dao"/>
 
        <bean id="propertyConfigurer"
              class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">

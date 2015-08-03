@@ -1,4 +1,4 @@
-package com.community101.core.daoTest;
+package com.community101.core.dao;
 
 import com.community101.core.User;
 import org.hibernate.SessionFactory;

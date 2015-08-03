@@ -2,6 +2,8 @@ package com.community101.core.daoTest;
 
 import com.community101.core.Orders;
 import com.community101.core.User;
+import com.community101.core.dao.OrdersDAO;
+import com.community101.core.dao.UserDAO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
