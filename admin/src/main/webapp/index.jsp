@@ -9,7 +9,7 @@
 <html>
 <head>
   <title>后台管理系统</title>
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/js/components/bootstrap/dist/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="js/components/bootstrap/dist/css/bootstrap.min.css"/>
 </head>
 <body ng-app="adminApp">
 <jsp:include page="/navbar"></jsp:include>
