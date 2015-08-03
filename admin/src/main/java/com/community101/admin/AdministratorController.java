@@ -7,13 +7,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * Created by chenjian on 7/30/15.
  */
 @Controller
 public class AdministratorController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ModelAndView index() {
+    public ModelAndView index(HttpServletResponse response) {
+        response.addHeader("Cache-Control", "max-age:60");
         return new ModelAndView("index");
     }
 
