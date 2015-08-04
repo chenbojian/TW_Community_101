@@ -2,6 +2,8 @@ package com.community101.core.service;
 
 import com.community101.core.OrderGoods;
 import com.community101.core.Orders;
+import com.community101.core.dao.OrderGoodsDAO;
+import com.community101.core.dao.OrdersDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
