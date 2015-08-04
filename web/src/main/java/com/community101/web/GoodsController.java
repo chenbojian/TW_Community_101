@@ -35,6 +35,7 @@ public class GoodsController {
     @RequestMapping("/categories")
     public List<CategoryDTO> listAllCategories() {
         List<CategoryDTO> categoryDTOList = Mapper.makeCategoryDTOList(categoryService.listCategory());
+        categoryDTOList.add(new CategoryDTO(-1, "未分类"));
 
         return categoryDTOList;
     }
