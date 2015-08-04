@@ -19,10 +19,6 @@
       <a class="navbar-brand" href="#/demonstration">Community101</a>
     </div>
 
-
-    <form name="logout" method="POST" action="<%=request.getContextPath()%>/customer/logout/">
-    </form>
-
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><a href="#/order-history">订单记录</a></li>
@@ -36,7 +32,8 @@
         <li><a href="#/signup">注册</a></li>
         <li><a href="#/login">登录</a></li>
         </c:if>
-
+        <form name="logout" method="POST" action="<%=request.getContextPath()%>/customer/logout/">
+        </form>
       </ul>
     </div>
   </div>
