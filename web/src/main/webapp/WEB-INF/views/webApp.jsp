@@ -18,13 +18,13 @@
 <div ng-view></div>
 
 <script src="<%=request.getContextPath()%>/api/env/env.js"></script>
-<script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
-<script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
+<script src="<%=request.getContextPath()%>/js/components/jquery/jquery.min.js"></script>
+<script src="<%=request.getContextPath()%>/js/components/bootstrap/bootstrap.min.js"></script>
 
-<script src="<%=request.getContextPath()%>/js/angular/angular.min.js"></script>
-<script src="<%=request.getContextPath()%>/js/angular/angular-route.min.js"></script>
-<script src="<%=request.getContextPath()%>/js/angular/angular-resource.min.js"></script>
-<script src="<%=request.getContextPath()%>/js/angular/angular-cookies.min.js"></script>
+<script src="<%=request.getContextPath()%>/js/components/angular/angular.min.js"></script>
+<script src="<%=request.getContextPath()%>/js/components/angular-route/angular-route.min.js"></script>
+<script src="<%=request.getContextPath()%>/js/components/angular-resource/angular-resource.min.js"></script>
+<script src="<%=request.getContextPath()%>/js/components/angular-cookies/angular-cookies.min.js"></script>
 
 <script src="<%=request.getContextPath()%>/js/app/webApp.js"></script>
 <script src="<%=request.getContextPath()%>/js/app/service/shared_functions.js"></script>
