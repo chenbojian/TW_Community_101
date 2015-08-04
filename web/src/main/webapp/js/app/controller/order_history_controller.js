@@ -5,7 +5,7 @@ angular.module('webApp')
 
     var orderHistoryResource = $resource(env.contextPath + "/api/order/history");
     $scope.order_list = orderHistoryResource.query();
-        
+
     $scope.getOrderGoodsDetail = SharedFunctions.getOrderGoodsDetail;
 
     $scope.launchOrderDetails = function() {

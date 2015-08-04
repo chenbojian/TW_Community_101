@@ -24,7 +24,7 @@
         <div ng-repeat="goods in goods_to_list" class="col-md-3">
           <div class="thumbnail">
             <div ng-click='getGoodsDetail(goods.id)' class="caption text-center" data-gid="{{goods.id}}">
-              <img src="{{goods.pic}}" />
+              <img ng-src="{{goods.pic}}" />
               <h5>{{goods.name}}</h5>
               <h4 class="pull-left text-danger">{{goods.price/100 | currency : "¥" : 2}}</h4>
               <div class="clearfix"></div>

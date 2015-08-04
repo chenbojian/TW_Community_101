@@ -27,7 +27,7 @@
       </thead>
       <tbody>
       <tr ng-repeat="goods in order.goodsInOrderDTOList">
-        <td><img class="goodsLogoInCart" src={{goods.pic}} alt={{goods.name}}></td>
+        <td><img class="goodsLogoInCart" ng-src={{goods.pic}} alt={{goods.name}}></td>
         <td><a href="javascript:void(0);" ng-click="getGoodsDetail()">{{goods.name}}</a></td>
         <td>{{goods.price/100 | currency : "¥" : 2}}</td>
         <td>{{goods.quantity}}</td>
@@ -66,7 +66,7 @@
       </thead>
       <tbody>
       <tr ng-repeat="goods in order.goodsInOrderDTOList">
-        <td><img class="goodsLogoInCart" src={{goods.pic}} alt={{goods.name}}></td>
+        <td><img class="goodsLogoInCart" ng-src={{goods.pic}} alt={{goods.name}}></td>
         <td><a href="javascript:void(0);" ng-click="getGoodsDetail()">{{goods.name}}</a></td>
         <td>{{goods.price/100 | currency : "¥" : 2}}</td>
         <td>{{goods.quantity}}</td>
@@ -105,7 +105,7 @@
       </thead>
       <tbody>
       <tr ng-repeat="goods in order.goodsInOrderDTOList">
-        <td><img class="goodsLogoInCart" src={{goods.pic}} alt={{goods.name}}></td>
+        <td><img class="goodsLogoInCart" ng-src={{goods.pic}} alt={{goods.name}}></td>
         <td><a href="javascript:void(0);" ng-click="getGoodsDetail()">{{goods.name}}</a></td>
         <td>{{goods.price/100 | currency : "¥" : 2}}</td>
         <td>{{goods.quantity}}</td>

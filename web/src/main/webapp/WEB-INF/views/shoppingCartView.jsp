@@ -38,7 +38,7 @@
         <th>操作</th>
       </tr>
       <tr ng-repeat="item in selected_items" class="warning">
-        <td style="width:120px;"><img src="{{item.pic}}"/></td>
+        <td style="width:120px;"><img ng-src="{{item.pic}}"/></td>
         <td><a href="javascript:void(0);" ng-click="getGoodsDetail(item.id)">{{item.name}}</a></td>
         <td style="width:120px;">{{item.price/100 | currency : "¥" : 2}}</td>
         <td style="width:120px;">
